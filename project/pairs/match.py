@@ -8,21 +8,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--inFileA', type=str, required=True)
 parser.add_argument('--inFileB', type=str, required=True)
 parser.add_argument('--outFile', type=str, required=True)
-parser.add_argument('--minDistanceMatch', type=str, required=True)
-parser.add_argument('--maxErrorMatch', type=str, required=True)
-parser.add_argument('--minDistanceUnion', type=str, required=True)
-parser.add_argument('--localAlignPadRatio', type=str, required=True)
+parser.add_argument('--minDistanceMatch', type=int, required=True)
+parser.add_argument('--maxErrorMatch', type=int, required=True)
+parser.add_argument('--minDistanceUnion', type=int, required=True)
+parser.add_argument('--localAlignPadRatio', type=float, required=True)
 
 args = parser.parse_args()
-
-minDistanceMatch = float(args.minDistanceMatch)
-maxErrorMatch = float(args.maxErrorMatch)
-minDistanceUnion = float(args.minDistanceUnion)
-localAlignPadRatio = float(args.localAlignPadRatio)
 
 headerPath = args.outFile + ".header"
 
 import subprocess
-subprocess.call(['java', '-jar', 'matching.jar', args.inFileA, args.inFileB, headerPath, args.minDistanceMatch, args.maxErrorMatch])
-
-postprocess(headerPath, args.outFile, minDistanceUnion, localAlignPadRatio)
+subprocess.call(['java', '-jar', 'matching.jar', args.inFileA, args.inFileB, headerPath, str(args.minDistanceMatch), str(args.maxErrorMatch)])
+postprocess(headerPath, args.outFile, args.minDistanceUnion, args.localAlignPadRatio)
