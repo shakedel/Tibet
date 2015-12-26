@@ -1,0 +1,2714 @@
+C:\Python27\python.exe "C:/Users/Daniel/PycharmProjects/thesis ES/QueryDoc.py"
+line 1:
+---------------------
+1.300189: 'phags pa 'jam dpal gzhon nur gyur pa la phyag 'tshal lo
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+1.7334911: 'phags pa 'jam dpal gzhon nur
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+1.7050707: dpal gzhon nur gyur pa la
+			thams cad ji bzhin pa la 'gyur ba med (2531)
+1.7422912: gyur pa la phyag 'tshal lo
+			 rgyal po bcom ldan 'das byang chub kyi sems kun byed rgyal po la phyag 'tshal lo (5)
+Rows matched:
+2629: 2
+5: 1
+2531: 1
+
+
+line 2:
+---------------------
+1.4970614: bdag med gnyis nyid bde gshegs mi rtog ye shes chos dbyings sku brnyes pa
+			bdag nyid dbyings dang ye shes lta (677)
+1.6511599: bdag med gnyis nyid bde gshegs mi
+			lta spyod blang dor gnyis med bdag nyid 'dod (1106)
+2.145357: nyid bde gshegs mi rtog ye shes
+			mi rtog mi bskyod ye shes so (3720)
+1.8929181: rtog ye shes chos dbyings sku brnyes pa
+			rgyu 'bras dbyings nyid ye shes bltas pa yis (919)
+Rows matched:
+1106: 1
+919: 1
+677: 1
+3720: 1
+
+
+line 3:
+---------------------
+0.9606093: kun gyi rang bzhin zhi ba 'di la gsal zhing bla med lam mchog ste
+			rang 'byung thabs mchog kun gyi yab (6109)
+3.1013272: kun gyi rang bzhin zhi ba 'di
+			'gro ba kun gyi rang bzhin gnas (3091)
+1.4670886: bzhin zhi ba 'di la gsal zhing
+			 la rig gsal ba (3761)
+1.3432609: la gsal zhing bla med lam mchog ste
+			bla med byang chub lam la gtan gol bas (1207)
+Rows matched:
+3761: 1
+1207: 1
+3091: 1
+6109: 1
+
+
+line 4:
+---------------------
+0.95947117: mi ldog sa la sogs te dbang bcu rgyal ba kun dang gcig brnyes pa
+			kun gyi gnas dang sa yin te (4659)
+1.7831224: mi ldog sa la sogs te dbang
+			sangs rgyas tshig gi sa la mi gnas te (1653)
+1.2598375: la sogs te dbang bcu rgyal ba
+			rnam gzigs gtsug tor la sogs te (3275)
+1.9279081: bcu rgyal ba kun dang gcig brnyes pa
+			phyal ba dang ni med pa gcig pu dang (5594)
+Rows matched:
+1653: 1
+3275: 1
+4659: 1
+5594: 1
+
+
+line 5:
+---------------------
+0.9004604: gnas gsum mnyam nyid de la mtshan med yid kyi rab tu dad pas mos
+			sku gsum mtshan nyid de bzhin gnas (2521)
+3.5465305: gnas gsum mnyam nyid de la mtshan
+			sku gsum mtshan nyid de bzhin gnas (2521)
+2.4736595: nyid de la mtshan med yid kyi
+			de bzhin nyid kyi rang bzhin de nyid la (2029)
+1.0007215: med yid kyi rab tu dad pas mos
+			skye ba med pa nyid du rab tu rtogs (5460)
+Rows matched:
+5460: 1
+2521: 2
+2029: 1
+
+
+line 6:
+---------------------
+1.8242506: ston pa 'jig rten sgron mar gyur pa kun gyis mtshungs par rab bsngags pa
+			ston pa'i sgron mar gyur pas yon tan rab bsngags pa (2628)
+2.1730971: ston pa 'jig rten sgron mar gyur
+			ston pa'i sgron mar gyur pas yon tan rab bsngags pa (2628)
+1.5293452: rten sgron mar gyur pa kun gyis
+			ston pa'i sgron mar gyur pas yon tan rab bsngags pa (2628)
+1.2623715: pa kun gyis mtshungs par rab bsngags pa
+			khyad par cir yang mtshungs pa (2937)
+Rows matched:
+2937: 1
+2628: 3
+
+
+line 7:
+---------------------
+4.59041: chos la chos kyi snying por gyur pa 'jam dpal gzhon nu snying po nyid
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+3.169913: chos la chos kyi snying por gyur
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+3.6176703: kyi snying por gyur pa 'jam dpal
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+3.09729: pa 'jam dpal gzhon nu snying po nyid
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+Rows matched:
+2629: 4
+
+
+line 8:
+---------------------
+2.108552: bde gshegs ma lus yum du gyur pas rgyal ba kun gyi lam gcig go
+			bde gshegs yum 'gyur kun gyi mtshungs lam de (2634)
+2.1919467: bde gshegs ma lus yum du gyur
+			bde gshegs yum 'gyur kun gyi mtshungs lam de (2634)
+1.7255884: lus yum du gyur pas rgyal ba
+			dus gsum rgyal ba rtogs la rag lus pas (5648)
+1.5699499: pas rgyal ba kun gyi lam gcig go
+			khyod ni rgyal ba kun gyi mes (6108)
+Rows matched:
+2634: 2
+6108: 1
+5648: 1
+
+
+line 9:
+---------------------
+2.8101802: tshul khrims la sogs pha rol phyin lam spyod pa rgya mtsho'i gzhir gyur pa
+			tshul khrims la sogs spyod pa rgya mtsho'i gzhir gyur pa'i (2632)
+3.2865498: tshul khrims la sogs pha rol phyin
+			sbyin dang tshul khrims pha rol phyin pa bcus (3527)
+1.955507: sogs pha rol phyin lam spyod pa
+			sbyin dang tshul khrims pha rol phyin pa bcus (3527)
+3.3624759: lam spyod pa rgya mtsho'i gzhir gyur pa
+			tshul khrims la sogs spyod pa rgya mtsho'i gzhir gyur pa'i (2632)
+Rows matched:
+3527: 2
+2632: 2
+
+
+line 10:
+---------------------
+1.2555066: rnam dag byang chub sems kyi ngang tshul bsgoms dang yon tan khyad par ni
+			byang chub sems kyi che ba'i yon tan gyis (4248)
+2.9411683: rnam dag byang chub sems kyi ngang
+			byang chub kyi sems (4740)
+1.3541698: chub sems kyi ngang tshul bsgoms dang
+			byang chub kyi sems (4740)
+1.5868084: tshul bsgoms dang yon tan khyad par ni
+			skyon gyis yon tan khyad du gsod par 'gyur (2063)
+Rows matched:
+4740: 2
+4248: 1
+2063: 1
+
+
+line 11:
+---------------------
+1.0192443: blo ldan nam zhig sems kyi dam pa de ni mngon du gyur pa na  (10)
+			gang zhig mngon du phyung ba ni (1775)
+1.2692492: blo ldan nam zhig sems kyi dam pa
+			sems kyi dben pa lam tshol zhing (2951)
+2.0820518: sems kyi dam pa de ni mngon du
+			sems de nid de mngon du phyung (1776)
+1.7853844: de ni mngon du gyur pa na (10)
+			byas nas mngon du phyung ste bstan pa ni (567)
+Rows matched:
+1775: 1
+1776: 1
+2951: 1
+567: 1
+
+
+line 12:
+---------------------
+
+
+line 13:
+---------------------
+
+
+line 14:
+---------------------
+
+
+line 15:
+---------------------
+0.9963514: de la sku gsum mchog tu gyur par chos kyi sku zhes rgyal bas gsungs
+			 byed rgyal po des nyid kyi sku gdung 'di zung shig par gsungs so (2080)
+1.5573161: de la sku gsum mchog tu gyur
+			sku gsum ston pas 'khor la de ltar bstan (5971)
+1.4756632: gsum mchog tu gyur par chos kyi
+			mchog tu gsang ba'i chos nyid ni (2928)
+2.5363314: par chos kyi sku zhes rgyal bas gsungs
+			chos nyid dbyings kyi rgyan zhes gsungs (2968)
+Rows matched:
+2928: 1
+2080: 1
+5971: 1
+2968: 1
+
+
+line 16:
+---------------------
+1.403631: shes byed dam par gyur pa shes rab spyan zhes kyang ni de la bya
+			ye shes zhes ni de la bya (4751)
+1.5504036: shes byed dam par gyur pa shes
+			nges pa dam par bskul to (6155)
+1.4520919: par gyur pa shes rab spyan zhes
+			yab yum thabs dang shes rab mi ltos par (828)
+2.248177: rab spyan zhes kyang ni de la bya
+			rnal 'byor zhes ni de la bya (2485)
+Rows matched:
+4751: 1
+2485: 1
+6155: 1
+828: 1
+
+
+line 17:
+---------------------
+1.357857: rdo rje rtse mo mchog nyid mi rtog ye shes de yang de nyid do
+			 de'i tshe sems dpa' rdo rje de nyid kyang ston pa de ltar gyur pa yang rig chos thams cad skye ba med par rtogs pa la dgongs nas cang yang mi smra bar 'khod do (6151)
+1.2444906: rdo rje rtse mo mchog nyid mi
+			rgyu nyid rdo rje rkyen dang 'dra (2941)
+2.1259127: mo mchog nyid mi rtog ye shes
+			mi rtog mi bskyod ye shes so (3720)
+2.1981354: rtog ye shes de yang de nyid do
+			rnam rtog nyid las ye shes skye (2949)
+Rows matched:
+6151: 1
+3720: 1
+2949: 1
+2941: 1
+
+
+line 18:
+---------------------
+1.1805425: ji snyed 'phags pa'i rnam grol chos su brnyad pa de dag thams cad kyang
+			 thams cad rnam par dag pa'i chos nid la (491)
+1.9772956: ji snyed 'phags pa'i rnam grol chos
+			ji snyed rnam par grol ba'i lam bstan pa (2633)
+1.5341293: pa'i rnam grol chos su brnyad pa
+			ye shes chos nyid rnam pa brgyad po 'di (3398)
+1.9472377: su brnyad pa de dag thams cad kyang
+			de bzhin bsod nams thams cad kyang (3132)
+Rows matched:
+3398: 1
+491: 1
+2633: 1
+3132: 1
+
+
+line 19:
+---------------------
+1.420436: byang chub sems nyid rdzogs pas de yi yon tan de dag de las byung
+			byang chub sems las byung ba yi (3871)
+3.6742296: byang chub sems nyid rdzogs pas de
+			rdzogs chen chos nyid byang chub sems (3714)
+2.2385476: nyid rdzogs pas de yi yon tan
+			de yi yon tan mi 'bral de thob nas (2107)
+2.177297: yi yon tan de dag de las byung
+			de yi yon tan mi 'bral de thob nas (2107)
+Rows matched:
+3871: 1
+2107: 2
+3714: 1
+
+
+line 20:
+---------------------
+1.4455624: 'phags pa'i rigs chen 'chi med byang chub sems dpa' de dag thams cad kyang
+			chos thams cad rdzogs pa chen po byang chub kyi sems kun byed pa rgyal po (4199)
+1.2813703: 'phags pa'i rigs chen 'chi med byang
+			kye sems dpa' chen po nyon cig bsam 'das brjod du med pa'i byang chub sems (2627)
+4.5193615: chen 'chi med byang chub sems dpa'
+			kye sems dpa' chen po nyon cig bsam 'das brjod du med pa'i byang chub sems (2627)
+2.6013055: chub sems dpa' de dag thams cad kyang
+			thams cad byang chub sems yin yid kyang ches (2331)
+Rows matched:
+2331: 1
+2627: 2
+4199: 1
+
+
+line 21:
+---------------------
+1.697233: de med mi 'byung de phyir de ni rnam grol mchog gi lam nyid do
+			 grol mchog gi lam (2636)
+4.573018: de med mi 'byung de phyir de
+			de med mi 'byung de phyi de ni rnam (2635)
+3.0115566: 'byung de phyir de ni rnam grol
+			de med mi 'byung de phyi de ni rnam (2635)
+2.7818277: ni rnam grol mchog gi lam nyid do
+			 grol mchog gi lam (2636)
+Rows matched:
+2635: 2
+2636: 2
+
+
+line 22:
+---------------------
+1.0271537: des na kun du rdo rje sems dpa' ci 'drar bsgom par bya bar 'gyur
+			des na chub ces bya bar bshad (289)
+2.5353413: des na kun du rdo rje sems
+			de nas sems dpa' rdo rje des (5340)
+2.3370788: du rdo rje sems dpa' ci 'drar
+			sems dpa' rdo rje rtog ma skye (117)
+0.9428698: dpa' ci 'drar bsgom par bya bar 'gyur
+			sgom dang bsgom par bya ba gnyis med na (6180)
+Rows matched:
+289: 1
+117: 1
+5340: 1
+6180: 1
+
+
+line 23:
+---------------------
+1.5605531: pha zhing shes dka' drang song chen po'i lam 'di mi rtog rtog las 'das
+			phra zhing shes dka' kun gyi lam sta mi rtog rtog las 'das (2637)
+0.7721522: pha zhing shes dka' drang song chen
+			phra zhing shes dka' kun gyi lam sta mi rtog rtog las 'das (2637)
+1.0611985: dka' drang song chen po'i lam 'di
+			byang chub chen po'i lam las byung (2965)
+2.7083127: po'i lam 'di mi rtog rtog las 'das
+			mi rtog rtog las 'das pa'i rang bzhin la (3240)
+Rows matched:
+2965: 1
+2637: 2
+3240: 1
+
+
+line 24:
+---------------------
+0.7080676: brtag par dka' zhing bstan par dka' la brjod pa'i tha snyad rnams dang bral  (20)
+			bstan cing brtag par (2640)
+1.899153: brtag par dka' zhing bstan par dka' la
+			bstan cing brtag par (2640)
+1.4715728: bstan par dka' la brjod pa'i tha snyad
+			sgros kyis btags pa'i tha snyad ga la yod (3253)
+1.1233873: brjod pa'i tha snyad rnams dang bral (20)
+			sgros kyis btags pa'i tha snyad ga la yod (3253)
+Rows matched:
+2640: 2
+3253: 2
+
+
+line 25:
+---------------------
+2.279672: tshig gis mi phebs gzhan dang byis pa kun gyi spyod yul ma yin yang
+			tshig gis mi phebs dbyibs dang kha dog spyod yul med (2639)
+2.650129: tshig gis mi phebs gzhan dang byis
+			tshig gis mi phebs dang po'i spyod yul 'das (4290)
+1.5810418: phebs gzhan dang byis pa kun gyi
+			de yis bdag gzhan kun gyi don mi byed (4153)
+3.663198: pa kun gyi spyod yul ma yin yang
+			kun gyi spyod yul ma yin gsang bar bshad (1096)
+Rows matched:
+4153: 1
+1096: 1
+2639: 1
+4290: 1
+
+
+line 26:
+---------------------
+0.9311495: ston pa nges pa'i lung dang bla ma dam pa rnams kyi gdam ngag de nyid don 'dir blta
+			don rnams ston pa'i ston pa dang (1723)
+2.1148934: ston pa nges pa'i lung dang bla ma dam
+			ston pa gsum la bsgom pa'i lung ma (3547)
+1.789118: lung dang bla ma dam pa rnams kyi gdam
+			 'byor rnams kyi bla ma gyis (6143)
+1.5540942: pa rnams kyi gdam ngag de nyid don 'dir blta
+			de nas byang chub kyi sems kun byed rgyal po des nyid kyi gdams ngag phog pa dang mthun pa'i lung chen po rim gyis bstan te (2687)
+Rows matched:
+6143: 1
+2687: 1
+3547: 1
+1723: 1
+
+
+line 27:
+---------------------
+0.6158988: mngon sum la sogs rgyu yi dngos po 'jig cing grub pa'i mtha' spyod pa
+			ting 'dzin gsum po brtan nas grub pa'i mtha' spyod pa (2668)
+1.3650984: mngon sum la sogs rgyu yi dngos
+			mngon sum thob par 'dod nas rgyu la rtag tu sgom (2362)
+0.5459234: sogs rgyu yi dngos po 'jig cing
+			bstan du mtshan ma'i dngos po (325)
+2.4296741: po 'jig cing grub pa'i mtha' spyod pa
+			ting 'dzin gsum po brtan nas grub pa'i mtha' spyod pa (2668)
+Rows matched:
+2362: 1
+2668: 2
+325: 1
+
+
+line 28:
+---------------------
+0.62310183: de nyid rtog pa'i rgyun 'brangs dpyod yul tshad mar bzhag nas blo yis 'jig byed de
+			 tshad ma'i blor bzhag nas (2667)
+1.8089025: de nyid rtog pa'i rgyun 'brangs dpyod yul
+			de ni rtog pa'i rgyun 'brangs smig rgyu snyegs pa 'dra (2645)
+1.0580304: rgyun 'brangs dpyod yul tshad mar bzhag nas
+			 tshad ma'i blor bzhag nas (2667)
+1.0320346: tshad mar bzhag nas blo yis 'jig byed de
+			 tshad ma'i blor bzhag nas (2667)
+Rows matched:
+2667: 3
+2645: 1
+
+
+line 29:
+---------------------
+0.83748233: thog mtha' med phyir dpyod mtha' med de snying po med na tshad mar gang
+			de ni snying po de bas na (2994)
+1.5182675: thog mtha' med phyir dpyod mtha' med
+			nam mkha'i mtha' bzhin thob pa med (2991)
+1.7276387: phyir dpyod mtha' med de snying po
+			 med pa don gyi snying po de (4957)
+1.5983148: de snying po med na tshad mar gang
+			de ni snying po de bas na (2994)
+Rows matched:
+2991: 1
+2994: 2
+4957: 1
+
+
+line 30:
+---------------------
+0.65448123: de phyir 'jig rten rtags pa'i tha snyad rnal 'byor lam 'dir mi dgos so
+			tha snyad ming la mi gnas te (3104)
+1.3046235: de phyir 'jig rten rtags pa'i tha
+			 chen po lnga ni phyung  'jig rten brten pa'i khams chen po gsum ni bkod de (61)
+1.5454972: rten rtags pa'i tha snyad rnal 'byor
+			sgros kyis btags pa'i tha snyad ga la yod (3253)
+1.0079584: snyad rnal 'byor lam 'dir mi dgos so
+			rnal 'byor pa la lung ston cig ces gsungs so (6146)
+Rows matched:
+3104: 1
+61: 1
+3253: 1
+6146: 1
+
+
+line 31:
+---------------------
+0.47429937: dngos po mtha' yi rgyu ni le rgyus dag las lam 'dir brtag par bya
+			grogs po dag gis dngos grub ster re ba (4234)
+1.3870081: dngos po mtha' yi rgyu ni le
+			rtag pa'i dngos po mtha' bsal (3384)
+1.7349273: yi rgyu ni le rgyus dag las
+			rgyu las 'bras bu lha yi (780)
+0.8816459: rgyus dag las lam 'dir brtag par bya
+			la las rig 'dzin sdom pa dag par rtogs (5566)
+Rows matched:
+3384: 1
+4234: 1
+780: 1
+5566: 1
+
+
+line 32:
+---------------------
+0.82585514: skye bo kun gyi sems la mngon snang phyi nang grags pa'i chos 'di ni
+			byang chub sems kyi ngo bo mngon snang la (4790)
+1.8775804: skye bo kun gyi sems la mngon
+			byang chub sems kyi ngo bo mngon snang la (4790)
+1.5701919: gyi sems la mngon snang phyi nang
+			byang chub sems kyi ngo bo mngon snang la (4790)
+1.4124973: snang phyi nang grags pa'i chos 'di ni
+			ji ltar snang grags gnas pa'i chos rnams kun (5977)
+Rows matched:
+5977: 1
+4790: 3
+
+
+line 33:
+---------------------
+0.7767962: 'dzin pa drug gi ji ltar mthong zhing rtag pa de ltar ma yin 'khrul
+			de la'ang ting 'dzin yod ma yin (4965)
+1.3065811: 'dzin pa drug gi ji ltar mthong
+			ji ltar bltas pa de ltar snang (3047)
+1.2495449: gi ji ltar mthong zhing rtag pa
+			la las rtag pa nyid du mthong (1759)
+1.9745249: zhing rtag pa de ltar ma yin 'khrul
+			de ni nges pa ma yin 'khrul pas brtags (4818)
+Rows matched:
+4965: 1
+4818: 1
+1759: 1
+3047: 1
+
+
+line 34:
+---------------------
+1.196158: rang gi rtog pas myos shing gzung ba de bzhin bden gyur na  (30)
+			rang sems de bzhin nyid de mthong 'gyur na (1652)
+1.2367915: rang gi rtog pas myos shing gzung
+			rang gi byang chub de 'gegs pas (1835)
+1.7206194: pas myos shing gzung ba de bzhin
+			bltas pas de bzhin nyid la mthong ba med (4581)
+2.309504: ba de bzhin bden gyur na (30)
+			rang sems de bzhin nyid de mthong 'gyur na (1652)
+Rows matched:
+1652: 2
+4581: 1
+1835: 1
+
+
+line 35:
+---------------------
+0.89056873: de dag dngos po med rtogs dgra bcom 'dra bar gyur pa yi rigs
+			 de'i tshe sems dpa' rdo rje de nyid kyang ston pa de ltar gyur pa yang rig chos thams cad skye ba med par rtogs pa la dgongs nas cang yang mi smra bar 'khod do (6151)
+1.3199117: de dag dngos po med rtogs dgra
+			grogs po dag gis dngos grub ster re ba (4234)
+1.1113688: po med rtogs dgra bcom 'dra bar
+			sangs rgyas ma lta rang sems bar med rtogs (1912)
+1.0417731: bcom 'dra bar gyur pa yi rigs
+			de yi dbang las skye bar 'gyur (2430)
+Rows matched:
+6151: 1
+1912: 1
+4234: 1
+2430: 1
+
+
+line 36:
+---------------------
+1.2653191: de dag dus dgras 'joms dang sdug bsngal nyen las des 'khrul mngon par 'gyur
+			bde dang sdug bsngal las (422)
+1.0767192: de dag dus dgras 'joms dang sdug
+			snga phyi dus gsum med de khyad par gcig phun sum tshogs dang dus gnas kun gcig dang (4172)
+3.8361607: dgras 'joms dang sdug bsngal nyen las
+			bde dang sdug bsngal las (422)
+0.84988046: bsngal nyen las des 'khrul mngon par 'gyur
+			las kyis gos par ga la 'gyur (4982)
+Rows matched:
+4982: 1
+422: 2
+4172: 1
+
+
+line 37:
+---------------------
+0.8039742: gzhan du skye mched sgo nas rig pa de dag tshad mar gyur na ni
+			tshad mar ma gyur slob (2708)
+1.2430788: gzhan du skye mched sgo nas rig
+			theg pa gzhan dang lta spyod mi mthun te sgo ni btsal du med pa'i sgo nas 'jug lta ba bsgom du med par bstan pa yin (3401)
+1.388102: mched sgo nas rig pa de dag
+			de dag gang la dgongs nas ldem pa bstan (3222)
+1.7783557: pa de dag tshad mar gyur na ni
+			tshad mar ma gyur slob (2708)
+Rows matched:
+3401: 1
+2708: 2
+3222: 1
+
+
+line 38:
+---------------------
+
+
+line 39:
+---------------------
+
+
+line 40:
+---------------------
+
+
+line 41:
+---------------------
+1.1313996: de nyid tshad mar gyur pas 'phags pa'i lam de su la dgos mi 'gyur
+			bya mi dgos pa'i kun byed de thob pas (1671)
+1.6825582: de nyid tshad mar gyur pas 'phags
+			tshad mar ma gyur slob (2708)
+1.7751321: mar gyur pas 'phags pa'i lam de
+			mi 'gyur 'gyur ba med pas chags pa'i gnas med de (2360)
+2.0167766: pa'i lam de su la dgos mi 'gyur
+			sems bskyed mi dgos lam la bgrod mi dgos (5329)
+Rows matched:
+2360: 1
+1671: 1
+5329: 1
+2708: 1
+
+
+line 42:
+---------------------
+0.975307: lam de rnam grol lam du bstan cing dbang po'i shes pas mi thar te
+			dang po'i lam du shes par bya (2456)
+2.5949545: lam de rnam grol lam du bstan
+			ji snyed rnam par grol ba'i lam bstan pa (2633)
+1.1027734: grol lam du bstan cing dbang po'i
+			dang po'i lam du shes par bya (2456)
+1.621688: cing dbang po'i shes pas mi thar te
+			mi bskyod pas ni ye shes te (3034)
+Rows matched:
+3034: 1
+2456: 2
+2633: 1
+
+
+line 43:
+---------------------
+1.2902589: sdug bsngal 'ga' yang mi 'jil rnam rig shes te nyon mongs 'byung ba'i gnas
+			nyon mongs sdug bsngal skye zer nas (3838)
+1.6947216: sdug bsngal 'ga' yang mi 'jil rnam
+			bde dang sdug bsngal las (422)
+1.9163029: yang mi 'jil rnam rig shes te
+			rnam pa cir yang mi 'byed ye shes gti mug dang (2649)
+1.0259781: rig shes te nyon mongs 'byung ba'i gnas
+			ye shes rang 'byung ye shes te (3800)
+Rows matched:
+2649: 1
+422: 1
+3838: 1
+3800: 1
+
+
+line 44:
+---------------------
+0.63081384: de phyir skye bos mthong ba de dag 'khrul par mngon zhen rgyal bas gsungs
+			mngon sum mthong bas mthong med mngon sum thong ba'i mig de phyir thams cad mkhyen pa'i spyan zhes de la bya (2653)
+1.4769435: de phyir skye bos mthong ba de
+			zhi ba de nyid mthong ba min (3057)
+1.1550003: bos mthong ba de dag 'khrul par
+			dag pa'i rang sems ma mthong ba (1849)
+1.1842511: dag 'khrul par mngon zhen rgyal bas gsungs
+			yang dag nges par mngon du phyung (1770)
+Rows matched:
+2653: 1
+3057: 1
+1849: 1
+1770: 1
+
+
+line 45:
+---------------------
+0.85240877: des ni de las 'di dag 'khrul pa'i dbang gis ji ltar snang bar 'gyur zhe na
+			de yi ngo bo ji ltar yin zhe na (5119)
+1.676091: des ni de las 'di dag 'khrul pa'i
+			de las byung ba'i chos ni 'di lta (1977)
+0.99936384: 'di dag 'khrul pa'i dbang gis ji ltar
+			de nas phyogs bcu nas lhags shing 'khod pa'i 'dus pa phal mo che dag gis de ltar rtogs (6152)
+1.3039991: dbang gis ji ltar snang bar 'gyur zhe na
+			de yi ngo bo ji ltar yin zhe na (5119)
+Rows matched:
+1977: 1
+6152: 1
+5119: 2
+
+
+line 46:
+---------------------
+1.2701639: kun tu rtog can yan lag ma yin kun tu rtog pas rtsol med nyams
+			ma nyams 'dzin pas rtog med mnyam dad bral (4888)
+1.4445734: kun tu rtog can yan lag ma
+			byang chub yan lag kun yi sgo (3050)
+1.586155: can yan lag ma yin kun tu
+			yan lag 'byung bas sdong po yin (2207)
+1.6286339: yin kun tu rtog pas rtsol med nyams
+			ma nyams 'dzin pas rtog med mnyam dad bral (4888)
+Rows matched:
+4888: 2
+3050: 1
+2207: 1
+
+
+line 47:
+---------------------
+0.6429186: blo gros phyin ci log tu gyur cing ma rig rkyen gyi dbang song bas  (40)
+			las kyi rkyen gyi dbang (4433)
+1.441115: blo gros phyin ci log tu gyur cing
+			pyin ci log tu rnam brtags kyang (2913)
+1.062537: log tu gyur cing ma rig rkyen gyi
+			ma rig log rtog gzung 'dzin gyis (635)
+1.4881006: ma rig rkyen gyi dbang song bas (40)
+			las kyi rkyen gyi dbang (4433)
+Rows matched:
+2913: 1
+635: 1
+4433: 2
+
+
+line 48:
+---------------------
+1.8516356: sems dang sems las byung ba de nyid lus gsum don du snang ba yin
+			mngon du snang ba'i don ni ji ltar rig de las byung ba'i khams gsum sems can ni (3171)
+3.2605743: sems dang sems las byung ba de
+			byang chub sems las byung ba yi (3881)
+2.7590227: las byung ba de nyid lus gsum
+			bstan pa gsum yang de las byung (254)
+1.7590953: nyid lus gsum don du snang ba yin
+			dgos ched don du phyung ba yin (1874)
+Rows matched:
+3171: 1
+1874: 1
+3881: 1
+254: 1
+
+
+line 49:
+---------------------
+0.55846536: 'du byed sna tshogs dag gis bag chags bsags las gang goms mthu rtas tshe
+			chos rnams sna tshogs 'byung bar byed (2441)
+1.7565532: 'du byed sna tshogs dag gis bag
+			chos rnams sna tshogs 'byung bar byed (2441)
+0.83711725: tshogs dag gis bag chags bsags las
+			 bag chags yin (4785)
+0.6329701: chags bsags las gang goms mthu rtas tshe
+			rang gi mthu yi rig pa las (3078)
+Rows matched:
+3078: 1
+4785: 1
+2441: 2
+
+
+line 50:
+---------------------
+1.6846621: sems nyid yul dang lus 'drar snang ba rus pas gang ba bzhin du snang
+			de bzhin nyid de yul du snang (715)
+1.3808436: sems nyid yul dang lus 'drar snang
+			de bzhin nyid de yul du snang (715)
+1.5151023: dang lus 'drar snang ba rus pas
+			mngon sum rang bzhin snang ba dang (3338)
+2.2600412: ba rus pas gang ba bzhin du snang
+			mi snang ba la mngon du 'byin nus pas (5226)
+Rows matched:
+715: 2
+3338: 1
+5226: 1
+
+
+line 51:
+---------------------
+0.95081955: bag chags bsags pa'i rgyun la dmigs skyes yid la brtags pa'i bdag med pa
+			bag chags med pa'i chos nyid de (4764)
+1.1992489: bag chags bsags pa'i rgyun la dmigs
+			bag chags med pa'i chos nyid de (4764)
+1.1675223: pa'i rgyun la dmigs skyes yid la
+			dmigs pa yid la sbyangs pa rtogs par 'gyur (5913)
+1.4381033: skyes yid la brtags pa'i bdag med pa
+			'di la skyes pa bud med ces (3040)
+Rows matched:
+3040: 1
+4764: 2
+5913: 1
+
+
+line 52:
+---------------------
+0.7567421: 'du byed mthu yis bsgribs shing phra ba ma mthong de las rnam rig skye
+			skye ba med las skye ba'i cho 'phrul du (1260)
+0.97650313: 'du byed mthu yis bsgribs shing phra
+			blang dor ma bral bar du gol zhing bsgribs (904)
+1.1897838: yis bsgribs shing phra ba ma mthong
+			ji bzhin rtogs pa phra ba yis (2921)
+1.5740064: ba ma mthong de las rnam rig skye
+			skye ba med las tshe 'phrul snang ba de (5203)
+Rows matched:
+2921: 1
+5203: 1
+1260: 1
+904: 1
+
+
+line 53:
+---------------------
+1.3127509: rgyun dang bcas pa'i sems kyi mthu ni ma rtogs rtog pa'i rjes 'brang nas
+			ma spyad nyams mthong rtog dang bcas nas spyod (4387)
+0.8862486: rgyun dang bcas pa'i sems kyi mthu
+			de nas byang chub kyi sems kun byed rgyal po des 'khor gyi ston pa'i bstan pa gol sa dang sgrib par gyur pa 'di bstan to (3574)
+1.8650043: pa'i sems kyi mthu ni ma rtogs
+			nga ni ston pa'i sgron ma byang chub sems (3916)
+1.4408431: ni ma rtogs rtog pa'i rjes 'brang nas
+			sems las gzhan ma yin rtog dral nas ni (1523)
+Rows matched:
+3574: 1
+1523: 1
+4387: 1
+3916: 1
+
+
+line 54:
+---------------------
+1.0094497: de las zag bcas rang bzhin rtogs pas bdag dang chos rnams rgyas par byed
+			bdag dang gzhan don mi 'byed pas (3069)
+1.8715634: de las zag bcas rang bzhin rtogs
+			sems kyi rang bzhin ngo bo de las byas (566)
+2.0945826: bcas rang bzhin rtogs pas bdag dang
+			bdag gis khyod kyi rang bzhin rtogs pa ni (5344)
+1.9612426: pas bdag dang chos rnams rgyas par byed
+			chos rnams kun byed rgyal po nus par 'gyur (2108)
+Rows matched:
+5344: 1
+3069: 1
+2108: 1
+566: 1
+
+
+line 55:
+---------------------
+0.9745025: ldan par 'byung ba shin tu phra bar rgyu ba de ni ma mthong las
+			las dang skal ldan shin tu rnal 'byor pa (1607)
+1.4923275: ldan par 'byung ba shin tu phra
+			snying po'i don dang phrad par shin tu dka' (5610)
+1.3466157: ba shin tu phra bar rgyu ba
+			rgyu 'bras can la mi smra shin tu gsang (5038)
+2.3577392: bar rgyu ba de ni ma mthong las
+			ma mthong ba ni las kri sgrib pa yin (1038)
+Rows matched:
+5610: 1
+1038: 1
+5038: 1
+1607: 1
+
+
+line 56:
+---------------------
+1.1602442: bdag tu lta la sogs pa mu stegs lta ba sna tshogs skye zhing thar pa rtog
+			 rjenga dang bdag tu rtog pa mu stegs 'khrul ba'i lam (2704)
+2.012052: bdag tu lta la sogs pa mu stegs
+			 rjenga dang bdag tu rtog pa mu stegs 'khrul ba'i lam (2704)
+2.0499399: sogs pa mu stegs lta ba sna tshogs
+			 ba nigzhan med zer nas lta spyod sna tshogs pa (4918)
+1.7876406: lta ba sna tshogs skye zhing thar pa rtog
+			 ba nigzhan med zer nas lta spyod sna tshogs pa (4918)
+Rows matched:
+2704: 2
+4918: 2
+
+
+line 57:
+---------------------
+0.8117591: sems 'di las rnams mtha' yas gnas gyur bag chags mtha' med nges pa med  (50)
+			sems dang bag chags gnyis med 'dres shing mtshungs (2657)
+0.9721825: sems 'di las rnams mtha' yas gnas gyur
+			nam mkha'i khams dang gzhal yas 'di na gnas (4849)
+1.4625074: mtha' yas gnas gyur bag chags mtha' med
+			mi 'gyur 'gyur ba med pas chags pa'i gnas med de (2360)
+2.0006018: bag chags mtha' med nges pa med (50)
+			phyi ba dran med sda pa bag chags 'gags (5184)
+Rows matched:
+2657: 1
+4849: 1
+5184: 1
+2360: 1
+
+
+line 58:
+---------------------
+1.2288387: bag chags rtas shing sad par byed pa'i rkyen yang rnam pa sna tshogs te
+			rnam par rtog pa'i bag chags gos mi 'gyur (4783)
+1.7236265: bag chags rtas shing sad par byed
+			sems dang bag chags gnyis med 'dres shing mtshungs (2657)
+1.7756708: shing sad par byed pa'i rkyen yang
+			khyad par 'phags pas theg pa'i shan yang 'byed (2318)
+1.6671898: pa'i rkyen yang rnam pa sna tshogs te
+			sems las sprul pa'i chos ni sna tshogs te (4994)
+Rows matched:
+2657: 1
+4994: 1
+4783: 1
+2318: 1
+
+
+line 59:
+---------------------
+0.6011087: rkyen 'gas bag chags 'ga' zhig smin nas mi yi rgyud kyi lus snang ba
+			ye shes bag chags mi sog pas (4981)
+0.7757597: rkyen 'gas bag chags 'ga' zhig smin
+			ye shes bag chags mi sog pas (4981)
+1.1328785: chags 'ga' zhig smin nas mi yi
+			brkam chags lnga yi sdugabasngal yin zer nas (4201)
+1.2238257: nas mi yi rgyud kyi lus snang ba
+			'gro ba rgyud drug snang ba yang (2455)
+Rows matched:
+4981: 2
+2455: 1
+4201: 1
+
+
+line 60:
+---------------------
+0.70847356: rkyen gzhan dag gis bag chags gzhan sad byas tshe 'gyur ba'i mthu mthong nas
+			la las rnam dag bya ba'i yul mthong nas (1516)
+1.0928514: rkyen gzhan dag gis bag chags gzhan
+			 bag chags yin (4785)
+1.0554613: gis bag chags gzhan sad byas tshe
+			 bag chags yin (4785)
+1.0397089: sad byas tshe 'gyur ba'i mthu mthong nas
+			 blang dang dor ba'i yul mthong nas (1854)
+Rows matched:
+4785: 2
+1516: 1
+1854: 1
+
+
+line 61:
+---------------------
+0.94629854: dbang phyug la sogs byed par 'dod de nyes pa lam de ma zhi grol mi 'gyur
+			 bgrod par ma byed cig gal te ma rig lam la bgrod gyur na (4880)
+1.3661376: dbang phyug la sogs byed par 'dod de
+			yul la rtog par mi byed de (3719)
+2.0422606: byed par 'dod de nyes pa lam de
+			de bzhin 'chos par byed pa yi (4003)
+1.2025834: nyes pa lam de ma zhi grol mi 'gyur
+			de yis nga yi lam 'di rtogs mi 'gyur (5796)
+Rows matched:
+4880: 1
+5796: 1
+4003: 1
+3719: 1
+
+
+line 62:
+---------------------
+
+
+line 63:
+---------------------
+
+
+line 64:
+---------------------
+
+
+line 65:
+---------------------
+0.80078673: rnal 'byor lam slad the tshom rgyun yang rgyun 'di phra ba ma rtogs skyes
+			ma skyes lam la lta ba'i rnal 'byor dang (5525)
+1.0040157: rnal 'byor lam slad the tshom rgyun
+			rnal 'byor nam mkha'i bya lam gnas (3021)
+1.1770362: slad the tshom rgyun yang rgyun 'di
+			 'di yang (5358)
+1.3026173: yang rgyun 'di phra ba ma rtogs skyes
+			ma skyes spros bral mngon du phyung ba 'di (2010)
+Rows matched:
+2010: 1
+5525: 1
+3021: 1
+5358: 1
+
+
+line 66:
+---------------------
+0.7349502: bdag tu btags pas bsgribs te 'phags pa'i rigs dang rnam par bral
+			rnam par mi rtog spros pa kun dang bral (6001)
+0.98957753: bdag tu btags pas bsgribs te
+			sangs rgyas bsgrubs pas grub pa ma yin te (1906)
+1.2348933: pas bsgribs te 'phags pa'i rigs
+			bde ba chen po 'dod pas chags pa'i nad yin te (2387)
+1.7960317: 'phags pa'i rigs dang rnam par bral
+			rnam par mi rtog spros pa kun dang bral (6001)
+Rows matched:
+1906: 1
+2387: 1
+6001: 2
+
+
+line 67:
+---------------------
+1.9823347: chos su btags pas sdug bsngal sna tshogs 'byung zhing ngan song srid par 'gyur
+			sna tshogs srid pas snang srid ces su btags (5204)
+1.807151: chos su btags pas sdug bsngal sna
+			sna tshogs srid pas snang srid ces su btags (5204)
+1.2077348: pas sdug bsngal sna tshogs 'byung zhing
+			sku gsum sna tshogs byung nas ni (2117)
+0.74795175: tshogs 'byung zhing ngan song srid par 'gyur
+			snying po'i don dang bral zhing bskal par 'gyur (6063)
+Rows matched:
+6063: 1
+5204: 2
+2117: 1
+
+
+line 68:
+---------------------
+0.8251859: rnam shes de yang 'du byed rgyun la mtshan ma tha dad 'dzin pas na
+			ma nyams 'dzin pas rtog med mnyam dad bral (4888)
+1.3535597: rnam shes de yang 'du byed rgyun
+			rnam pa cir yang mi 'byed ye shes gti mug dang (2649)
+1.362072: yang 'du byed rgyun la mtshan ma
+			ji ltar snang ba de bzhin nyid du gcig 'di la su yang 'chos pas ma byed cig ma bcos mnyam pa'i (3156)
+1.4735374: la mtshan ma tha dad 'dzin pas na
+			ma nyams 'dzin pas rtog med mnyam dad bral (4888)
+Rows matched:
+4888: 2
+2649: 1
+3156: 1
+
+
+line 69:
+---------------------
+0.97230506: las kyi khyad par dag gis brgyad du snang gi rig la tha dad med
+			rig kyi khyad par mngon par snang (3100)
+1.4657105: las kyi khyad par dag gis brgyad
+			 kyi khyad par te (423)
+1.0715634: par dag gis brgyad du snang gi
+			rang gis rang gi dngos grub thob par bsgom (4243)
+1.0239345: du snang gi rig la tha dad med
+			khams gsum sems can bsam pa tha dad la (4076)
+Rows matched:
+423: 1
+4076: 1
+3100: 1
+4243: 1
+
+
+line 70:
+---------------------
+1.4877944: de phyir sems kyi skad cig dang po de la lus dang kun gnas  (60)
+			de nas byang chub kyi sems kun byed rgyal po des sems dpa' rdo rje la 'di skad ces gsungs so (39)
+1.4453998: de phyir sems kyi skad cig dang
+			de nas byang chub kyi sems kun byed rgyal pos 'di skad ces gsungs so (376)
+1.7003059: kyi skad cig dang po de la
+			de nas byang chub kyi sems kun byed rgyal po des sems dpa' rdo rje la 'di skad ces gsungs so (39)
+1.7980447: po de la lus dang kun gnas (60)
+			 lung de la ma gnas shig par dang lung ston (5535)
+Rows matched:
+39: 2
+5535: 1
+376: 1
+
+
+line 71:
+---------------------
+1.2425706: de la bsam pa zhen phyir phyi ma de 'byung de la snang
+			bsam pa tha dad sku gsung thugs rjes bzlog dbang po yul la zhen pa de bzlog nas (4078)
+2.5117395: de la bsam pa zhen phyir
+			bsam pa tha dad sku gsung thugs rjes bzlog dbang po yul la zhen pa de bzlog nas (4078)
+1.9968178: pa zhen phyir phyi ma de
+			bstan pa phyi ma gsang ba 'di (6145)
+1.6457726: phyi ma de 'byung de la snang
+			de med mi 'byung de phyi de ni rnam (2635)
+Rows matched:
+2635: 1
+4078: 2
+6145: 1
+
+
+line 72:
+---------------------
+1.5618782: rang sems rgyun las 'phags pa skye bo'i chos ni gzhan yod ma yin
+			sems las gzhan ma yin rtog dral nas ni (1523)
+1.1184419: rang sems rgyun las 'phags pa skye
+			la las rang rgyud dag la pa brten nas (6229)
+1.4992958: las 'phags pa skye bo'i chos ni
+			sems las ma gtogs pa yi chos rnams ni (544)
+3.1286418: bo'i chos ni gzhan yod ma yin
+			'di ma yin gyi chos ni gzhan ma bshad (1062)
+Rows matched:
+6229: 1
+1062: 1
+544: 1
+1523: 1
+
+
+line 73:
+---------------------
+0.9087035: rgyud drug rigs las de yang sna tshogs de dang rang gi ting 'dzin to
+			 kyisbya ba'i phrin las sna tshogs dang (2135)
+1.2841505: rgyud drug rigs las de yang sna
+			khams gsum rgyud drug phyung ba yang (756)
+3.9479008: las de yang sna tshogs de dang
+			 kyisbya ba'i phrin las sna tshogs dang (2135)
+1.701032: tshogs de dang rang gi ting 'dzin to
+			de bas ting 'dzin mnyam dang bral (3027)
+Rows matched:
+3027: 1
+2135: 2
+756: 1
+
+
+line 74:
+---------------------
+0.8917039: sems rgyud de la phyogs kyang cung zad med pas gcig la brten med do
+			 sku gcig kun la khyab pas bsnan pa'i chos med de (2364)
+1.8239917: sems rgyud de la phyogs kyang cung
+			byang chub sems la rgyu 'bras gnyis med de (4725)
+1.931453: la phyogs kyang cung zad med pas
+			nga la sbyangs pas byang ba med (4120)
+1.3181622: zad med pas gcig la brten med do
+			bsrung med gcig la sdom pa drug bsrungs pas (942)
+Rows matched:
+4725: 1
+2364: 1
+942: 1
+4120: 1
+
+
+line 75:
+---------------------
+0.6112468: de la phyogs med phyir na mtha' yas zhing rnams bdag gi lus
+			ston pa'i lung bzhin tshig gi mtha' spyod lam du de mthong na (2644)
+1.916503: de la phyogs med phyir na
+			de bzhin nyid la lam gyis bgrod med phyir (4593)
+1.3989742: med phyir na mtha' yas zhing
+			sum brgya drug cu gol sgrib mtha' yas med (1057)
+0.99464875: mtha' yas zhing rnams bdag gi lus
+			rang gi lus kyi rdo rje skye mched rnams (1105)
+Rows matched:
+4593: 1
+1105: 1
+2644: 1
+1057: 1
+
+
+line 76:
+---------------------
+0.5601398: bdag gi lus ni mtha' yas zhing dang skye bo'i lus su rab snang yang
+			 kyang tshig gi mtha' dang bral (2374)
+0.804649: bdag gi lus ni mtha' yas zhing
+			 mtha' mnyam zhing (3074)
+1.0715046: ni mtha' yas zhing dang skye bo'i
+			skye zhing 'pho ba'i chos med de (2449)
+1.3632735: dang skye bo'i lus su rab snang yang
+			skye ba'i cho 'phrul gzugs su snang ba ni (214)
+Rows matched:
+2374: 1
+214: 1
+2449: 1
+3074: 1
+
+
+line 77:
+---------------------
+0.7517244: sems dang bag chags gcig min tha dad ma yin brtags par rab tu dga'
+			 bag chags yin (4785)
+1.775904: sems dang bag chags gcig min tha
+			sems dang bag chags gnyis med 'dres shing mtshungs (2657)
+1.0058309: chags gcig min tha dad ma yin
+			ma chags pad+ma spyan du btags pa yin (4712)
+1.337023: dad ma yin brtags par rab tu dga'
+			kun byed rgyal po yin par rab tu grags (5374)
+Rows matched:
+5374: 1
+4785: 1
+2657: 1
+4712: 1
+
+
+line 78:
+---------------------
+0.93974155: 'di kun rten cing 'brel 'byung tshul te skye dang 'gag par 'gyur zhes pa
+			'jig rten 'di la 'byung ngo zhes (2957)
+1.1389716: 'di kun rten cing 'brel 'byung tshul
+			'jig rten 'di la 'byung ngo zhes (2957)
+1.0442777: cing 'brel 'byung tshul te skye dang
+			bu dang tsha bo 'khor gyi tshul byung nas (2264)
+1.7718489: te skye dang 'gag par 'gyur zhes pa
+			skye ba med dang 'gag pa med pa dang (4562)
+Rows matched:
+4562: 1
+2957: 2
+2264: 1
+
+
+line 79:
+---------------------
+1.4916422: tshigs pa'i sa bon bzhin du med las med pa mi 'byung rgyu 'bras med
+			rgyu las 'bras bu 'byung bas mi rigs zer (3412)
+2.1188862: tshigs pa'i sa bon bzhin du med
+			 bzhin med pa'i chos nyid du (832)
+3.1831412: bon bzhin du med las med pa
+			de bzhin nyid du gcig pa las (3873)
+3.7059636: las med pa mi 'byung rgyu 'bras med
+			rgyu las 'bras bu 'byung 'dod pa (2244)
+Rows matched:
+832: 1
+2244: 1
+3873: 1
+3412: 1
+
+
+line 80:
+---------------------
+1.3749609: dngos por zhen cing rgyu dang 'bras bur rtog pa'i sems nyid ni  (70)
+			rgyu dang 'bras bu rtog byed pa'i (1871)
+1.481165: dngos por zhen cing rgyu dang 'bras
+			rgyu dang 'bras bur ming btags te (2955)
+3.1506991: cing rgyu dang 'bras bur rtog pa'i
+			rgyu dang 'bras bur ming btags te (2955)
+1.3339872: bur rtog pa'i sems nyid ni (70)
+			rtog pa'i yul ni kun dang bral (4775)
+Rows matched:
+2955: 2
+4775: 1
+1871: 1
+
+
+line 81:
+---------------------
+0.9101608: rgyu dang rkyen du snang ste de gnyis med phyir skye dang 'jig pa med
+			rang 'byung yin pas skye 'jig med pa'i phyir (4260)
+1.6579558: rgyu dang rkyen du snang ste de
+			de bzhin nyid dang kun du snang la sogs (4867)
+1.3436434: du snang ste de gnyis med phyir
+			de bzhin nyid de yul du snang (715)
+2.0759764: gnyis med phyir skye dang 'jig pa med
+			rang 'byung yin pas skye 'jig med pa'i phyir (4260)
+Rows matched:
+4260: 2
+715: 1
+4867: 1
+
+
+line 82:
+---------------------
+1.1571571: skye 'jig med phyir bdag gzhan med de 'chi 'pho med phyir brtag chad med
+			skye zhing 'pho ba'i chos med de (2449)
+2.2348688: skye 'jig med phyir bdag gzhan med
+			rang 'byung yin pas skye 'jig med pa'i phyir (4260)
+1.4285765: phyir bdag gzhan med de 'chi 'pho
+			skye zhing 'pho ba'i chos med de (2449)
+1.3168998: de 'chi 'pho med phyir brtag chad med
+			skye zhing 'pho ba'i chos med de (2449)
+Rows matched:
+4260: 1
+2449: 3
+
+
+line 83:
+---------------------
+1.1384933: des na 'khrul 'khor med cing mya ngan 'das pa med pa nyid du mngon
+			mya ngan 'das zhes bya ba med (3896)
+1.0893031: des na 'khrul 'khor med cing mya
+			des na byang chub sems la skyes pa med (4689)
+2.9841523: 'khor med cing mya ngan 'das pa
+			mya ngan mya ngan 'das zhes pa (642)
+1.6625521: ngan 'das pa med pa nyid du mngon
+			mya ngan mya ngan 'das zhes pa (642)
+Rows matched:
+642: 2
+3896: 1
+4689: 1
+
+
+line 84:
+---------------------
+1.2457541: gnas kyi skad cig nam yang mi 'bral de tshe mnyam gyur de med med
+			de yang sems kyi ting 'dzin tshe chad 'gyur (4244)
+1.2744634: gnas kyi skad cig nam yang mi
+			kye sems dpa' chenapo rdo rje khyod nyon cig kye bya med yul ni mi gnas nam mkha' 'dra (2344)
+1.6377145: cig nam yang mi 'bral de tshe
+			de yang mi rtog mnyam dang bral ba yin (4388)
+1.7031701: 'bral de tshe mnyam gyur de med med
+			mi rtog mnyam dang bral bar 'gyur (4987)
+Rows matched:
+2344: 1
+4244: 1
+4388: 1
+4987: 1
+
+
+line 85:
+---------------------
+1.5100539: yang dag ma yin rtog pas bskyed phyir bag chags yod pa ma yin dang
+			mi rtog pa la bag chags yod ma gsungs (4786)
+2.0963361: yang dag ma yin rtog pas bskyed
+			yang dag gzung du yod ma yin (4937)
+1.832588: yin rtog pas bskyed phyir bag chags
+			 bag chags yin (4785)
+2.573346: phyir bag chags yod pa ma yin dang
+			mi rtog pa la bag chags yod ma gsungs (4786)
+Rows matched:
+4786: 2
+4785: 1
+4937: 1
+
+
+line 86:
+---------------------
+0.90190786: spyod yul med phyir kun gzhi med cing rnam rig de yang med pa bzhin
+			yul de kun gyi de bzhin (716)
+2.2039602: spyod yul med phyir kun gzhi med
+			nga nyid spyod yul kun las 'das pa'i phyir (970)
+1.0143908: phyir kun gzhi med cing rnam rig
+			rnam dag lam chen kun sgrol phyir (2900)
+1.9511166: cing rnam rig de yang med pa bzhin
+			de bzhin nyid la rnam pa dbye ru med (4048)
+Rows matched:
+716: 1
+2900: 1
+4048: 1
+970: 1
+
+
+line 87:
+---------------------
+
+
+line 88:
+---------------------
+
+
+line 89:
+---------------------
+
+
+line 90:
+---------------------
+0.8161654: phyogs rnams med cing dmigs dang gnas med rnam par rig pa ji ltar skye
+			de yi don ni ji ltar rig par byed (3172)
+1.5121617: phyogs rnams med cing dmigs dang gnas
+			dmigs pa med cing 'gyur ba'i gnas la mi ltos par (2398)
+2.4490745: cing dmigs dang gnas med rnam par
+			dmigs pa med cing 'gyur ba'i gnas la mi ltos par (2398)
+2.366696: med rnam par rig pa ji ltar skye
+			bstan pa rnam gsum ji ltar bstan par bgyi (4045)
+Rows matched:
+4045: 1
+3172: 1
+2398: 2
+
+
+line 91:
+---------------------
+0.9159854: de phyir sems 'di yod med mtha' las 'das shing  gcig dang du ma bral
+			dang du ma blangs sku lnga mi grub rtog blang dor bral ba'i rtogs 'das de ma grub (4394)
+1.3714991: de phyir sems 'di yod med mtha'
+			kye de phyir sems (5540)
+2.0286536: 'di yod med mtha' las 'das shing
+			 las 'das shing snying po med (6113)
+1.7037561: las 'das shing gcig dang du ma bral
+			dang du ma blangs sku lnga mi grub rtog blang dor bral ba'i rtogs 'das de ma grub (4394)
+Rows matched:
+5540: 1
+4394: 2
+6113: 1
+
+
+line 92:
+---------------------
+0.7188635: bde gshegs byang chub med phyir de yi rdzu 'phrul rgyu 'dra 'khrul la snang
+			byang chub sems ni rgyu 'bras 'das pa'i phyir (2299)
+2.0415645: bde gshegs byang chub med phyir de
+			rang gi byang chub de spong 'gyur  bya med bde chen de mi thob (1826)
+1.7143934: chub med phyir de yi rdzu 'phrul
+			de ltar de bzhin de yi phyir (2992)
+1.8059072: yi rdzu 'phrul rgyu 'dra 'khrul la snang
+			la la rgyu yi ston par snang (721)
+Rows matched:
+2299: 1
+1826: 1
+2992: 1
+721: 1
+
+
+line 93:
+---------------------
+1.4538665: de bzhin dag pa'i ye shes de dag shin tu dge ba'i rgyun nyid dang  (80)
+			shin tu myur ba'i ye shes bsam pa kun dang bral (2396)
+2.7539032: de bzhin dag pa'i ye shes de dag
+			yul la rtog pa'i ye shes de (4746)
+1.8481296: ye shes de dag shin tu dge ba'i
+			shin tu myur ba'i ye shes bsam pa kun dang bral (2396)
+1.5478244: shin tu dge ba'i rgyun nyid dang (80)
+			bden nyid don dang phrad pa shin tu dka' (4359)
+Rows matched:
+2396: 2
+4746: 1
+4359: 1
+
+
+line 94:
+---------------------
+1.2966237: chos kyi dbyings nyid la ni de dag dmigs shing skye bar btags pa yang
+			la las chos kyi dbyings su ming yang btags (4823)
+3.7012088: chos kyi dbyings nyid la ni de
+			 chos nyid chos kyi dbyings kyi pho brang de (5346)
+1.5751112: nyid la ni de dag dmigs shing
+			 de bzhin nyid ni thams cad la (287)
+1.1086192: dag dmigs shing skye bar btags pa yang
+			de nas byang chub kyi sems kun byed rgyal pos chos thams cad skye ba med par mnyam pa la gzigs shing dgongs nas cang yang mi gsung bar bzhugs so (6150)
+Rows matched:
+6150: 1
+5346: 1
+4823: 1
+287: 1
+
+
+line 95:
+---------------------
+1.1475861: rdo rje'i gnas med phyir na mnyam gnas rang bzhin 'dra 'gyur dang
+			gzhan na med de 'di na rang bzhin gnas (4846)
+1.3270011: rdo rje'i gnas med phyir na
+			rtog pa med la gnas gyur na (4778)
+2.3631752: med phyir na mnyam gnas rang
+			gzhan na med de 'di na rang bzhin gnas (4846)
+2.1710773: mnyam gnas rang bzhin 'dra 'gyur dang
+			mi rtog mnyam pa'i rang bzhin gnas (4305)
+Rows matched:
+4846: 2
+4305: 1
+4778: 1
+
+
+line 96:
+---------------------
+0.8083951: chos dbyings rdo rje rtse mo de dag phyogs nyid med pas skad cig min
+			ma skyes rdo rje chos kyi dbyings na rgyal (5029)
+2.0309095: chos dbyings rdo rje rtse mo de
+			ma skyes rdo rje chos kyi dbyings na rgyal (5029)
+1.6143013: rje rtse mo de dag phyogs nyid
+			de nas phyogs bcu nas lhags shing 'khod pa'i 'dus pa phal mo che dag gis de ltar rtogs (6152)
+1.524705: dag phyogs nyid med pas skad cig min
+			gnyis su med pas min yin phyogs las 'das (5931)
+Rows matched:
+5029: 2
+6152: 1
+5931: 1
+
+
+line 97:
+---------------------
+0.7998473: dag pa'i dge rtsa gzugs brnyan med pas 'jig rten ye shes yod min 'gyur
+			 larang 'byung ye shes 'gyur med pas (3385)
+1.0188222: dag pa'i dge rtsa gzugs brnyan med
+			 kun byed rgyal po las bya med rdzogs pa rnam dag dbyings kyi lung bstan pa'i le'u ste rtsa bdun pa'o (2716)
+1.3091962: rtsa gzugs brnyan med pas 'jig rten
+			ma skyes pas na 'jig pa med (2942)
+1.5784341: pas 'jig rten ye shes yod min 'gyur
+			 larang 'byung ye shes 'gyur med pas (3385)
+Rows matched:
+3385: 2
+2716: 1
+2942: 1
+
+
+line 98:
+---------------------
+1.3901339: de phyir byang chub ma chub mtshan nyid med par gcig pas blang dor med
+			blang dor med pa'i byang chub sems de ni (840)
+2.1676307: de phyir byang chub ma chub mtshan
+			byang chub sems su ma rtogs de (3991)
+1.7150122: chub ma chub mtshan nyid med par
+			mtshan ma med pa'i dbang gis na (3065)
+2.222498: nyid med par gcig pas blang dor med
+			bzang ngan med pas blang dor bya mi dgos (4421)
+Rows matched:
+4421: 1
+3065: 1
+3991: 1
+840: 1
+
+
+line 99:
+---------------------
+1.112931: don de'i tshul gyis don dam rnam grangs skye 'gag med dang mnyam nyid dang
+			don dam dang ni kun rdzob rnam gnyis med (1612)
+2.4822016: don de'i tshul gyis don dam rnam
+			don dam kun rdzob rnam gnyis kyis (617)
+1.2616224: gyis don dam rnam grangs skye 'gag
+			skye 'gag med par rnam brtags shing (3105)
+1.9804809: grangs skye 'gag med dang mnyam nyid dang
+			skye ba med dang 'gag pa med pa dang (4562)
+Rows matched:
+3105: 1
+1612: 1
+617: 1
+4562: 1
+
+
+line 100:
+---------------------
+0.6178206: gnyis med bsam 'das stong nyid chos dbyings brjod dang tha snyad bral la sogs
+			 bsam pa kun dang bral (2651)
+1.3358907: gnyis med bsam 'das stong nyid chos
+			bsam gtan nyid pas bsam du med (2947)
+1.8369211: 'das stong nyid chos dbyings brjod dang
+			 dbyings dang chos nyid 'di na gnas (4848)
+1.1138788: dbyings brjod dang tha snyad bral la sogs
+			tha snyad ming la mi gnas te (3104)
+Rows matched:
+2947: 1
+3104: 1
+2651: 1
+4848: 1
+
+
+line 101:
+---------------------
+0.7879549: bstan pa de kun tha snyad yin te don dam med cing kun sgrib med
+			tha snyad ming la mi gnas te (3104)
+1.8823285: bstan pa de kun tha snyad yin
+			de yang kun byed nga yis bstan pa yin (2282)
+1.5887437: kun tha snyad yin te don dam
+			tha snyad ming la mi gnas te (3104)
+1.5530819: te don dam med cing kun sgrib med
+			don dam kun rdzob rnam gnyis med mthong ba (1664)
+Rows matched:
+3104: 2
+2282: 1
+1664: 1
+
+
+line 102:
+---------------------
+0.7368714: don dam tshul gyis lam nyid 'di 'dra zhes pa de nyid kun sgrib yin
+			de bzhin nyid la lam gyis bgrod med phyir (4593)
+1.1709999: don dam tshul gyis lam nyid 'di
+			'di yis nga don rtogs par gyis (344)
+1.7205123: gyis lam nyid 'di 'dra zhes pa
+			 thams cad gzhi ma kun byed nyid yin par zhal gyis bzhes pa 'di gsungs so (4555)
+1.757124: 'dra zhes pa de nyid kun sgrib yin
+			rtog pa de nyid nam mkha' 'dra (2970)
+Rows matched:
+344: 1
+4593: 1
+2970: 1
+4555: 1
+
+
+line 103:
+---------------------
+0.730752: the tshom yod med chos ni gang la 'ang spong zhing gnas par mi byed do  (90)
+			sa ni gnas par byed pa'i (4595)
+1.7661648: the tshom yod med chos ni gang la
+			yod med sgro skur the tshom bsal ba'i phyir (522)
+1.575101: chos ni gang la 'ang spong zhing gnas
+			de la gang su sgom zhing 'chos (4051)
+1.0389315: 'ang spong zhing gnas par mi byed do (90)
+			mi 'phro zhing gnas tshol (3231)
+Rows matched:
+3231: 1
+4051: 1
+522: 1
+4595: 1
+
+
+line 104:
+---------------------
+0.69660926: sgom pa dang ni chos dbyings med phyir som nyi med la dam par blta ba la 'ang med
+			sgom dang bsgom par bya ba gnyis med na (6180)
+1.4764612: sgom pa dang ni chos dbyings med phyir som
+			skye med chos kyi dbyings su gcig pa'i phyir (5863)
+1.7658956: chos dbyings med phyir som nyi med la dam
+			skye med chos kyi dbyings su gcig pa'i phyir (5863)
+1.6946752: nyi med la dam par blta ba la 'ang med
+			lta ba bsgom du med par la yang bzlas (1011)
+Rows matched:
+1011: 1
+5863: 2
+6180: 1
+
+
+line 105:
+---------------------
+0.59970695: de ltar dngos po mtha' rnams btags dang rang bzhin sgyu ma 'ang med 'gyur phyir
+			rtag pa'i dngos po mtha' bsal (3384)
+1.1746511: de ltar dngos po mtha' rnams btags dang
+			rtag pa'i dngos po mtha' bsal (3384)
+1.0712903: mtha' rnams btags dang rang bzhin sgyu ma
+			ma skyes spros dang bral ba'i rang bzhin gyis (4332)
+1.4824605: rang bzhin sgyu ma 'ang med 'gyur phyir
+			mi rtag sgyu ma'i rang bzhin 'jig par 'gyur (453)
+Rows matched:
+3384: 2
+453: 1
+4332: 1
+
+
+line 106:
+---------------------
+1.4452666: yod la ltos pa'i med pa 'ang med de med pa 'ang med
+			'dod dang 'dzin pa ga la yod (4954)
+2.5582893: yod la ltos pa'i med pa
+			don dam med la kun rdzob yod pa ru (4214)
+3.06154: pa'i med pa 'ang med de
+			rang bzhin gnas pa'i bsgom du med pa de (4194)
+2.6662881: 'ang med de med pa 'ang med
+			de yang rang bzhin chos la g.yos pa med (5001)
+Rows matched:
+4214: 1
+4194: 1
+5001: 1
+4954: 1
+
+
+line 107:
+---------------------
+1.8914412: mtha' rnams med phyir dbus med dbus la 'ang gnas pa mi byed la
+			rtog med mnyam pa nyid la gnas mi byed (3553)
+2.2429054: mtha' rnams med phyir dbus med dbus
+			mtha' dang dbus med yangs pa'i (2654)
+1.6462315: phyir dbus med dbus la 'ang gnas
+			 la gnas pa dang (3507)
+2.891018: la 'ang gnas pa mi byed la
+			rtog med mnyam pa nyid la gnas mi byed (3553)
+Rows matched:
+3507: 1
+3553: 2
+2654: 1
+
+
+line 108:
+---------------------
+0.78337735: gang la 'jig rten dbang phyug pad+ma kun kyang mi spong 'drar mnyam gnas
+			'jig rten mtshan ma kun gyi steng gyur pa (1219)
+1.603654: gang la 'jig rten dbang phyug pad+ma
+			'jig rten rkyen bskyed chos la dpe ma len (4521)
+1.7086207: rten dbang phyug pad+ma kun kyang mi
+			ma rig rten 'brel dbang po dgag mi dgos (4261)
+1.5932298: kun kyang mi spong 'drar mnyam gnas
+			bud med la sogs kun kyang spong mi byed (2665)
+Rows matched:
+4261: 1
+1219: 1
+2665: 1
+4521: 1
+
+
+line 109:
+---------------------
+1.4920659: chos la 'khrul par mthong ba de nyid 'khrul pa yin par rab rtogs te
+			rang nyid yin par ma rtogs te (1817)
+1.6726567: chos la 'khrul par mthong ba de
+			bltas pas de bzhin nyid la mthong ba med (4581)
+2.333117: par mthong ba de nyid 'khrul pa
+			zhi ba de nyid mthong ba min (3057)
+2.4979975: nyid 'khrul pa yin par rab rtogs te
+			rang nyid yin par ma rtogs te (1817)
+Rows matched:
+3057: 1
+1817: 2
+4581: 1
+
+
+line 110:
+---------------------
+0.5395299: drug gis bstan pa bdud kyi las kyang mi 'dor ngan du mi rtog go
+			mi rtog chos kyang ston mi 'gyur (2621)
+1.5478717: drug gis bstan pa bdud kyi las
+			sems kyi rang bzhin drug snang bstan pa yin (4705)
+1.7304333: pa bdud kyi las kyang mi 'dor
+			byang chub kyi sems kun byed rgyal po las spyod pa blang dor med (5963)
+1.1602252: kyang mi 'dor ngan du mi rtog go
+			mi rtog chos kyang ston mi 'gyur (2621)
+Rows matched:
+4705: 1
+2621: 2
+5963: 1
+
+
+line 111:
+---------------------
+0.8617958: shes rab thabs kyi spyod la mi gnas phyir na bdud kyi 'dra bar spyod
+			yab yum thabs dang shes rab mi ltos par (828)
+2.4249978: shes rab thabs kyi spyod la mi
+			 shes rab thabs la brten pas 'grub (2916)
+1.8024286: kyi spyod la mi gnas phyir na
+			mi 'phro zhi gnas tshol la dgongs pa'i phyir (3223)
+0.7664589: gnas phyir na bdud kyi 'dra bar spyod
+			snang srid snod bcud gnas pa'i phyir (3711)
+Rows matched:
+3223: 1
+3711: 1
+828: 1
+2916: 1
+
+
+line 112:
+---------------------
+
+
+line 113:
+---------------------
+
+
+line 114:
+---------------------
+
+
+line 115:
+---------------------
+2.0766194: rang gi shes pa dam par byas te kun las rgyal te de bsnyems nas
+			de nas byang cub kyi sems kun byed rgyal po des nyid kyi rang bzhin rang 'byung gi ye shes yin la rang 'byung gi ye shes de don gyi ngo bo lnga dang ldan te gang zhe na (5106)
+2.2137191: rang gi shes pa dam par byas
+			rang gi ngo bo shes par gyis (1805)
+1.9901794: pa dam par byas te kun las
+			kun byed nga las byas pa yi (2245)
+1.978569: te kun las rgyal te de bsnyems nas
+			de nas byang chub kyi sems kun byed rgyal po des chos thams cad kyi khugs kyi rgyal po yin pa'i phyir nyid las byung ba'i (2271)
+Rows matched:
+2245: 1
+1805: 1
+5106: 1
+2271: 1
+
+
+line 116:
+---------------------
+2.7311792: 'dod chags zhe sdang skyes nas rtsod 'byung gti mug yin te don mi mthong  (100)
+			'dod chags zhe sdang gti mug kyang (2964)
+2.5368083: 'dod chags zhe sdang skyes nas rtsod 'byung
+			'dod chags zhe sdang gti mug rnam gsum byung (1157)
+1.1239519: skyes nas rtsod 'byung gti mug yin te
+			 ye nas rang 'byung ye shes te (225)
+1.1126363: gti mug yin te don mi mthong (100)
+			de yis chod nyid mi mthong spangs pa yin (3523)
+Rows matched:
+2964: 1
+1157: 1
+225: 1
+3523: 1
+
+
+line 117:
+---------------------
+0.5544181: ji srid yid kyi g-yo ba de srid bdud kyi yul te phra ba'i lam
+			phra ba'i sgo mor ming btags te (2950)
+0.8830267: ji srid yid kyi g-yo ba de
+			ji ltar snang ba de la dad pa re (4997)
+1.2445104: kyi g-yo ba de srid bdud kyi
+			snang srid snod bcud de ltar snang ba las (3459)
+1.0529315: srid bdud kyi yul te phra ba'i lam
+			phra ba'i sgo mor ming btags te (2950)
+Rows matched:
+4997: 1
+3459: 1
+2950: 2
+
+
+line 118:
+---------------------
+1.4890356: g-yo dang mi g-yo tha snyad mi gnas gnas pa la 'ang gnas par mi byed do
+			tha snyad ming la mi gnas te (3104)
+2.1280522: g-yo dang mi g-yo tha snyad mi gnas
+			tha snyad ming la mi gnas te (3104)
+3.3436458: tha snyad mi gnas gnas pa la 'ang
+			tha snyad ming la mi gnas te (3104)
+1.8247606: gnas pa la 'ang gnas par mi byed do
+			rtog med mnyam pa nyid la gnas mi byed (3553)
+Rows matched:
+3104: 3
+3553: 1
+
+
+line 119:
+---------------------
+1.1086689: snang med dbu ma'i lam de byang chub sems zhes bde gshegs gsung
+			de ni yul med byang chub sems (4759)
+1.8358687: snang med dbu ma'i lam de
+			nga la 'jug pa'i rim pa'i lam med de (5811)
+2.7458951: ma'i lam de byang chub sems
+			blang dor med pa'i byang chub sems de ni (840)
+1.7757367: byang chub sems zhes bde gshegs gsung
+			zhes zhus pa las byang chub kyi sems kun byed nyid cang yang mi gsung bar bzhugs te sems (6165)
+Rows matched:
+4759: 1
+840: 1
+6165: 1
+5811: 1
+
+
+line 120:
+---------------------
+0.81492394: gzugs dang mtshan ma smon par 'dzin pa rab tu spangs nas ni
+			mtshan ma rje dang 'bangs su dmigs par byed (6223)
+2.167235: gzugs dang mtshan ma smon par
+			mtshan ma rje dang 'bangs su dmigs par byed (6223)
+1.4423152: ma smon par 'dzin pa rab
+			gzung dang 'dzin pa yod pa ces 'joms par byed (4688)
+1.0769379: 'dzin pa rab tu spangs nas ni
+			dang po rab tu dga' ba'i sa mnan nas (1201)
+Rows matched:
+6223: 2
+1201: 1
+4688: 1
+
+
+line 121:
+---------------------
+0.6470007: rnam thar gsum po bsgom pa'ang bdud kyi las te gzugs nyid stong pa'o
+			de gsum bstan pa rnam gsum khyod kyi ldem dgongs te (3219)
+0.763903: rnam thar gsum po bsgom pa'ang bdud
+			phun sum tshogs pa rnam pa gsum po de (1350)
+1.359918: po bsgom pa'ang bdud kyi las te
+			 sobyang chub kyi sems kun byed rgyal po las bsgom du yod med bstan pa'i le'u ste bdun cu pa'o (6211)
+1.2458575: kyi las te gzugs nyid stong pa'o
+			 chos nyid kyi rang bzhis las chos nyid kyi yul kun la bkod pa'i le'u ste brgyad pa'o (877)
+Rows matched:
+877: 1
+1350: 1
+3219: 1
+6211: 1
+
+
+line 122:
+---------------------
+0.9155414: 'khor ba'i lam gsum spong zhing mya ngan las 'das lam sgom pa 'ang bdud nyid de
+			'khor dang mya ngan las 'das pa'i chos rnams ni (5956)
+0.9998177: 'khor ba'i lam gsum spong zhing mya ngan
+			'khor dang mya ngan las 'das pa'i chos rnams ni (5956)
+1.5390339: spong zhing mya ngan las 'das lam sgom
+			'khor dang mya ngan las 'das pa'i chos rnams ni (5956)
+1.0037473: las 'das lam sgom pa 'ang bdud nyid de
+			de bzhin nyid las g.yos pa med (744)
+Rows matched:
+744: 1
+5956: 3
+
+
+line 123:
+---------------------
+1.6077971: de nyid rang bzhin ma zhi rang bzhin rtsal spangs gar mi gnas
+			de bzhin nyid kyi rang bzhin gab mi snang (1625)
+3.1742432: de nyid rang bzhin ma zhi
+			rang sems de bzhin nyid du ma rtogs te (2842)
+3.078283: bzhin ma zhi rang bzhin rtsal
+			ma yal ma zhi rang bzhin zhi ba med (5049)
+2.2587485: rang bzhin rtsal spangs gar mi gnas
+			ma btsal rang bzhin gnas la mi rtog zhog sangs rgyas don gyi bla dgas ming 'di la (1908)
+Rows matched:
+1908: 1
+2842: 1
+5049: 1
+1625: 1
+
+
+line 124:
+---------------------
+0.8524849: 'phags pa kun gyi yul dang gnas kyang 'das sogs lam nyid gzhan na med
+			 dbyings dang chos nyid 'di na gnas (4848)
+2.1045234: 'phags pa kun gyi yul dang gnas
+			bstan pa kun gyi sngon rol dang (3778)
+1.1201135: gyi yul dang gnas kyang 'das sogs
+			gnas dang yul dang sangs rgyas sa dang gsum (4845)
+1.2673093: kyang 'das sogs lam nyid gzhan na med
+			byang chub nyid las de na gzhan mi (383)
+Rows matched:
+4845: 1
+3778: 1
+4848: 1
+383: 1
+
+
+line 125:
+---------------------
+0.98075217: ldang dang mi ldang ched du mi spong sems rten mi 'cha' mngon du min
+			mtshan ma'i 'jig rten lha la rten mi 'cha' (5767)
+4.178414: ldang dang mi ldang ched du mi
+			rdzogs chen bgrod du med dang mi mthun te (4860)
+1.1785903: ldang ched du mi spong sems rten
+			bskal pa gsum du mi spong bas (3842)
+1.1203814: spong sems rten mi 'cha' mngon du min
+			mtshan ma'i 'jig rten lha la rten mi 'cha' (5767)
+Rows matched:
+5767: 2
+4860: 1
+3842: 1
+
+
+line 126:
+---------------------
+1.1253371: 'jam dpal ma yin rdul tsam g-yo ba de yin der mi gnas  (110)
+			bsgom par bya ba rdul tsam yod ma yin (4312)
+1.284164: 'jam dpal ma yin rdul tsam g-yo
+			bsgom par bya ba rdul tsam yod ma yin (4312)
+1.7964649: yin rdul tsam g-yo ba de yin
+			bsgom par bya ba rdul tsam yod ma yin (4312)
+1.3598018: ba de yin der mi gnas (110)
+			de yang mi rtog mnyam dang bral ba yin (4388)
+Rows matched:
+4312: 3
+4388: 1
+
+
+line 127:
+---------------------
+1.1521711: bsgom pa'i sa mi rnyes phyir bsgoms pas rnyed phrad mi 'gyur te
+			nga dang phrad par mi 'gyur te (349)
+1.6675978: bsgom pa'i sa mi rnyes phyir
+			sa la mi sbyong lta ba bsgom mi dgos (5330)
+1.4823632: mi rnyes phyir bsgoms pas rnyed
+			 posna tshogs bsgoms pas gcig mi gsal (4963)
+2.062877: bsgoms pas rnyed phrad mi 'gyur te
+			nga dang phrad par mi 'gyur te (349)
+Rows matched:
+5330: 1
+4963: 1
+349: 2
+
+
+line 128:
+---------------------
+1.6738635: sems kyi spyod yul shes pa de dag chos rnams kyi ni chos nyid yin
+			de nas byang chub kyi sems kun byed rgyal pos nyid kyi bstan pa gzhan gyi spyod yul ma yin pa rdzogs pa chen po'i gzhung (3393)
+2.8775778: sems kyi spyod yul shes pa de
+			de nas byang chub kyi sems kun byed rgyal pos nyid kyi bstan pa gzhan gyi spyod yul ma yin pa rdzogs pa chen po'i gzhung (3393)
+2.0970676: yul shes pa de dag chos rnams
+			rnam shes dbang po yul la sogs pa rnams (4380)
+2.9808488: dag chos rnams kyi ni chos nyid yin
+			dus gsum rgyal ba rnams kyi chos nyid yin (5003)
+Rows matched:
+5003: 1
+3393: 2
+4380: 1
+
+
+line 129:
+---------------------
+0.6968391: rnam bral gang la mchog dang tha ma med par lam mchog 'di bsgom mo
+			rnam par mi rtog spros pa kun dang bral (6001)
+1.2308207: rnam bral gang la mchog dang tha
+			 mig gang la thos par mi rigs snyad pa kun dang bral (2369)
+1.3941855: la mchog dang tha ma med par
+			de bzhin nyid la gcig dang du ma med (3251)
+0.99666584: ma med par lam mchog 'di bsgom mo
+			 pos lam la bgrod du med par rtogs pa 'di gsungs so (5782)
+Rows matched:
+3251: 1
+5782: 1
+2369: 1
+6001: 1
+
+
+line 130:
+---------------------
+1.6313739: 'du byed ma skyes chos kun 'byung med bzhin du chos rnams mya ngan 'das
+			'khor dang mya ngan las 'das pa'i chos rnams ni (5956)
+2.4945362: 'du byed ma skyes chos kun 'byung
+			de nas byang chub kyi sems kun byed rgyal pos sems las byung ba'i chos chen po lnga ston par byung ba'i rtags su ma skyes pa'i byang chub sems ston par zhal gyis (2625)
+2.0253043: skyes chos kun 'byung med bzhin du
+			 bzhin med pa'i chos nyid du (832)
+2.7991822: med bzhin du chos rnams mya ngan 'das
+			'khor dang mya ngan las 'das pa'i chos rnams ni (5956)
+Rows matched:
+832: 1
+2625: 1
+5956: 2
+
+
+line 131:
+---------------------
+1.1099696: dngos med de tshe kun kyang chos kyi dbyings zhes dgra bcom rab 'byor yin
+			kun gyi gnas ni chos kyi dbyings yin na (3165)
+1.831768: dngos med de tshe kun kyang chos
+			kun kyang chos nyid de bzhin ston (2556)
+2.1246052: tshe kun kyang chos kyi dbyings zhes
+			chos nyid dbyings kyi rgyan zhes gsungs (2968)
+1.2870666: kyi dbyings zhes dgra bcom rab 'byor yin
+			 'byor zhes su bshad pa yin (809)
+Rows matched:
+809: 1
+3165: 1
+2968: 1
+2556: 1
+
+
+line 132:
+---------------------
+1.0922577: nam mkha' dmigs ming tsam dge dang mi dger 'byed med skye ba'ang med
+			chos sku skye med ming tsam byung (2220)
+1.1012683: nam mkha' dmigs ming tsam dge dang
+			nam mkha' la ni g.yos pa rdul tsam med (4694)
+1.0326513: ming tsam dge dang mi dger 'byed
+			yul med tsam na gsal mi byed (4748)
+1.6723076: mi dger 'byed med skye ba'ang med
+			 gzhan la'ang rtog mi byed (2554)
+Rows matched:
+4748: 1
+2554: 1
+4694: 1
+2220: 1
+
+
+line 133:
+---------------------
+0.7727103: rtsol ba yid la mi byed gang la 'ang sems med shes dang mi shes bral
+			de yang mi rtog mnyam dang bral ba yin (4388)
+1.6351259: rtsol ba yid la mi byed gang la
+			mi rtsol bde ba che la kun gol bsgribs (928)
+2.146307: mi byed gang la 'ang sems med shes
+			sems can mi shes gang bstan tshim pa la (5314)
+1.8865755: 'ang sems med shes dang mi shes bral
+			rang sems sbyang med gding dang bral (1843)
+Rows matched:
+928: 1
+1843: 1
+4388: 1
+5314: 1
+
+
+line 134:
+---------------------
+0.91136223: dran dang 'byed med gang la 'ang 'ga' dang mtshungs med mi gnas mi dmigs shing
+			mi gnas mi dmigs spros med bsam pa kun dang bral (2638)
+1.0947832: dran dang 'byed med gang la 'ang 'ga'
+			de la gang zhig bsgom dang sgrub byed pa (4270)
+1.3951939: gang la 'ang 'ga' dang mtshungs med mi
+			yul la mi 'dzin spong dang len med pas (4336)
+2.103356: dang mtshungs med mi gnas mi dmigs shing
+			mi gnas mi dmigs spros med bsam pa kun dang bral (2638)
+Rows matched:
+4336: 1
+4270: 1
+2638: 2
+
+
+line 135:
+---------------------
+1.2024528: mnyam nas gnyis su brtags med brjod bral bya dang mi bya med de sogs bri med
+			gnyis su med de sgro skur kun dang bral (492)
+1.3890257: mnyam nas gnyis su brtags med brjod bral
+			gnyis su med de sgro skur kun dang bral (492)
+1.4670529: brtags med brjod bral bya dang mi bya
+			 bya med bde chen de dang mi phrad de (4180)
+2.8838503: bya dang mi bya med de sogs bri med
+			 bya med bde chen de dang mi phrad de (4180)
+Rows matched:
+4180: 2
+492: 2
+
+
+line 136:
+---------------------
+1.1594292: ched du rtsol bar yid la mi byed cis kyang mi 'khrugs mnyam shes dang  (120)
+			nam mkha' dag la kun kyang rtsol mi byed (966)
+1.2814174: ched du rtsol bar yid la mi byed
+			 yid mi ches (3379)
+2.1533315: yid la mi byed cis kyang mi 'khrugs
+			nam mkha' dag la kun kyang rtsol mi byed (966)
+2.0273457: cis kyang mi 'khrugs mnyam shes dang (120)
+			de yang mi rtog mnyam dang bral ba yin (4388)
+Rows matched:
+966: 2
+4388: 1
+3379: 1
+
+
+line 137:
+---------------------
+
+
+line 138:
+---------------------
+
+
+line 139:
+---------------------
+
+
+line 140:
+---------------------
+1.2653608: gang la'ang chags dang yul gyis myos skrag med de mi 'bral mi gnas shing
+			 mi gnas dmigs pa'i yul dang bral (4124)
+1.1201636: gang la'ang chags dang yul gyis myos
+			 medmthong du dmigs pa'i yul dang bral (326)
+2.3042235: dang yul gyis myos skrag med de
+			yul de rkyen gyis dgrar brtags nas (1828)
+1.8922603: skrag med de mi 'bral mi gnas shing
+			mi gnas mi dmigs spros med bsam pa kun dang bral (2638)
+Rows matched:
+2638: 1
+326: 1
+1828: 1
+4124: 1
+
+
+line 141:
+---------------------
+0.93712044: mi 'phrogs mnyam shes bzhi po phyogs dang pha rol phyin rnams der shes te
+			sbyin dang tshul khrims pha rol phyin pa bcus (3527)
+1.467959: mi 'phrogs mnyam shes bzhi po phyogs
+			phyogs bzhi mtshams dang bla 'og 'grub (3098)
+1.260671: shes bzhi po phyogs dang pha rol
+			phyogs bzhi mtshams dang bla 'og 'grub (3098)
+1.6611319: dang pha rol phyin rnams der shes te
+			sbyin dang tshul khrims pha rol phyin pa bcus (3527)
+Rows matched:
+3527: 2
+3098: 2
+
+
+line 142:
+---------------------
+0.7922515: sems kyi dbyings su bsgoms pas lam 'di gzhan du bsgoms pas 'od gsal mi 'gyur ro
+			gzhan don dbyings su gcig pas btsal med rtogs (5634)
+1.4147744: sems kyi dbyings su bsgoms pas lam 'di
+			rang sems spros bral chos kyi dbyings yin pas (4872)
+1.2751622: bsgoms pas lam 'di gzhan du bsgoms pas
+			gzhan du bgrod pa'i lam dang gnas med de (4851)
+1.489803: gzhan du bsgoms pas 'od gsal mi 'gyur ro
+			 posna tshogs bsgoms pas gcig mi gsal (4963)
+Rows matched:
+5634: 1
+4963: 1
+4851: 1
+4872: 1
+
+
+line 143:
+---------------------
+0.70534676: brda' can yang dag len pa 'ang byang chub chen por yin zhes ston pas rab gsungs phyir
+			slob dpon yang dag ston pa'i rin chen mdzod (2712)
+1.3569771: brda' can yang dag len pa 'ang byang chub
+			yang dag kun gyi ngo bo byang chub ngas (418)
+1.0559709: len pa 'ang byang chub chen por yin zhes
+			byang chub snying por de ma thag ting 'dzin rgyal po chen po 'byung (2444)
+0.9603938: chen por yin zhes ston pas rab gsungs phyir
+			kye sems dpa' chen po nyon cig nga ni chos rnams kun gyi ston yin phyir (4082)
+Rows matched:
+2712: 1
+4082: 1
+418: 1
+2444: 1
+
+
+line 144:
+---------------------
+1.4948846: de la 'di ni byang chub sems nyid bskyed cing bsgoms pa'i gnas yin te
+			yin ni byang chub sems yin te (320)
+3.7408693: de la 'di ni byang chub sems
+			rang 'byung byang chub sems de ni (3755)
+2.5835268: ni byang chub sems nyid bskyed cing
+			byang chub sems ni rkyen gyis ma bskyed pas (4520)
+1.3031867: nyid bskyed cing bsgoms pa'i gnas yin te
+			'dod pa de ni chags pa'i gnas yin te (5072)
+Rows matched:
+5072: 1
+320: 1
+3755: 1
+4520: 1
+
+
+line 145:
+---------------------
+0.93036026: ting 'dzin gsum po bstan par byas nas rtags kyi phyag rgya gsum bcings nas
+			ting 'dzin gsum po brtan nas grub pa'i mtha' spyod pa (2668)
+2.1216476: ting 'dzin gsum po bstan par byas
+			ting 'dzin gsum po brtan nas grub pa'i mtha' spyod pa (2668)
+1.508551: po bstan par byas nas rtags kyi
+			de nas byang chub kyi sems kun byed rgyal po des 'khor gyi ston pa'i bstan pa gol sa dang sgrib par gyur pa 'di bstan to (3574)
+1.9939499: nas rtags kyi phyag rgya gsum bcings nas
+			lus kyi las su phyag rgya bcar med rtogs (5642)
+Rows matched:
+3574: 1
+5642: 1
+2668: 2
+
+
+line 146:
+---------------------
+0.6306783: chos kyi phyag rgya chen por sems nyid skyed de snying po brjod cing bsgom pa'i gnas
+			de nas byang chub kyi sems kun byed rgyal po des rdzogs pa chen po'i chos nyid bsgom du med pa 'di bstan to (3504)
+1.6596203: chos kyi phyag rgya chen por sems nyid
+			chos kun phyag rgya nam mkha'i mtshan nyid de (2519)
+1.8431824: chen por sems nyid skyed de snying po
+			byang chub snying por de ma thag ting 'dzin rgyal po chen po 'byung (2444)
+1.0979654: skyed de snying po brjod cing bsgom pa'i gnas
+			chos kun bskyed pa'i snying po yin (656)
+Rows matched:
+656: 1
+3504: 1
+2519: 1
+2444: 1
+
+
+line 147:
+---------------------
+1.9613909: rdo rje sems dpa' bsgoms pas lam kun ma nor bsgoms pa yin
+			 dga' ba'i sems kyis dang ba'i mdangs phyung ste 'khod pas byang chub kyi sems kun byed rgyal pos sems dpa' rdo rje la smras pa sems dpa' rdo rje e ma ho (22)
+3.2098117: rdo rje sems dpa' bsgoms pas
+			sems dpa' rdo rje khyod (5722)
+1.7671831: dpa' bsgoms pas lam kun ma
+			 lam dang ma phrad pas (4865)
+2.7573972: lam kun ma nor bsgoms pa yin
+			ma nor lam la rtogs pa nyid mchog yin (5672)
+Rows matched:
+5722: 1
+5672: 1
+22: 1
+4865: 1
+
+
+line 148:
+---------------------
+0.5888017: kun tu bzang mo'i spyod pas mi zin dge ba'i chos ni gang yang rung
+			kun tu bzang po'i spyod yul la (2448)
+2.1278448: kun tu bzang mo'i spyod pas mi
+			kun tu bzang po'i spyod yul la (2448)
+1.0500119: mo'i spyod pas mi zin dge ba'i
+			ye nas byas zin rtsol ba'i sems mi 'byung (4149)
+1.1077521: zin dge ba'i chos ni gang yang rung
+			gang la dga' ba'i dus su ni (593)
+Rows matched:
+2448: 2
+4149: 1
+593: 1
+
+
+line 149:
+---------------------
+0.9733786: kun tu bzang po'i spyod pa 'ang bdud kyi las te zad cing mthar thug 'gyur  (130)
+			kun tu bzang po'i spyod yul la (2448)
+2.6686869: kun tu bzang po'i spyod pa 'ang bdud
+			kun tu bzang po'i spyod yul la (2448)
+0.82212496: spyod pa 'ang bdud kyi las te zad
+			byang chub kyi sems kun byed rgyal po las spyod pa blang dor med (5963)
+0.914987: kyi las te zad cing mthar thug 'gyur (130)
+			ci ste las kyi dbang 'gyur na (2939)
+Rows matched:
+2448: 2
+5963: 1
+2939: 1
+
+
+line 150:
+---------------------
+1.1759354: de dang ldan pa'i las ni bdud kyi las kyang byang chub spyod par gsungs
+			de nas byang chub kyi sems kun byed rgyal po des rgyu 'bras kyi theg pa bgrod lam nor bas rdzogs pa chen po las gol sa dang sgrib par gyur pa 'di gsungs (878)
+1.6716748: de dang ldan pa'i las ni bdud
+			de ni rdzogs chen rtogs pa'i don mi ldan (2880)
+1.7654544: pa'i las ni bdud kyi las kyang
+			byang chub kyi sems kun byed rgyal po las phrin las btsal du med pa'i le'u ste zhe bdun pa'o (4553)
+2.5955994: kyi las kyang byang chub spyod par gsungs
+			byang chub kyi sems kun byed rgyal po las lta spyod kyi gol sgrib (3722)
+Rows matched:
+2880: 1
+3722: 1
+4553: 1
+878: 1
+
+
+line 151:
+---------------------
+1.2450012: don 'dir mos pa de yang byang chun chen po yin zhes rgyal bas rab tu sngags
+			 yang kun byed rgyal po yin par rab tu grags (5370)
+2.033344: don 'dir mos pa de yang byang chun
+			byang chub sems dpa' kyi don yang de bzhin no (481)
+1.9684259: de yang byang chun chen po yin zhes
+			'byung ba chen po lnga pho yang (650)
+1.8648617: chen po yin zhes rgyal bas rab tu sngags
+			kun byed rgyal po yin par rab tu grags (5372)
+Rows matched:
+650: 1
+5370: 1
+481: 1
+5372: 1
+
+
+line 152:
+---------------------
+0.6480832: gnas 'dir bskyed pa tsam gyis 'jig rten gsum po bla mar bcas pa yi
+			 chen po lnga ni phyung  'jig rten brten pa'i khams chen po gsum ni bkod de (61)
+1.6110082: gnas 'dir bskyed pa tsam gyis 'jig
+			brod pa rdul tsam mi bskyed do (2435)
+1.7635882: pa tsam gyis 'jig rten gsum po
+			 chen po lnga ni phyung  'jig rten brten pa'i khams chen po gsum ni bkod de (61)
+0.99547184: rten gsum po bla mar bcas pa yi
+			 po nyon cig nga las byung ba'i sku gsum ston pa yi (1229)
+Rows matched:
+61: 2
+1229: 1
+2435: 1
+
+
+line 153:
+---------------------
+1.4425887: mchod nas nyan thos bdud kyi sde rnams zil gyis gnon zhes sangs rgyas gsung
+			dus gsum sangs rgyas rnams kyi mchod pa'i rten (2096)
+1.1141928: mchod nas nyan thos bdud kyi sde
+			nyan thos (1147)
+1.6786488: thos bdud kyi sde rnams zil gyis
+			sa bcu chos kyi sprin gyis pa rnams (1202)
+1.9852316: rnams zil gyis gnon zhes sangs rgyas gsung
+			sangs rgyas zhes bya'i (2177)
+Rows matched:
+2177: 1
+2096: 1
+1147: 1
+1202: 1
+
+
+line 154:
+---------------------
+1.2500111: thabs chen byang chub sems dpa'i gsang ba'i spyod pa 'di nyid do
+			de nas byang chub kyi sems kun byed rgyal pos nyid kyi lung chen po mngon du phyung ba'i lung 'di bstan to (1718)
+2.5397527: thabs chen byang chub sems dpa'i
+			byang chub sems dpa'i mdo sde ni (3580)
+1.5342317: chub sems dpa'i gsang ba'i spyod
+			byang chub sems dpa'i mdo sde ni (3580)
+1.391308: gsang ba'i spyod pa 'di nyid do
+			gang dang spyod pa 'di la gnas pa ni (5911)
+Rows matched:
+3580: 2
+1718: 1
+5911: 1
+
+
+line 155:
+---------------------
+1.1934079: 'di med rgyal ba rnam par snang mdzad theg pa gsum ston mi srid do
+			ston gsum theg pa khyad par phyed mi 'gyur (1701)
+2.139451: 'di med rgyal ba rnam par snang
+			skye ba med par rtogs pa'i rnam (5597)
+2.3959126: ba rnam par snang mdzad theg pa
+			rnam par snang mdzad kun du bzang (3147)
+1.9628292: mdzad theg pa gsum ston mi srid do
+			ston gsum theg pa khyad par phyed mi 'gyur (1701)
+Rows matched:
+1701: 2
+5597: 1
+3147: 1
+
+
+line 156:
+---------------------
+0.8451103: skad cig tsam du dad pa'i shugs bskyed de yang myur du 'jam dpal gzhon nur gyur
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+0.77344894: skad cig tsam du dad pa'i shugs bskyed
+			dkyil 'khor bskyed du med pa'i don mi rtogs (5685)
+1.0315706: dad pa'i shugs bskyed de yang myur du
+			de yis bskyed pa'i sems can rnams (657)
+1.8003843: de yang myur du 'jam dpal gzhon nur gyur
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+Rows matched:
+5685: 1
+657: 1
+2629: 2
+
+
+line 157:
+---------------------
+0.82301825: dkyil 'khor gsang bar zhugs shing theg chen dam tshig mchog kyang bsrungs pa yin
+			gsang ba rdo rje'i dam tshig chen po ru (4398)
+0.70523316: dkyil 'khor gsang bar zhugs shing theg
+			 dkyil 'khor te (781)
+1.2835251: bar zhugs shing theg chen dam tshig
+			theg pa re la dam tshig re (3693)
+2.065184: chen dam tshig mchog kyang bsrungs pa yin
+			dam tshig bsrung du med par bstan pa yin (3402)
+Rows matched:
+4398: 1
+3402: 1
+3693: 1
+781: 1
+
+
+line 158:
+---------------------
+1.3306668: tshul khrims sdom pa kun kyang srungs shing sbyin gnas dam par rab tu bsngags
+			sdom pa tshul khrims dam du (5331)
+2.5585992: tshul khrims sdom pa kun kyang srungs
+			sdom pa tshul khrims dam du (5331)
+1.4998692: pa kun kyang srungs shing sbyin gnas
+			ma gnas pa ni gcig kyang med (4658)
+0.92502683: shing sbyin gnas dam par rab tu bsngags
+			dam tshig tshul dang rab tu brtson 'gyur na (5305)
+Rows matched:
+5331: 2
+4658: 1
+5305: 1
+
+
+line 159:
+---------------------
+1.9681692: de phyir byang chub sems kyi bsod nams de la gzugs yod na  (140)
+			des na byang chub sems kyi chos dbyings la (4730)
+3.548203: de phyir byang chub sems kyi bsod
+			de nas byang chub kyi sems (2534)
+2.7736871: chub sems kyi bsod nams de la
+			de nas byang chub kyi sems kun byed rgyal po la sems dpa' rdo rjes (6084)
+1.1466241: nams de la gzugs yod na (140)
+			de la sbyangs te bgrod 'gyur na (4662)
+Rows matched:
+4662: 1
+4730: 1
+6084: 1
+2534: 1
+
+
+line 160:
+---------------------
+
+
+line 161:
+---------------------
+
+
+line 162:
+---------------------
+
+
+line 163:
+---------------------
+0.6658307: nam kha' bar snang de yang snod du chungs zhes rgyal bas mtshungs par gsungs
+			 phyung yang mi snang bas (2025)
+1.4267365: nam kha' bar snang de yang snod
+			de yang nam mkha'i dgongs pa gnas (2493)
+1.5111736: snang de yang snod du chungs zhes
+			snang srid snod bcud kun gyi rgyu yang yin (3919)
+0.9433429: du chungs zhes rgyal bas mtshungs par gsungs
+			 de nas byang chub kyi sems kun byed rgyal pos dam tshig bsrung du med par rtogs pa 'di gsungs so (5559)
+Rows matched:
+2025: 1
+2493: 1
+5559: 1
+3919: 1
+
+
+line 164:
+---------------------
+0.5406862: skye bo skye ba sna tshogs dag las skyes shing skye 'gyur skye ba'i rgyun gyis dbang song ba
+			de yi dbang las skye bar 'gyur (2430)
+1.633744: skye bo skye ba sna tshogs dag las skyes
+			ma skyes skye ba'i cho 'phrul ngo bo las (4570)
+0.9943228: sna tshogs dag las skyes shing skye 'gyur skye
+			 kyisbya ba'i phrin las sna tshogs dang (2135)
+0.8398449: shing skye 'gyur skye ba'i rgyun gyis dbang song ba
+			de yi dbang las skye bar 'gyur (2430)
+Rows matched:
+4570: 1
+2430: 2
+2135: 1
+
+
+line 165:
+---------------------
+0.6555366: rtogs mtha' mi shes rtog pas bslus shing rtog pa'i rgyun 'brangs 'khrul pa'i rtog las phyir ldog med sgyur pa
+			rang 'byung ye shes yul la mi rtog pas (5277)
+1.2879928: rtogs mtha' mi shes rtog pas bslus shing rtog pa'i
+			 log rtog byis pa'i spyod pas ci zhig bslus (2699)
+1.3342078: pas bslus shing rtog pa'i rgyun 'brangs 'khrul pa'i rtog
+			 log rtog byis pa'i spyod pas ci zhig bslus (2699)
+1.3571382: rgyun 'brangs 'khrul pa'i rtog las phyir ldog med sgyur pa
+			phrin las btsal ba med pa'i phyir (4628)
+Rows matched:
+4628: 1
+5277: 1
+2699: 2
+
+
+line 166:
+---------------------
+0.68820024: rgyu ma'i sgyu shes dag cing sgyu ma'i glang po 'dra bar sgyu mas rmongs pa'i sgyu ma rnams
+			sgyu ma'i bde ba 'byung bar 'dod (3045)
+1.1095669: rgyu ma'i sgyu shes dag cing sgyu ma'i glang
+			rgyu dbyings 'bras bu ye shes lta ba'i phyir (835)
+1.2301577: dag cing sgyu ma'i glang po 'dra bar sgyu
+			sgyu ma'i bde ba 'byung bar 'dod (3045)
+0.66504824: po 'dra bar sgyu mas rmongs pa'i sgyu ma rnams
+			rnam par rtog pa'i dra ba dral nas ni (1508)
+Rows matched:
+1508: 1
+3045: 2
+835: 1
+
+
+line 167:
+---------------------
+0.6158917: rmi lam gyis klad bzhin du rmi yis bden pa nyams shing rmi lam dbang du song ba'i rmi lam pa
+			'khrul pas nor ba'i lam du brtags pa dang (2701)
+1.0365349: rmi lam gyis klad bzhin du rmi yis bden pa
+			kun du bzang po'i rol pa yis (2976)
+0.96551573: du rmi yis bden pa nyams shing rmi lam dbang
+			sngon gyi drang srong lam du gang zhugs pa (2642)
+1.0523946: nyams shing rmi lam dbang du song ba'i rmi lam pa
+			'khrul pas nor ba'i lam du brtags pa dang (2701)
+Rows matched:
+2976: 1
+2642: 1
+2701: 2
+
+
+line 168:
+---------------------
+0.8299828: lam 'di spong zhing mtha' dang lam gzhan lam du bltas nas ma nor lam zhes ston pa de
+			nges par dus la bab bo zhes bskul bas sems dpa' rdo rje de dga' ba'i mdangs dang bcas te dang zhing mos pa'i mdangs phyung nas stan las langs te ston pa'i mdun du 'di skad ces zhus so (6159)
+0.9462235: lam 'di spong zhing mtha' dang lam gzhan lam
+			gzhan du bgrod pa'i lam dang gnas med de (4851)
+1.5094222: mtha' dang lam gzhan lam du bltas nas ma
+			ma bcos lam du zhugs nas byon (3989)
+1.4580084: du bltas nas ma nor lam zhes ston pa de
+			 spyod pa'i lam de rgyur bltas nas (659)
+Rows matched:
+6159: 1
+3989: 1
+4851: 1
+659: 1
+
+
+line 169:
+---------------------
+0.76872724: de dag rdo la gser bzhin thugs rjer rung zhing thugs rje'i thugs rjes kye ma 'phros pa yin
+			sems dpa' rdo rjes de ltar ma rtogs na (5466)
+1.5000786: de dag rdo la gser bzhin thugs rjer rung
+			yul de byang chub rang dag la (1844)
+2.8485482: gser bzhin thugs rjer rung zhing thugs rje'i thugs
+			thugs rje'i rang bzhin don mdzad gsum (1735)
+0.9972487: zhing thugs rje'i thugs rjes kye ma 'phros pa yin
+			 bstan pa thugs rjes don 'tsham ste (4075)
+Rows matched:
+4075: 1
+1844: 1
+1735: 1
+5466: 1
+
+
+line 170:
+---------------------
+0.7291615: shin tu ma sbyangs dus kyis mnar ba'i skye bo lnga brgya tha ma la
+			ma skyes skye ba'i cho 'phrul ngo bo las (4570)
+1.1534169: shin tu ma sbyangs dus kyis mnar
+			shin tu rnal 'byor rnams kyis thos 'gyur na (2865)
+1.1806213: sbyangs dus kyis mnar ba'i skye bo
+			ma skyes skye ba'i cho 'phrul ngo bo las (4570)
+1.3533288: ba'i skye bo lnga brgya tha ma la
+			ma skyes skye ba'i cho 'phrul ngo bo las (4570)
+Rows matched:
+4570: 3
+2865: 1
+
+
+line 171:
+---------------------
+0.60508245: gsung rab dri med rtogs dka' dag la sgra bzhin spyod dang tshul bzhin min
+			kun gyi yul min brtag pa rab tu dka' (5845)
+1.1044625: gsung rab dri med rtogs dka' dag
+			skye ba med pa nyid du rab tu rtogs (5460)
+1.1678988: med rtogs dka' dag la sgra bzhin
+			 dka' la brjod du rdul tsam med (2641)
+1.012535: la sgra bzhin spyod dang tshul bzhin min
+			ta spyod nam mkha'i rang bzhin la (3652)
+Rows matched:
+5460: 1
+5845: 1
+3652: 1
+2641: 1
+
+
+line 172:
+---------------------
+1.0932859: rang gi blo gros stobs bzhin 'jug pa la sogs lta ba sna tshogs dag  (150)
+			dag ni chos nyid dbyings su dag 'dul ba rnam pa sna tshogs ston (2116)
+2.5651283: rang gi blo gros stobs bzhin 'jug pa
+			rang gi rang bzhin ston byed pa (2560)
+1.5298097: stobs bzhin 'jug pa la sogs lta ba
+			lta ba bsgom du med pa de bzhin du (983)
+1.9440705: la sogs lta ba sna tshogs dag (150)
+			 ba nigzhan med zer nas lta spyod sna tshogs pa (4918)
+Rows matched:
+2560: 1
+4918: 1
+2116: 1
+983: 1
+
+
+line 173:
+---------------------
+0.31346816: mi shes chu bos g-yengs shing gsung gi nying khu bdud rtsi rnal 'byor bral
+			bdud rtsi chen po'i rang bzhin la (2421)
+0.5056359: mi shes chu bos g-yengs shing gsung
+			 shes skye ba med par rtogs nas cang mi gsung bar bzhugs so (5430)
+0.6785109: bos g-yengs shing gsung gi nying khu
+			 parrang gi ngo bos chos ston pa (2587)
+0.84740126: gi nying khu bdud rtsi rnal 'byor bral
+			rnal 'byor chen po (768)
+Rows matched:
+2587: 1
+2421: 1
+5430: 1
+768: 1
+
+
+line 174:
+---------------------
+2.3093903: de phyir rgyal bas gsungs pa'i thugs kyi gsang ba 'di
+			de nas byang chub kyi sems kun byed rgyal pos nyid kyi gsang ba dam pa'i gdams ngag 'di gsungs so (1676)
+2.089415: de phyir rgyal bas gsungs
+			 de nas byang chub kyi sems kun byed rgyal po des ma btsal bas grub pa'i le'u 'di gsungs so (2156)
+1.9376568: rgyal bas gsungs pa'i thugs
+			 de nas byang chub kyi sems kun byed rgyal po des ma btsal bas grub pa'i le'u 'di gsungs so (2156)
+3.4180026: pa'i thugs kyi gsang ba 'di
+			 gsang ba rtogs pa'i thugs (6135)
+Rows matched:
+1676: 1
+2156: 2
+6135: 1
+
+
+line 175:
+---------------------
+1.6358283: kun du rgyal ba rnams kyi thugs kyi spyod yul thun mong ma yin yang
+			de nas byang chub kyi sems kun byed rgyal pos nyid kyi bstan pa gzhan gyi spyod yul ma yin pa rdzogs pa chen po'i gzhung (3393)
+2.226914: kun du rgyal ba rnams kyi thugs
+			rgyal ba kun gyi'ang sku gsung thugs (6131)
+2.2830768: ba rnams kyi thugs kyi spyod yul
+			skal med rnams kyi spyod yul ma yin pas (4183)
+2.0109158: kyi spyod yul thun mong ma yin yang
+			kun gyi spyod yul ma yin gsang bar bshad (1096)
+Rows matched:
+3393: 1
+6131: 1
+1096: 1
+4183: 1
+
+
+line 176:
+---------------------
+0.45260605: goms pa'i mthu yis mi 'gal tshul du tshad ma dag las rab bsgrubs te
+			la las dag bya'i yul du mthong (1791)
+0.63619334: goms pa'i mthu yis mi 'gal tshul
+			gang yangadam bcas tshul bzhin mi 'grub (4367)
+0.7867728: yis mi 'gal tshul du tshad ma
+			 shig rang nyid yin gyis gzhan du ma tshol cig btsal na rgyal bas dbyings nas rnyed mi 'gyur (3560)
+0.82632947: du tshad ma dag las rab bsgrubs te
+			sangs rgyas bsgrubs pas grub pa ma yin te (1906)
+Rows matched:
+3560: 1
+1906: 1
+1791: 1
+4367: 1
+
+
+line 177:
+---------------------
+1.471224: 'gro ba'i don du mi gnyis lam mchog 'di ni rab bgyis pas
+			mi rtog pas ni 'gro don mdzad (3748)
+3.1770983: 'gro ba'i don du mi gnyis
+			 mi gnas 'gro ba'i don mi gnas (4797)
+1.7169546: du mi gnyis lam mchog 'di
+			gong du bstan pa'i lam chen de la mi gnyis pas (2702)
+1.2487216: lam mchog 'di ni rab bgyis pas
+			byis pas bslus pas chos spyod rtog pa'i lam la btsud pa ni (2705)
+Rows matched:
+2705: 1
+4797: 1
+3748: 1
+2702: 1
+
+
+line 178:
+---------------------
+1.044623: skye bos skye gnas thams cad du yang skad cig tu
+			thams cad skye med (5952)
+1.5720959: skye bos skye gnas thams
+			thams cad skye med (5952)
+3.02343: skye gnas thams cad du
+			thams cad skye med (5952)
+1.1927702: cad du yang skad cig tu
+			skad cig mchod (4225)
+Rows matched:
+4225: 1
+5952: 3
+
+
+line 179:
+---------------------
+0.6111631: mi mthun phyogs kyis mi nyams rgyal ba kun gyis thugs 'dir rab rgyas shog rdzogs so
+			 'khor dang  da ltar bzhugs pa'i sangs rgyas nyid kyis don mdzad pa'i 'khor dang  slad nas byon pa'i sangs rgyas nyid las 'byung ba'i 'khor dang  'byed pa mi mnga' ba'i rang bzhin gyis thabs cig par bzhugs so (15)
+1.4359092: mi mthun phyogs kyis mi nyams rgyal ba
+			bde ba 'dod na bde la rgyab kyis phyogs (2410)
+1.5021422: mi nyams rgyal ba kun gyis thugs 'dir
+			rgyal ba kun gyi'ang sku gsung thugs (6131)
+0.9613943: kun gyis thugs 'dir rab rgyas shog rdzogs so
+			 sems kun byed rgyal po rdzogs so (5427)
+Rows matched:
+2410: 1
+5427: 1
+6131: 1
+15: 1
+
+
+line 180:
+---------------------
+
+
+line 181:
+---------------------
+0.86157817: 'jam dpal bshes gnyen gyis mdzad do
+			rang 'byung gi ye shes gsal bar mdzad do (18)
+1.6141663: 'jam dpal bshes
+			chos kyi snying por gyur pas 'jam dpal gzhon nu nyid (2629)
+1.6089724: dpal bshes gnyen
+			yul shes mi blta gnyen po'i tshogs mi bsten (5989)
+1.2075367: gnyen gyis mdzad do
+			 byang chub kyi sems kun byed rgyal po des 'khor thams cad nyid kyi rang bzhin du byin gyis brlab pa'i phyir 'khor thams cad nyid kyi sems nyid kyi thugs la thim par mdzad do (17)
+Rows matched:
+18: 1
+2629: 1
+17: 1
+5989: 1
+
+
+line 182:
+---------------------
+1.1126263: mtshan yang dag par brjod pa'i chog mdo dang bsres pa slob dpon 'jam dpal gshes gnyen gyis mdzad pa bzhugs
+			 'khor dang  da ltar bzhugs pa'i sangs rgyas nyid kyis don mdzad pa'i 'khor dang  slad nas byon pa'i sangs rgyas nyid las 'byung ba'i 'khor dang  'byed pa mi mnga' ba'i rang bzhin gyis thabs cig par bzhugs so (15)
+1.1563836: mtshan yang dag par brjod pa'i chog mdo dang bsres
+			legs par gsungs pa'i mdo dag mthar phyin nas (5433)
+1.4817235: pa'i chog mdo dang bsres pa slob dpon 'jam dpal
+			nga yis byas pa'i chos dang rnam pa gsum (1300)
+0.8596299: pa slob dpon 'jam dpal gshes gnyen gyis mdzad pa bzhugs
+			 'khor dang  da ltar bzhugs pa'i sangs rgyas nyid kyis don mdzad pa'i 'khor dang  slad nas byon pa'i sangs rgyas nyid las 'byung ba'i 'khor dang  'byed pa mi mnga' ba'i rang bzhin gyis thabs cig par bzhugs so (15)
+Rows matched:
+5433: 1
+15: 2
+1300: 1
+
+
+rows matched to more than 1 row part: 88
+rows matched to more than 2 row part: 10
+
+Process finished with exit code 0

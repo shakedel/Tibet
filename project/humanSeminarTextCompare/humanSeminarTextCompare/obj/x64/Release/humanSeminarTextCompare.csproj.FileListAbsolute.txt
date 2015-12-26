@@ -1,0 +1,36 @@
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\humanSeminarTextCompare.exe.config
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\humanSeminarTextCompare.exe
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\humanSeminarTextCompare.pdb
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\IntervalTreeLib.dll
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\itextsharp.dll
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\itextsharp.pdfa.dll
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\itextsharp.xtra.dll
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\ScintillaNET.dll
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\PowerCollections.dll
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\IntervalTreeLib.pdb
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\itextsharp.xml
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\ScintillaNET.pdb
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\ScintillaNET.xml
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\PowerCollections.pdb
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.csprojResolveAssemblyReference.cache
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.Form1.resources
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.Properties.Resources.resources
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.WaitFrm.resources
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.csproj.GenerateResource.Cache
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.exe
+C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.pdb
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\humanSeminarTextCompare.exe.config
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.exe
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.pdb
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\humanSeminarTextCompare.exe
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\humanSeminarTextCompare.pdb
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\IntervalTreeLib.dll
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\PowerCollections.dll
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\IntervalTreeLib.pdb
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\PowerCollections.pdb
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.Form1.resources
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.Properties.Resources.resources
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.WaitFrm.resources
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.csproj.GenerateResource.Cache
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\bin\x64\Release\ScintillaNET.dll
+C:\Users\Daniel\Documents\Univesity\tesis\project\humanSeminarTextCompare\humanSeminarTextCompare\obj\x64\Release\humanSeminarTextCompare.csprojResolveAssemblyReference.cache

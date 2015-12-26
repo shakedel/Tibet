@@ -1,0 +1,1 @@
+c:\python27\python.exe matchAlign.py --inFileA "C:\Users\Daniel\Documents\University\tesis\project\texts\1.txt" --inFileB "C:\Users\Daniel\Documents\University\tesis\project\texts\2.txt" --outFile Results\20.1.15\testMatchPyOut2.txt --minDistanceMatch 20 --maxErrorMatch 5 --minDistanceUnion 10 --localAlignPadRatio 0.12
