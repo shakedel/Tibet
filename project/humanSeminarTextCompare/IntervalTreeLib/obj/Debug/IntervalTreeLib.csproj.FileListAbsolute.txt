@@ -1,7 +1,0 @@
-C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\IntervalTreeLib\bin\Debug\IntervalTreeLib.dll
-C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\IntervalTreeLib\bin\Debug\IntervalTreeLib.pdb
-C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\IntervalTreeLib\bin\Debug\PowerCollections.dll
-C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\IntervalTreeLib\bin\Debug\PowerCollections.pdb
-C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\IntervalTreeLib\obj\Debug\IntervalTreeLib.dll
-C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\IntervalTreeLib\obj\Debug\IntervalTreeLib.pdb
-C:\Users\bubi\Documents\Visual Studio 2012\Projects\humanSeminarTextCompare\IntervalTreeLib\obj\Debug\IntervalTreeLib.csprojResolveAssemblyReference.cache
