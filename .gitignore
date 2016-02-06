@@ -1,1 +1,5 @@
-/project/work
+/target/
+/.git
+/.classpath
+/.project
+/.settings/
