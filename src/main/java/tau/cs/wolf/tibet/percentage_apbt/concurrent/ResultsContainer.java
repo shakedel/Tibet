@@ -1,45 +1,56 @@
-package tau.cs.wolf.tibet.percentage_apbt;
+package tau.cs.wolf.tibet.percentage_apbt.concurrent;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import general.IndexPair;
+import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Misc.Formatter;
 
-public class resultsContainer {
+public class ResultsContainer {
 
-	private java.util.concurrent.ConcurrentLinkedQueue<MatchResult> results;
+	private ConcurrentLinkedQueue<MatchResult> matches;
 	private double maxIntersection;
+	private PrintStream out = null;
+	private final Formatter<MatchResult> formatter;
 	
-	public resultsContainer(double maxIntersection)
-	{
-		results = new java.util.concurrent.ConcurrentLinkedQueue<MatchResult>();
+	public ResultsContainer(Formatter<MatchResult> formatter, double maxIntersection) {
+		matches = new ConcurrentLinkedQueue<MatchResult>();
 		this.maxIntersection = maxIntersection;
+		this.formatter = formatter;
 	}
 	
-	public synchronized void writeResults(String path)
-	{
-		try
-		{
-			FileWriter fstream = new FileWriter(path);
-			BufferedWriter out = new BufferedWriter(fstream);
-			
-			for (MatchResult iResult: results)
-			{
-				out.write(iResult.toString());
-				out.newLine();
+	public ResultsContainer(Formatter<MatchResult> formatter, double maxIntersection, PrintStream out) {
+		this(formatter, maxIntersection);
+		this.out = out;
+		
+	}
+	
+	public void writeResults(File f) {
+		if (out != null) {
+			throw new IllegalStateException("results were already written on-the-fly");
+		}
+		try (PrintStream out = new PrintStream(f)) {
+			for (MatchResult match: matches) {
+				out.println(this.formatter.format(match));
 			}
-			
-			out.close();
-		}
-		catch (Exception e)
-		{
-			
+		} catch (FileNotFoundException e) {
+			throw new IllegalArgumentException(e);
 		}
 	}
 	
-	public synchronized void addResult(MatchResult newResult)
-	{
-		results.add(newResult);
+	private synchronized void writeMatch(MatchResult match) {
+		this.out.println(this.formatter.format(match));
+	}
+	
+	public synchronized void addResult(MatchResult newMatch) {
+		matches.add(newMatch);
+		if (this.out != null) {
+			this.writeMatch(newMatch);
+		}
+		
 		//System.out.println("www " + newResult.score);
 		/*LinkedList<MatchResult> overlapResults = new LinkedList<MatchResult>();
 		double bestScore = Double.POSITIVE_INFINITY;

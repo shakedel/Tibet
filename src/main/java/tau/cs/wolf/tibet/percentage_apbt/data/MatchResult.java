@@ -1,6 +1,7 @@
-package tau.cs.wolf.tibet.percentage_apbt;
+package tau.cs.wolf.tibet.percentage_apbt.data;
 
 import general.Interval;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Misc.Formatter;
 
 public class MatchResult {
 	
@@ -42,4 +43,22 @@ public class MatchResult {
 		return str;
 	}
 
+	public static class DefaultFormatter implements Formatter<MatchResult> {
+		@Override
+		public String format(MatchResult match) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(match.workInterval.getStart().getIndex1());
+			sb.append(",");
+			sb.append(match.workInterval.getStart().getIndex2());
+			sb.append(",");
+			sb.append(match.workInterval.getEnd().getIndex1());
+			sb.append(",");
+			sb.append(match.workInterval.getEnd().getIndex2());
+			sb.append(",");
+			sb.append(match.score);
+			
+			return sb.toString();
+		}
+		
+	}
 }
