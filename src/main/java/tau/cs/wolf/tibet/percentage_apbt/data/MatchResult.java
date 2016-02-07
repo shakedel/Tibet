@@ -1,7 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.data;
 
-import general.Interval;
-import tau.cs.wolf.tibet.percentage_apbt.misc.Misc.Formatter;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class MatchResult {
 	
@@ -43,7 +42,7 @@ public class MatchResult {
 		return str;
 	}
 
-	public static class DefaultFormatter implements Formatter<MatchResult> {
+	public static class DefaultFormatter implements Utils.Formatter<MatchResult> {
 		@Override
 		public String format(MatchResult match) {
 			StringBuilder sb = new StringBuilder();

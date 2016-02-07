@@ -2,18 +2,29 @@ package tau.cs.wolf.tibet.percentage_apbt.misc;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
+import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
+import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
+
 public class Utils {
+	public static interface Formatter<T> {
+		public String format(T t);
+	}
+
 	public static String formatDuration(long milliseconds) {
 		long seconds = milliseconds / 1000;
 		return String.format("%d:%02d:%02d", seconds / 3600, (seconds % 3600) / 60, (seconds % 60));
@@ -46,7 +57,26 @@ public class Utils {
 		}
 		return f;
 	}
-
-
-
+	
+	public static List<Interval> convertIntervalsList(List<general.Interval> intervals) {
+		List<Interval> res = new ArrayList<Interval>(intervals.size());
+		for (general.Interval interval: intervals) {
+			res.add(new Interval(interval));
+		}
+		return res;
+	}
+	
+	public static void writeMatches(File f, List<MatchResult> matches, Formatter<MatchResult> formatter) {
+		if (formatter == null) {
+			formatter = new MatchResult.DefaultFormatter();
+		}
+		try (PrintStream out = new PrintStream(f)) {
+			for (MatchResult match: matches) {
+				out.println(formatter.format(match));
+			}
+		} catch (FileNotFoundException e) {
+			throw new IllegalStateException(e);
+		}
+	}
+	
 }

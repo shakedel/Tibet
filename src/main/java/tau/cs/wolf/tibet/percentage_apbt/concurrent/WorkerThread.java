@@ -8,29 +8,29 @@ import org.slf4j.LoggerFactory;
 import algorithms.APBT;
 import ch.qos.logback.core.util.Duration;
 import general.IndexPair;
-import general.Interval;
+import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
+import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
 import tau.cs.wolf.tibet.percentage_apbt.misc.LevenshteinDistance;
+import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public class WorkerThread implements Runnable {
+public class WorkerThread extends BaseModule implements Runnable {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private String firstStr;
 	private String secondStr;
 	private Interval workInterval;
-	private int minLength;
-	private int maxErrorDistance;
-	private ResultsContainer rContainer;
+	private MatchesContainer rContainer;
 	private final int threadId;
 
-	public WorkerThread(String firstStr, String secondStr, Interval workInterval, int minLength, int maxErrorDistance, ResultsContainer rContainer, int threadId)
-	{
+	public WorkerThread(Props props, Args args, String firstStr, String secondStr, Interval workInterval, MatchesContainer rContainer, int threadId) {
+		super(props, args);
 		this.workInterval = workInterval;
 		this.firstStr = firstStr;
 		this.secondStr = secondStr;
-		this.minLength = minLength;
-		this.maxErrorDistance = maxErrorDistance;
 		this.rContainer = rContainer;
 		this.threadId = threadId;
 	}
@@ -42,12 +42,12 @@ public class WorkerThread implements Runnable {
 		String strA = firstStr.substring(workInterval.getStart().getIndex1(), workInterval.getEnd().getIndex1());
 		String strB = secondStr.substring(workInterval.getStart().getIndex2(), workInterval.getEnd().getIndex2());
 
-		APBT newAPBT = new algorithms.APBT(strA.toCharArray(), strB.toCharArray(), minLength, maxErrorDistance);
+		APBT newAPBT = new algorithms.APBT(strA.toCharArray(), strB.toCharArray(), args.getMinLength(), args.getMaxError());
 		newAPBT.process();
 		newAPBT.processByColumn(strB.toCharArray(), strA.toCharArray());
 		logger.info("Thread: "+this.threadId+". Finished processing. Time elapsed: "+new Duration(System.currentTimeMillis()-startTime));
 		
-		List<Interval> maximalsolutions = newAPBT.getMaximalSolutions();
+		List<Interval> maximalsolutions = Utils.convertIntervalsList(newAPBT.getMaximalSolutions());
 
 		for(int solutionIdx=0; solutionIdx<maximalsolutions.size(); solutionIdx++) {
 			Interval curSolution = maximalsolutions.get(solutionIdx);

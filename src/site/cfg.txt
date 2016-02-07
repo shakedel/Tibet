@@ -1,0 +1,13 @@
+# documentation of the available configuration
+
+numThreads = <defaults to number of threads provided to JVM>
+stepSize = 12500
+readSize = 25000
+minLength = 60
+maxError = 10
+timeout = PT10M // ISO-8601 duration
+minDistanceUnion = 10
+localAlignPadRatio = 0.12
+matchAward = 1        
+mismatchPenalty = -1
+gapPenalty = -1        

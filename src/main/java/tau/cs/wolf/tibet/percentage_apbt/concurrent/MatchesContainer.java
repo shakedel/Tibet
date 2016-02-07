@@ -1,55 +1,54 @@
 package tau.cs.wolf.tibet.percentage_apbt.concurrent;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import general.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
-import tau.cs.wolf.tibet.percentage_apbt.misc.Misc.Formatter;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public class ResultsContainer {
+public class MatchesContainer {
 
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	private ConcurrentLinkedQueue<MatchResult> matches;
 	private double maxIntersection;
-	private PrintStream out = null;
-	private final Formatter<MatchResult> formatter;
+	private boolean shutdown = false;
 	
-	public ResultsContainer(Formatter<MatchResult> formatter, double maxIntersection) {
+	public MatchesContainer(Utils.Formatter<MatchResult> formatter, double maxIntersection) {
 		matches = new ConcurrentLinkedQueue<MatchResult>();
 		this.maxIntersection = maxIntersection;
-		this.formatter = formatter;
 	}
 	
-	public ResultsContainer(Formatter<MatchResult> formatter, double maxIntersection, PrintStream out) {
-		this(formatter, maxIntersection);
-		this.out = out;
-		
+	public void shutdown() {
+		this.shutdown = true;
 	}
 	
-	public void writeResults(File f) {
-		if (out != null) {
-			throw new IllegalStateException("results were already written on-the-fly");
-		}
-		try (PrintStream out = new PrintStream(f)) {
-			for (MatchResult match: matches) {
-				out.println(this.formatter.format(match));
-			}
-		} catch (FileNotFoundException e) {
-			throw new IllegalArgumentException(e);
+	private void assertNotShutdown() {
+		if (this.shutdown) {
+			throw new IllegalStateException("cannot accept results after shutdown!");
 		}
 	}
 	
-	private synchronized void writeMatch(MatchResult match) {
-		this.out.println(this.formatter.format(match));
+	private void assertShutdown() {
+		if (!this.shutdown) {
+			throw new IllegalStateException("must be shutdown after all results has been passed!");
+		}
+	}
+	
+	public List<MatchResult> getResults() {
+		assertShutdown();
+		return Collections.unmodifiableList(new ArrayList<MatchResult>(this.matches));
 	}
 	
 	public synchronized void addResult(MatchResult newMatch) {
+		this.assertNotShutdown();
 		matches.add(newMatch);
-		if (this.out != null) {
-			this.writeMatch(newMatch);
-		}
 		
 		//System.out.println("www " + newResult.score);
 		/*LinkedList<MatchResult> overlapResults = new LinkedList<MatchResult>();

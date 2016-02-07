@@ -2,6 +2,7 @@ package tau.cs.wolf.tibet.percentage_apbt;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -16,7 +17,9 @@ import junit.framework.TestCase;
 import junitx.framework.FileAssert;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppFactory;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppFactory.AppType;
-import tau.cs.wolf.tibet.percentage_apbt.main.Args;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
+import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
+import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 /**
@@ -29,23 +32,29 @@ public class AppTest extends TestCase {
 
 	private final AppType type;
 	private final File outFile;
+	private final Props props;
 	private final Args args;
 	
-	public AppTest(String in1ResourcePath, String in2ResourcePath, String outResourcePath, AppType type, int minLength, int maxError) {
+	public AppTest(String in1ResourcePath, String in2ResourcePath, String outResourcePath, AppType type, String cfgResourcePath) throws IOException {
 		this.type = type;
 		this.outFile = Utils.urlToFile(getClass().getResource(outResourcePath));
 		
 		File inFile1 = Utils.urlToFile(getClass().getResource(in1ResourcePath));
 		File inFile2 = Utils.urlToFile(getClass().getResource(in2ResourcePath));
 		
-		this.args = new Args(inFile1, inFile2, null, minLength, maxError);
+		try (InputStream is = getClass().getResourceAsStream(cfgResourcePath)) {
+			this.props = PropsBuilder.newProps(is);
+		}
+		
+		this.args = new Args(inFile1, inFile2, null);
 	}
 
 	@Parameters(name = "index: {index}: compare in1: {0}, in2: {1}, out:{2}, Type: {3}, minLength: {4}, maxError: {5}")
 	public static Iterable<Object[]> data1() {
 		return Arrays.asList(new Object[][] { 
-			{ "/in1.txt", "/in2.txt", "/absolute_out.txt", AppType.ABSOLUTE, 20, 3 }, 
-			{ "/in1.txt", "/in2.txt", "/absolute_out.txt", AppType.CHUNKS, 20, 3 }, 
+			{ "/in1.txt", "/in2.txt", "/out.apbt.txt", AppType.ABSOLUTE, "/cfg.txt" }, 
+			{ "/in1.txt", "/in2.txt", "/out.apbt.txt", AppType.CHUNKS, "/cfg.txt" }, 
+			{ "/in1.txt", "/in2.txt", "/out.txt", AppType.PERCENTAGE, "/cfg.txt" }, 
 		});
 	}
 	
@@ -56,7 +65,7 @@ public class AppTest extends TestCase {
 		try {
 			tempFile = File.createTempFile("apbt", null);
 			this.args.setOutFile(tempFile);
-			AppFactory.getMain(type, args).run();;
+			AppFactory.getMain(type, this.args, this.props, true).run();;
 			FileAssert.assertEquals(this.outFile, tempFile);
 		} catch (CmdLineException e) {
 			throw new IOException(e);
