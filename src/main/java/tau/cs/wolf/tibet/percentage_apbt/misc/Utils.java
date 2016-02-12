@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
@@ -12,12 +13,12 @@ import java.net.URL;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.slf4j.Logger;
 
-import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 
 public class Utils {
@@ -58,14 +59,6 @@ public class Utils {
 		return f;
 	}
 	
-	public static List<Interval> convertIntervalsList(List<general.Interval> intervals) {
-		List<Interval> res = new ArrayList<Interval>(intervals.size());
-		for (general.Interval interval: intervals) {
-			res.add(new Interval(interval));
-		}
-		return res;
-	}
-	
 	public static void writeMatches(File f, List<MatchResult> matches, Formatter<MatchResult> formatter) {
 		if (formatter == null) {
 			formatter = new MatchResult.DefaultFormatter();
@@ -78,5 +71,32 @@ public class Utils {
 			throw new IllegalStateException(e);
 		}
 	}
+	
+	public static void reportComputationTimeByStartTime(Logger logger, long startTime, String msg) {
+		logger.info(msg+". Time elapsed: "+Utils.formatDuration(System.currentTimeMillis()-startTime));
+	}
+	
+	public static void reportComputationTimeByDuration(Logger logger, long duration, String msg) {
+		logger.info(msg+". Time elapsed: "+Utils.formatDuration(duration));
+	}
+
+	public static class OutputStreamGobbler {
+		private final ByteArrayOutputStream baos;
+		
+		public OutputStreamGobbler() {
+			this.baos = new ByteArrayOutputStream();
+		}
+		
+		public OutputStream get() {
+			return this.baos;
+		}
+		
+		@Override
+		public String toString() {
+			return baos.toString(); 
+		}
+		
+	}
+	
 	
 }

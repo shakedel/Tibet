@@ -8,6 +8,9 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
+import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Utils.OutputStreamGobbler;
+
 
 public class Args {
 
@@ -106,7 +109,8 @@ public class Args {
 	}
 	
 	
-	public Args(String[] args) {
+	@SuppressWarnings("deprecation")
+	public Args(String[] args) throws CmdLineException {
 		CmdLineParser parser = new CmdLineParser(this);
 		try {
 			// parse the arguments.
@@ -116,12 +120,16 @@ public class Args {
 				System.out.println();
 			}
 		} catch (CmdLineException e) {
-			System.err.println(e.getMessage());
-			// print the list of available options
-			parser.printUsage(System.err);
-			System.err.println();
+			OutputStreamGobbler osg = new OutputStreamGobbler();
+			parser.printUsage(osg.get());
+			throw new CmdLineException(e.getMessage()+"\n"+osg.toString());
 		}
 		
+	}
+	
+	public Args(String[] args, Props props) throws CmdLineException {
+		this(args);
+		ArgsUtils.overrideArgsWithProps(this, props);
 	}
 	
 	public Args(File inFile1, File inFile2, File outFile) {

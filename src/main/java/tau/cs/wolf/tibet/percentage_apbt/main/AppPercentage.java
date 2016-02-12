@@ -4,10 +4,11 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
+import org.kohsuke.args4j.CmdLineException;
 
-import general.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
@@ -35,7 +36,7 @@ public class AppPercentage extends BaseApp {
 		String strB = Utils.readFile(this.args.getInFile2());
 		MatchesContainer matchesContainer = new MatchesContainer(new MatchResult.DefaultFormatter(), -1);
 		
-		Interval interval = new Interval(new IndexPair(0, 0), new IndexPair(strA.length(), strB.length()));
+		Interval interval = Interval.newIntervalByStartEnd(new IndexPair(0, 0), new IndexPair(strA.length(), strB.length()));
 		new WorkerThread(props, args, strA, strB, interval, matchesContainer, 0).run();
 		
 		matchesContainer.shutdown();
@@ -53,7 +54,12 @@ public class AppPercentage extends BaseApp {
 	}
 
 	public static void main(String[] args) {
-		new AppPercentage(new Args(args), null, true).run();
+		try {
+			new AppPercentage(new Args(args), null, true).run();
+		} catch (CmdLineException e) {
+			System.err.println(e.getMessage());
+			System.exit(1);
+		}
 	}
 
 	@Override

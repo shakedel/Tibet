@@ -51,6 +51,13 @@ public final class ArgsUtils {
 			if (args.getLocalAlignPadRatio() == null) {
 				args.setLocalAlignPadRatio(props.getLocalAlignPadRatio());
 			}
+			if (args instanceof ArgsMonitored) {
+				ArgsMonitored argsMonitored = (ArgsMonitored) args;
+				if (argsMonitored.getPollDuration() == null) {
+					argsMonitored.setPollDuration(props.getPollDuration());
+				}
+			}
+			
 		} catch (CmdLineException e) {
 			throw new IllegalArgumentException(e);
 		}

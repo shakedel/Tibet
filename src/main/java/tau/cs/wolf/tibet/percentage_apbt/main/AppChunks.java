@@ -9,10 +9,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import general.IndexPair;
+import org.kohsuke.args4j.CmdLineException;
+
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.ThreadPoolExecotorMonitor;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
@@ -38,7 +40,7 @@ public class AppChunks extends BaseApp {
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(maxThreadPoolSize, maxThreadPoolSize, 1, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 
 		// monitor executor active tasks
-		ThreadPoolExecotorMonitor monitor = new ThreadPoolExecotorMonitor(System.out, executor, Duration.ofSeconds(10));
+		ThreadPoolExecotorMonitor monitor = new ThreadPoolExecotorMonitor(null, executor, Duration.ofSeconds(10));
 		new Thread(monitor).start();
 
 		try (PrintStream ps = this.writeResults ? new PrintStream(args.getOutFile()) : null) {
@@ -51,7 +53,7 @@ public class AppChunks extends BaseApp {
 					IndexPair firstIndexPair = new IndexPair(i, j);
 					IndexPair secondIndexPair = new IndexPair(Math.min(i + props.getReadSize(), (str1.length()-1)), Math.min(j + props.getReadSize(), (str2.length()-1)));
 
-					Interval workingInterval = new Interval(firstIndexPair, secondIndexPair);
+					Interval workingInterval = Interval.newIntervalByStartEnd(firstIndexPair, secondIndexPair);
 
 					Runnable worker = new WorkerThread(props, args, str1, str2, workingInterval, matchesContainer, taskCounter++);
 					executor.execute(worker);
@@ -88,7 +90,12 @@ public class AppChunks extends BaseApp {
 
 
 	public static void main(String[] stringArgs) throws IOException {
-		new AppChunks(new Args(stringArgs), null, true).run();
+		try {
+			new AppChunks(new Args(stringArgs), null, true).run();
+		} catch (CmdLineException e) {
+			System.err.println(e.getMessage());
+			System.exit(1);
+		}
 	}
 
 	@Override

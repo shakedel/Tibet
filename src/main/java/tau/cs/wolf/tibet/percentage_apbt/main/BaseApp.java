@@ -1,7 +1,5 @@
 package tau.cs.wolf.tibet.percentage_apbt.main;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -24,27 +22,13 @@ public abstract class BaseApp implements Runnable {
 	
 	BaseApp(Args args, Props _props, boolean writeResults) {
 		this.args = args;
-		if (_props != null) {
-			this.props = _props;
-		} else if (System.getProperty(CFG_PATH_VM_PROP_NAME) != null) {
-			File propsFile = new File(System.getProperty(CFG_PATH_VM_PROP_NAME));
-			if (!propsFile.isFile()) {
-				throw new IllegalArgumentException("vm argument '"+CFG_PATH_VM_PROP_NAME+"' does not point to an existing file!");
-			}
-			try {
-				this.props = PropsBuilder.newProps(propsFile);
-			} catch (IOException e) {
-				throw new IllegalArgumentException(e);
-			}
-		} else {
-			this.props = PropsBuilder.defaultProps();
-		}
+		this.props = _props;
 		
 		this.writeResults = writeResults;
 		
 		ArgsUtils.overrideArgsWithProps(args, this.props);
-		
 	}
+	
 	public BaseApp(Args args, boolean writeResults) {
 		this(args, PropsBuilder.defaultProps(), writeResults);
 	}

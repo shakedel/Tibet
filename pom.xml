@@ -4,7 +4,7 @@
 
 	<groupId>tau.cs.wolf.tibet</groupId>
 	<artifactId>percentage-apbt</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>percentage-apbt</name>
@@ -50,23 +50,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>uov.cs</groupId>
-			<artifactId>apbt-vs-byg</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>args4j</groupId>
 			<artifactId>args4j</artifactId>
 			<version>2.33</version>
 		</dependency>
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.projectlombok</groupId> -->
-<!-- 			<artifactId>lombok</artifactId> -->
-<!-- 			<version>1.16.6</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.skife.config</groupId>
@@ -92,6 +79,13 @@
 			<version>3.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-core_2.10</artifactId>
+			<version>1.6.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
 
 	</dependencies>
 
@@ -105,6 +99,64 @@
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>tau.cs.wolf.tibet.percentage_apbt.main.AppMonitored</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<artifactSet>
+								<excludes>
+									<exclude>classworlds:classworlds</exclude>
+									<exclude>junit:junit</exclude>
+									<exclude>jmock:*</exclude>
+									<exclude>*:xml-apis</exclude>
+									<exclude>org.apache.maven:lib:tests</exclude>
+									<exclude>log4j:log4j:jar:</exclude>
+								</excludes>
+							</artifactSet>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>src</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>create-archive</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

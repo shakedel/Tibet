@@ -19,6 +19,8 @@ import org.slf4j.LoggerFactory;
 
 public class PropsBuilder {
 	
+	public static final String CFG_PATH_VM_PROP_NAME = "percentage_apbt.cfgPath";
+	
 	public static final String NUM_THREADS_PROP_NAME = "numThreads";
 	public static final String STEP_SIZE_PROP_NAME = "stepSize";
 	public static final String READ_SIZE_PROP_NAME = "readSize";
@@ -30,6 +32,9 @@ public class PropsBuilder {
 	public static final String MATCH_AWARD_PROP_NAME = "matchAward";
 	public static final String MISMATCH_PENALTY_PROP_NAME = "mismatchPenalty";
 	public static final String GAP_PENALTY_PROP_NAME = "gapPenalty";
+	public static final String CHUNK_SIZE_PROP_NAME = "chunkSize";
+	public static final String MAX_MATCH_LENGTH_PROP_NAME = "maxMatchLength";
+	public static final String POLL_DURATION_PROP_NAME = "pollDuration";
 	
 	public static final String STEP_SIZE_DEFAULT_VALUE = "12500";
 	public static final String READ_SIZE_DEFAULT_VALUE = "25000";
@@ -41,6 +46,9 @@ public class PropsBuilder {
 	public static final String MATCH_AWARD_DEFAULT_VALUE = "1";
 	public static final String MISMATCH_PENALTY_DEFAULT_VALUE = "-1";
 	public static final String GAP_PENALTY_DEFAULT_VALUE = "-1";
+	public static final String CHUNK_SIZE_DEFAULT_VALUE = "500";
+	public static final String MAX_MATCH_LENGTH_DEFAULT_VALUE = "300";
+	public static final String POLL_DURATION_DEFAULT_VALUE = "PT5M"; // 5 minutes
 	
 	public static interface Props {
 		@Config(NUM_THREADS_PROP_NAME)
@@ -87,6 +95,17 @@ public class PropsBuilder {
 		@Default(GAP_PENALTY_DEFAULT_VALUE)
 		public int getGapPenalty();
 		
+		@Config(CHUNK_SIZE_PROP_NAME)
+		@Default(CHUNK_SIZE_DEFAULT_VALUE)
+		public int getChunkSize();
+		 
+		@Config(MAX_MATCH_LENGTH_PROP_NAME)
+		@Default(MAX_MATCH_LENGTH_DEFAULT_VALUE)
+		public int getMaxMatchLength();
+		
+		@Config(POLL_DURATION_PROP_NAME)
+		@Default(POLL_DURATION_DEFAULT_VALUE)
+		public Duration getPollDuration();
 	}
 	
 	public Props getProps() {
@@ -105,9 +124,22 @@ public class PropsBuilder {
 	public static Props newProps(Properties props) {
 		return new PropsBuilder(props).getProps();
 	}
+
 	
 	public static Props defaultProps() {
-		return newProps(new Properties());
+		String cfgPathStr = System.getProperty(CFG_PATH_VM_PROP_NAME);
+		if (cfgPathStr == null) {
+			return newProps(new Properties());
+		}
+		File propsFile = new File(cfgPathStr);
+		if (!propsFile.isFile()) {
+			throw new IllegalArgumentException("vm argument '"+CFG_PATH_VM_PROP_NAME+"' does not point to an existing file!");
+		}
+		try {
+			return PropsBuilder.newProps(propsFile);
+		} catch (IOException e) {
+			throw new IllegalStateException("Should not have reached this code line");
+		}
 	}
 	
 	public static Props newProps(InputStream is) throws IOException {

@@ -1,17 +1,19 @@
 package tau.cs.wolf.tibet.percentage_apbt.concurrent;
 
-import java.io.PrintStream;
 import java.time.Duration;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ThreadPoolExecotorMonitor implements Runnable  {
 
-	private final PrintStream ps;
+	private final Logger monitorLogger;
 	private final ThreadPoolExecutor executor;
 	private final long pollTime;
 
-	public ThreadPoolExecotorMonitor(PrintStream ps, ThreadPoolExecutor executor, Duration duration) {
-		this.ps = ps;
+	public ThreadPoolExecotorMonitor(Logger monitorLogger, ThreadPoolExecutor executor, Duration duration) {
+		this.monitorLogger = monitorLogger==null ? LoggerFactory.getLogger(getClass()) : monitorLogger;
 		this.executor = executor;
 		this.pollTime = duration.toMillis();
 	}
@@ -24,7 +26,7 @@ public class ThreadPoolExecotorMonitor implements Runnable  {
 				if (executor.isTerminated()) {
 					break;
 				}
-				ps.println(String.format("Completed %d/%d tasks", this.executor.getCompletedTaskCount(), this.executor.getTaskCount()));
+				monitorLogger.info(String.format("Completed %d/%d tasks", this.executor.getCompletedTaskCount(), this.executor.getTaskCount()));
 			} catch(InterruptedException e) {
 				throw new IllegalStateException("This thread should never be terminated");
 			}

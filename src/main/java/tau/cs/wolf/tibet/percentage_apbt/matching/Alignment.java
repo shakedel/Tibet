@@ -3,7 +3,7 @@ package tau.cs.wolf.tibet.percentage_apbt.matching;
 import java.util.ArrayList;
 import java.util.List;
 
-import general.IndexPair;
+import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
@@ -28,10 +28,8 @@ public class Alignment extends BaseModule {
 			int startTwo = Math.max(0, paddedSpan2.getIndex1());
 			int endTwo = Math.min(paddedSpan2.getIndex2() ,t2.length()-1);
 
-			MatchResult watered = water(t1.substring(startOne, endOne), t2.substring(startTwo, endTwo));
-			IndexPair span1 = new IndexPair(startOne+watered.workInterval.getSpan1().getIndex1(), startOne+watered.workInterval.getSpan1().getIndex2());
-			IndexPair span2 = new IndexPair(startTwo+watered.workInterval.getSpan2().getIndex1(), startTwo+watered.workInterval.getSpan2().getIndex2());
-			MatchResult wateredUnitedMatch = new MatchResult(Interval.newIntervalBySpans(span1, span2), watered.score, watered.idM, watered.idL);
+			MatchResult wateredUnitedMatch = water(t1.substring(startOne, endOne), t2.substring(startTwo, endTwo));
+			wateredUnitedMatch.workInterval.shiftSpans(startOne, startTwo);
 			res.add(wateredUnitedMatch);
 		}
 		return res;
@@ -114,7 +112,7 @@ public class Alignment extends BaseModule {
 				throw new IllegalStateException("Unknown value: "+pointer[i][j]);
 			}
 		}
-		return new MatchResult(new Interval(new IndexPair(i, j), new IndexPair(maxI, maxJ)), maxScore, -1, -1);
+		return new MatchResult(Interval.newIntervalByStartEnd(new IndexPair(i, j), new IndexPair(maxI, maxJ)), maxScore);
 	}
 
 	private static int maxOf4(int n1, int n2, int n3, int n4) {
