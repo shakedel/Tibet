@@ -71,6 +71,12 @@
 			<groupId>junit-addons</groupId>
 			<artifactId>junit-addons</artifactId>
 			<version>1.4</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>xercesImpl</artifactId>
+					<groupId>xerces</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
