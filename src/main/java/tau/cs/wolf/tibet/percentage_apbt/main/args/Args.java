@@ -42,6 +42,9 @@ public class Args {
 	@SuppressWarnings("deprecation")
 	@Option(name = "-out", required = true, metaVar = "FILE", usage = "output file")
 	public void setOutFile(File f) throws CmdLineException {
+		if (f.isDirectory()) {
+			throw new CmdLineException("output file is a directory: "+f.getParent());
+		}
 		if (!f.getParentFile().isDirectory()) {
 			throw new CmdLineException("output file directory does not exist: "+f.getParent());
 		}

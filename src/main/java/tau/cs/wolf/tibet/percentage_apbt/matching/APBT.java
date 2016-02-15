@@ -258,6 +258,7 @@ public class APBT implements Runnable {
 			// explore the main diagonal
 			boolean stop = false;
 	
+			// eladsh
 //			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length)
 //					&& j < Math.min(currJ + this.maxDiff + 2 - currdiff, this.seq2.length) && !stop; i++, j++) {
 			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length)

@@ -47,8 +47,8 @@ public class PropsBuilder {
 	public static final String MATCH_AWARD_DEFAULT_VALUE = "1";
 	public static final String MISMATCH_PENALTY_DEFAULT_VALUE = "-1";
 	public static final String GAP_PENALTY_DEFAULT_VALUE = "-1";
-	public static final String CHUNK_SIZE_DEFAULT_VALUE = "500";
-	public static final String MAX_MATCH_LENGTH_DEFAULT_VALUE = "300";
+	public static final String CHUNK_SIZE_DEFAULT_VALUE = "1000";
+	public static final String MAX_MATCH_LENGTH_DEFAULT_VALUE = "500";
 	public static final String POLL_DURATION_DEFAULT_VALUE = "PT5M"; // 5 minutes
 	
 	public static interface Props {

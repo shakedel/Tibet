@@ -5,9 +5,16 @@ stepSize = 12500
 readSize = 25000
 minLength = 60
 maxError = 10
-timeout = PT10M // ISO-8601 duration
+
+# ISO-8601 duration
+timeout = PT10M 
 minDistanceUnion = 10
 localAlignPadRatio = 0.12
 matchAward = 1        
 mismatchPenalty = -1
 gapPenalty = -1        
+chunkSize = 1000                
+maxMatchLength = 500
+
+// ISO-8601 duration           
+pollDuration = PT5M 
