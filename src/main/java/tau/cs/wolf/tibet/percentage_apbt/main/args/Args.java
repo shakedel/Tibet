@@ -1,9 +1,9 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
 import java.io.File;
-import java.time.Duration;
-import java.time.format.DateTimeParseException;
 
+import org.joda.time.Duration;
+import org.joda.time.Period;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
@@ -72,14 +72,10 @@ public class Args {
 	}
 	
 	private Duration timeout = null;
-	@SuppressWarnings("deprecation")
 	@Option(name = "-timeout", metaVar = "int", usage = "timeout for execution")
 	public void setTimeout(String timeoutStr) throws CmdLineException {
-		try {
-			this.timeout = Duration.parse(timeoutStr);
-		} catch(DateTimeParseException e) {
-			throw new CmdLineException(e);
-		}
+			this.timeout = Period.parse(timeoutStr).toStandardDuration();
+//			throw new CmdLineException(e);
 	}
 	public void setTimeout(Duration duration) {
 		this.timeout = Duration.ZERO.plus(duration);

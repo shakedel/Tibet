@@ -3,12 +3,12 @@ package tau.cs.wolf.tibet.percentage_apbt.main;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.joda.time.Duration;
 import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
@@ -40,7 +40,7 @@ public class AppChunks extends BaseApp {
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(maxThreadPoolSize, maxThreadPoolSize, 1, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 
 		// monitor executor active tasks
-		ThreadPoolExecotorMonitor monitor = new ThreadPoolExecotorMonitor(null, executor, Duration.ofSeconds(10));
+		ThreadPoolExecotorMonitor monitor = new ThreadPoolExecotorMonitor(null, executor, Duration.standardSeconds(10));
 		new Thread(monitor).start();
 
 		try (PrintStream ps = this.writeResults ? new PrintStream(args.getOutFile()) : null) {
@@ -66,7 +66,7 @@ public class AppChunks extends BaseApp {
 
 			try {
 				Duration timeout = args.getTimeout();
-				boolean timedOut = !executor.awaitTermination(timeout.toMillis(), TimeUnit.MILLISECONDS);
+				boolean timedOut = !executor.awaitTermination(timeout.getMillis(), TimeUnit.MILLISECONDS);
 				if (timedOut) {
 					throw new IllegalStateException("");
 				}

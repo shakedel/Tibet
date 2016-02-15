@@ -1,8 +1,9 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
 import java.io.File;
-import java.time.Duration;
 
+import org.joda.time.Duration;
+import org.joda.time.Period;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.Option;
 
@@ -19,7 +20,7 @@ public class ArgsMonitored extends Args {
 	private Duration pollDuration;
 	@Option(name = "-pollDuration", usage = "The duration between polls")
 	public void setPollDuration(String pollDurationStr) throws CmdLineException {
-		this.pollDuration = Duration.parse(pollDurationStr);
+		this.pollDuration = Period.parse(pollDurationStr).toStandardDuration();
 	}
 	public void setPollDuration(Duration pollDuration) throws CmdLineException {
 		this.pollDuration = pollDuration;

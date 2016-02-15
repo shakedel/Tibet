@@ -1,7 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.concurrent;
 
-import java.time.Duration;
-
+import org.joda.time.Duration;
 import org.slf4j.Logger;
 
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
@@ -19,7 +18,7 @@ public class ThreadTimeMonitor extends Thread {
 		super(threadName+" monitor");
 		this.monitorLogger = monitorLogger;
 		this.thread = thread;
-		this.pollTime = pollTime.toMillis();
+		this.pollTime = pollTime.getMillis();
 		this.threadName = threadName;
 	}
 

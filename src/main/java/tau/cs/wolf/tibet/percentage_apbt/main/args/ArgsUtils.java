@@ -1,8 +1,8 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
 import java.io.File;
-import java.time.Duration;
 
+import org.joda.time.Duration;
 import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;

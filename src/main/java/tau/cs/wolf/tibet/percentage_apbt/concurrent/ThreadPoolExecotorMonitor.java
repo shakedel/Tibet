@@ -1,8 +1,8 @@
 package tau.cs.wolf.tibet.percentage_apbt.concurrent;
 
-import java.time.Duration;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import org.joda.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ public class ThreadPoolExecotorMonitor implements Runnable  {
 	public ThreadPoolExecotorMonitor(Logger monitorLogger, ThreadPoolExecutor executor, Duration duration) {
 		this.monitorLogger = monitorLogger==null ? LoggerFactory.getLogger(getClass()) : monitorLogger;
 		this.executor = executor;
-		this.pollTime = duration.toMillis();
+		this.pollTime = duration.getMillis();
 	}
 
 	@Override

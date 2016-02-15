@@ -5,9 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
 import java.util.Properties;
 
+import org.joda.time.Duration;
+import org.joda.time.Period;
 import org.skife.config.Coercer;
 import org.skife.config.Coercible;
 import org.skife.config.Config;
@@ -171,7 +172,7 @@ public class PropsBuilder {
 		public Coercer<Duration> accept(Class<?> clazz) {
 			return new Coercer<Duration>() {
 				public Duration coerce(String value) {
-					return Duration.parse(value);
+					return Period.parse(value).toStandardDuration();
 				};
 			};
 		};

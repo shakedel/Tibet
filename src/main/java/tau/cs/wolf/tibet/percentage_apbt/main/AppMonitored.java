@@ -40,7 +40,7 @@ public class AppMonitored implements Runnable {
 	public void run() {
 		BaseApp app = AppFactory.getMain(this.args.getAppType(), this.args, this.props, true);
 		Thread appThread = new Thread(app, "App");
-		Thread monitor = new ThreadTimeMonitor(logger, appThread, args.getPollDuration(), appThread.getName());
+		final Thread monitor = new ThreadTimeMonitor(logger, appThread, args.getPollDuration(), appThread.getName());
 		Thread.UncaughtExceptionHandler handler = new Thread.UncaughtExceptionHandler() {
 		    public void uncaughtException(Thread th, Throwable ex) {
 		    	monitor.interrupt();
