@@ -52,9 +52,9 @@ public class AppTest extends TestCase {
 	@Parameters(name = "index: {index}: compare in1: {0}, in2: {1}, out:{2}, Type: {3}, minLength: {4}, maxError: {5}")
 	public static Iterable<Object[]> data1() {
 		return Arrays.asList(new Object[][] { 
-			{ "/in1.txt", "/in2.txt", "/out.apbt.txt", AppType.ABSOLUTE, "/cfg.txt" }, 
-			{ "/in1.txt", "/in2.txt", "/out.apbt.txt", AppType.CHUNKS, "/cfg.txt" }, 
-			{ "/in1.txt", "/in2.txt", "/out.txt", AppType.PERCENTAGE, "/cfg.txt" }, 
+			{ "/char/in1.txt", "/char/in2.txt", "/char/out.apbt.txt", AppType.ABSOLUTE, "/char/cfg.txt" }, 
+			{ "/char/in1.txt", "/char/in2.txt", "/char/out.apbt.txt", AppType.CHUNKS, "/char/cfg.txt" }, 
+			{ "/char/in1.txt", "/char/in2.txt", "/char/out.txt", AppType.PERCENTAGE, "/char/cfg.txt" }, 
 		});
 	}
 	

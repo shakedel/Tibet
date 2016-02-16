@@ -29,12 +29,8 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
  * @author marina
  */
 
-public class APBT implements Runnable {
+public class ApbtInt implements Apbt<int[]> {
 
-	public static enum ProcessBy {
-		ROW, COL
-	}
-	
 	Logger logger = LoggerFactory.getLogger(getClass());
 
 	/**
@@ -44,20 +40,21 @@ public class APBT implements Runnable {
 	 * size: CHUNK_SIZE*_seq1.length, where _seq1.length is the length of the
 	 * first string.
 	 */
-	private final ProcessBy processType;
-	private final int chunkSize;
-	private final int maxLength;
-	private final SortedSet<Interval> _solutions = new TreeSet<Interval>();
-	private final int maxDiff;
-	private final int maxDiffPlus1;
-	private final int minLength;
+	private ProcessType processType;
+	private int chunkSize;
+	private int maxLength;
+	private SortedSet<Interval> _solutions = new TreeSet<Interval>();
+	private int maxDiff;
+	private int maxDiffPlus1;
+	private int minLength;
 
 	private boolean[][] matrix;
-	private char[] seq1;
-	private char[] seq2;
+	private int[] seq1;
+	private int[] seq2;
 	private int[][][] state;
 
-	public APBT(char[] seq1, char[] seq2, ProcessBy processBy, Args args, Props props) {
+	@Override 
+	public void setup(int[] seq1, int[] seq2, ProcessType processBy, Args args, Props props) {
 		if (args.getMinLength() > props.getMaxMatchLength()) {
 			throw new IllegalStateException("minimum match legth exceeds maximum alowed match length property");
 		}
@@ -71,7 +68,7 @@ public class APBT implements Runnable {
 				this.seq1 = seq2;
 				this.seq2 = seq1;
 				break;
-			default: throw new IllegalArgumentException("Unknown "+ProcessBy.class.getSimpleName()+": "+this.processType);
+			default: throw new IllegalArgumentException("Unknown "+ProcessType.class.getSimpleName()+": "+this.processType);
 		}
 		this.processType = processBy;
 
@@ -81,7 +78,7 @@ public class APBT implements Runnable {
 
 		this.maxLength = props.getMaxMatchLength();
 		this.chunkSize = props.getChunkSize();
-	}
+	};
 
 	
 	/********************************************************************************************
@@ -344,24 +341,24 @@ public class APBT implements Runnable {
 	}
 
 	private void initializeMatrix(int from, int to) {
-		Map<Character, boolean[]> charPositions = new HashMap<Character, boolean[]>(100);
+		Map<Integer, boolean[]> charPositions = new HashMap<Integer, boolean[]>(100);
 		for (int j = from; j < Math.min(to, this.seq2.length); j++) {
-			char curr = this.seq2[j];
-			boolean[] row = (boolean[]) charPositions.get(new Character(curr));
+			Integer curr = this.seq2[j];
+			boolean[] row = (boolean[]) charPositions.get(curr);
 			if (row == null) {
 				row = new boolean[Math.min(this.chunkSize + this.maxLength, this.seq2.length)];
-				charPositions.put(new Character(curr), row);
+				charPositions.put(curr, row);
 			}
 			row[j - from] = true;
 		}
 
 		for (int i = 0; i < this.seq1.length; i++) {
-			char curChar = this.seq1[i];
-			boolean[] row = charPositions.get(new Character(curChar));
+			boolean[] row = charPositions.get(new Integer(this.seq1[i]));
 			if (row != null) {
 				this.matrix[i] = row;
-			} else
+			} else {
 				this.matrix[i] = new boolean[this.seq2.length];
+			}
 		}
 
 		this.state = new int[this.maxLength][Math.min(this.chunkSize + this.maxLength, this.seq2.length)][];
@@ -381,7 +378,7 @@ public class APBT implements Runnable {
 				start = new IndexPair(startJ, startI);
 				end = new IndexPair(currJ, currI);
 				break;
-			default: throw new IllegalArgumentException("Unknown "+ProcessBy.class.getSimpleName()+": "+this.processType);
+			default: throw new IllegalArgumentException("Unknown "+ProcessType.class.getSimpleName()+": "+this.processType);
 		}
 
 		Interval interval = Interval.newIntervalByStartEnd(start, end);

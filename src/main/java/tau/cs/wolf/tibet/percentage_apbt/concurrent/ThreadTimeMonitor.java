@@ -12,8 +12,6 @@ public class ThreadTimeMonitor extends Thread {
 	private final long pollTime;
 	private final String threadName;
 
-	
-	
 	public ThreadTimeMonitor(Logger monitorLogger, Thread thread, Duration pollTime, String threadName) {
 		super(threadName+" monitor");
 		this.monitorLogger = monitorLogger;

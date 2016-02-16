@@ -11,8 +11,11 @@ import tau.cs.wolf.tibet.percentage_apbt.main.AppFactory.AppType;
 
 public class ArgsMonitored extends Args {
 
-	@Option(name = "-t", aliases = {"-type"}, usage = "Type of algorithm to use")
-	private AppType appType = AppType.PERCENTAGE;
+	private AppType appType;
+	@Option(name = "-t", aliases = {"-type"}, required=true, usage = "Type of algorithm to use")
+	public void setAppType(String appTypeStr) throws CmdLineException {
+		this.appType = AppType.valueOf(appTypeStr);
+	}
 	public AppType getAppType() {
 		return this.appType;
 	}

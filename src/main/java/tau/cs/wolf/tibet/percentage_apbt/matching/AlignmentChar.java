@@ -1,7 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.matching;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
@@ -11,13 +10,13 @@ import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
-public class Alignment<R> extends BaseModule {
+public class AlignmentChar extends BaseModule {
 	
-	public Alignment(Props props, Args args) {
+	public AlignmentChar(Props props, Args args) {
 		super(props, args);
 	}
 
-	public List<MatchResult> alignMatches(List<MatchResult> matches, R[] seq1, R[] seq2) {
+	public List<MatchResult> alignMatches(List<MatchResult> matches, String t1, String t2) {
 		List<MatchResult> res = new ArrayList<MatchResult>(matches.size());
 		
 		for (MatchResult unitedMatch: matches) {
@@ -25,11 +24,11 @@ public class Alignment<R> extends BaseModule {
 			IndexPair paddedSpan2 = padSpan(unitedMatch.workInterval.getSpan2());
 
 			int startOne = Math.max(0, paddedSpan1.getIndex1());
-			int endOne = Math.min(paddedSpan1.getIndex2(), seq1.length-1);
+			int endOne = Math.min(paddedSpan1.getIndex2(), t1.length()-1);
 			int startTwo = Math.max(0, paddedSpan2.getIndex1());
-			int endTwo = Math.min(paddedSpan2.getIndex2() ,seq2.length-1);
+			int endTwo = Math.min(paddedSpan2.getIndex2() ,t2.length()-1);
 
-			MatchResult wateredUnitedMatch = water(Arrays.copyOfRange(seq1, startOne, endOne), Arrays.copyOfRange(seq2, startTwo, endTwo));
+			MatchResult wateredUnitedMatch = water(t1.substring(startOne, endOne), t2.substring(startTwo, endTwo));
 			wateredUnitedMatch.workInterval.shiftSpans(startOne, startTwo);
 			res.add(wateredUnitedMatch);
 		}
@@ -47,21 +46,21 @@ public class Alignment<R> extends BaseModule {
 		UP, LEFT, DIAGONAL
 	}
 
-	public MatchResult water(R[] seq1, R[] seq2) {
+	public MatchResult water(String seq1, String seq2) {
 		// m=len(seq1), n=len(seq2)
 		// Generate DP table and traceback path pointer matrix
 
-		int[][] scores = new int[seq1.length+1][seq2.length+1];  // the DP table               
-		PathTrace[][] pointer = new PathTrace[seq1.length+1][seq2.length+1];// to store the traceback path
+		int[][] scores = new int[seq1.length()+1][seq2.length()+1];  // the DP table               
+		PathTrace[][] pointer = new PathTrace[seq1.length()+1][seq2.length()+1];// to store the traceback path
 
 		int maxScore = 0;// initial maximum score in DP table
 
 		int maxI = -1, maxJ = -1;
 
 		// Calculate DP table and mark pointers
-		for (int i=1; i<seq1.length+1; i++) {
-			for (int j=1; j<seq2.length+1; j++) {
-				int scoreDiagonal = scores[i-1][j-1] + matchScore(seq1[i-1], seq2[j-1]);
+		for (int i=1; i<seq1.length()+1; i++) {
+			for (int j=1; j<seq2.length()+1; j++) {
+				int scoreDiagonal = scores[i-1][j-1] + matchScore(seq1.charAt(i-1), seq2.charAt(j-1));
 				int scoreUp = scores[i-1][j] + props.getGapPenalty();
 				int scoreLeft = scores[i][j-1] + props.getGapPenalty();
 				int score = maxOf4(0,scoreLeft, scoreUp, scoreDiagonal);
@@ -87,19 +86,26 @@ public class Alignment<R> extends BaseModule {
 			}
 		}
 
+		StringBuilder align1 = new StringBuilder(), align2 = new StringBuilder();// initial sequences
 		int i = maxI, j = maxJ;// indices of path starting point
 
 		// traceback, follow pointers
 		while (pointer[i][j] != null) {
 			switch (pointer[i][j]) {
 			case DIAGONAL:
+				align1.append(seq1.charAt(i-1));
+				align2.append(seq2.charAt(j-1));
 				i--;
 				j--;
 				break;
 			case UP:
+				align1.append('-');
+				align2.append(seq2.charAt(j-1));
 				j--;
 				break;
 			case LEFT:
+				align1.append(seq1.charAt(i-1));
+				align2.append('-');
 				i--;
 				break;
 			default:
@@ -113,10 +119,10 @@ public class Alignment<R> extends BaseModule {
 		return Math.max(Math.max(n1, n2), Math.max(n3, n4));
 	}
 
-	public int matchScore(R a, R b) {
+	public int matchScore(char a, char b) {
 		if (a == b) {
 			return props.getMatchAward();
-		} else if (a == null || b == null) {
+		} else if (a == '-' || b == '-') {
 			return props.getGapPenalty();
 		} else {
 			return props.getMismatchPenalty();
