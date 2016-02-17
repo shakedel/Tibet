@@ -54,6 +54,7 @@ public class ApbtInt implements Apbt<IntArr> {
 	private int[] seq1;
 	private int[] seq2;
 	private int[][][] state;
+	private boolean[] emptyRow;
 
 	@Override 
 	public void setup(IntArr seq1, IntArr seq2, ProcessType processBy, Args args, Props props) {
@@ -80,6 +81,8 @@ public class ApbtInt implements Apbt<IntArr> {
 
 		this.maxLength = props.getMaxMatchLength();
 		this.chunkSize = props.getChunkSize();
+		
+		this.emptyRow = new boolean[seq2.length()];
 	}
 
 	
@@ -354,13 +357,15 @@ public class ApbtInt implements Apbt<IntArr> {
 			}
 			row[j - from] = true;
 		}
+		// remove -1 key since it indicates an unknown
+		charPositions.remove(-1);
 
 		for (int i = 0; i < this.seq1.length; i++) {
 			boolean[] row = charPositions.get(new Integer(this.seq1[i]));
 			if (row != null) {
 				this.matrix[i] = row;
 			} else {
-				this.matrix[i] = new boolean[this.seq2.length];
+				this.matrix[i] = this.emptyRow;
 			}
 		}
 
