@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
+import tau.cs.wolf.tibet.percentage_apbt.data.IntArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
@@ -30,7 +31,7 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
  * @author marina
  */
 
-public class ApbtInt implements Apbt<int[]> {
+public class ApbtInt implements Apbt<IntArr> {
 
 	Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -55,19 +56,19 @@ public class ApbtInt implements Apbt<int[]> {
 	private int[][][] state;
 
 	@Override 
-	public void setup(int[] seq1, int[] seq2, ProcessType processBy, Args args, Props props) {
+	public void setup(IntArr seq1, IntArr seq2, ProcessType processBy, Args args, Props props) {
 		if (args.getMinLength() > props.getMaxMatchLength()) {
 			throw new IllegalStateException("minimum match legth exceeds maximum alowed match length property");
 		}
 		
 		switch (processBy) {
 			case ROW:
-				this.seq1 = seq1;
-				this.seq2 = seq2;
+				this.seq1 = seq1.getArr();
+				this.seq2 = seq2.getArr();
 				break;
 			case COL:
-				this.seq1 = seq2;
-				this.seq2 = seq1;
+				this.seq1 = seq2.getArr();
+				this.seq2 = seq1.getArr();
 				break;
 			default: throw new IllegalArgumentException("Unknown "+ProcessType.class.getSimpleName()+": "+this.processType);
 		}
@@ -79,7 +80,7 @@ public class ApbtInt implements Apbt<int[]> {
 
 		this.maxLength = props.getMaxMatchLength();
 		this.chunkSize = props.getChunkSize();
-	};
+	}
 
 	
 	/********************************************************************************************

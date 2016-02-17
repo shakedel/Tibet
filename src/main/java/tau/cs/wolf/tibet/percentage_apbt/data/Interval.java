@@ -14,7 +14,6 @@ public class Interval implements java.io.Serializable, Comparable<Interval> {
 		IndexPair spanA = new IndexPair(start.getIndex1(), end.getIndex1());
 		IndexPair spanB = new IndexPair(start.getIndex2(), end.getIndex2());
 		return new Interval(start, end, spanA, spanB);
-
 	}
 
 	private final IndexPair first;
@@ -27,6 +26,13 @@ public class Interval implements java.io.Serializable, Comparable<Interval> {
 		this.span2 = span2;
 		this.first = start;
 		this.last = end;
+	}
+	
+	public Interval(Interval o) {
+		this.span1 = new IndexPair(o.span1);
+		this.span2 = new IndexPair(o.span2);
+		this.first = new IndexPair(o.first);
+		this.last = new IndexPair(o.last);
 	}
 
 	public IndexPair getStart() {

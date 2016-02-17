@@ -356,8 +356,8 @@ public class ApbtChar implements Apbt<CharArr> {
 		}
 
 		for (int i = 0; i < this.seq1.length; i++) {
-			char curChar = this.seq1[i];
-			boolean[] row = charPositions.get(new Character(curChar));
+			Character curChar = this.seq1[i];
+			boolean[] row = charPositions.get(curChar);
 			if (row != null) {
 				this.matrix[i] = row;
 			} else

@@ -100,7 +100,7 @@ public class Union extends BaseModule {
 			MatchResult union = null;
 			for (int element : elements) {
 				if (union == null) {
-					union = matches.get(element);
+					union = new MatchResult(matches.get(element));
 					continue;
 				}
 				union = uniteMatches(union, matches.get(element));

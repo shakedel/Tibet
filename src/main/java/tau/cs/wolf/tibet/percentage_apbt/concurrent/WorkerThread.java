@@ -37,6 +37,7 @@ public class WorkerThread<R extends Slicable<R>> extends BaseModule implements R
 
 	@SuppressWarnings("unchecked")
 	private Apbt<R> getApbt() {
+		@SuppressWarnings("rawtypes")
 		Class<? extends Slicable> rClass = this.seq1.getClass();
 		return ApbtFactory.newApbt(rClass);
 	}

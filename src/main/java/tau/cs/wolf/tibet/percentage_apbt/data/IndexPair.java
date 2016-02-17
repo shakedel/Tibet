@@ -13,6 +13,11 @@ public class IndexPair implements Serializable, Comparable<IndexPair> {
 		idx1 = index1;
 		idx2 = index2;
 	}
+	
+	public IndexPair(IndexPair o) {
+		this.idx1 = o.idx1;
+		this.idx2 = o.idx2;
+	}
 
 	public int getIndex1() {
 		return idx1;

@@ -11,6 +11,11 @@ public class MatchResult implements Comparable<MatchResult> {
 		this.workInterval = workInterval;
 		this.score = score;
 	}
+	
+	public MatchResult(MatchResult match) {
+		this.workInterval = new Interval(match.workInterval);
+		this.score = match.score;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
