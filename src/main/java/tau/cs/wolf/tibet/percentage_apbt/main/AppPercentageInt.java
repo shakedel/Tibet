@@ -29,14 +29,26 @@ public class AppPercentageInt extends BaseApp {
 		
 	}
 	
+	private int[] seq1Arr = null;
+	private int[] seq2Arr = null;
+	
+	public void setup(int[] seq1, int[] seq2) {
+		this.seq1Arr = seq1;
+		this.seq2Arr = seq2;
+	}
+	
 	@Override
 	public void run() {
 		String outFileBase = FilenameUtils.removeExtension(args.getOutFile().getPath());
 		File apbtOutFile = new File(outFileBase + ".apbt.txt");
 		File unionFile = new File (outFileBase + ".union.txt");
 		
-		int[] seq1Arr = Utils.readIntegerFile(this.args.getInFile1(), Pattern.compile("\\s+"));
-		int[] seq2Arr = Utils.readIntegerFile(this.args.getInFile2(), Pattern.compile("\\s+"));
+		if (this.seq1Arr == null) {
+			seq1Arr = Utils.readIntegerFile(this.args.getInFile1(), Pattern.compile("\\s+"));
+		}
+		if (this.seq2Arr == null) {
+			seq2Arr = Utils.readIntegerFile(this.args.getInFile2(), Pattern.compile("\\s+"));
+		}
 		
 		IntArr seq1 = new IntArr(seq1Arr);
 		IntArr seq2 = new IntArr(seq2Arr);

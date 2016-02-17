@@ -22,7 +22,7 @@ public abstract class BaseApp implements Runnable {
 	
 	BaseApp(Args args, Props _props, boolean writeResults) {
 		this.args = args;
-		this.props = _props;
+		this.props = _props == null ? PropsBuilder.defaultProps() : _props;
 		
 		this.writeResults = writeResults;
 		
@@ -30,7 +30,7 @@ public abstract class BaseApp implements Runnable {
 	}
 	
 	public BaseApp(Args args, boolean writeResults) {
-		this(args, PropsBuilder.defaultProps(), writeResults);
+		this(args, null, writeResults);
 	}
 
 	public List<MatchResult> getResults() {

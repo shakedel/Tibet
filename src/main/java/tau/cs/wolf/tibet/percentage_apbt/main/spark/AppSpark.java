@@ -3,10 +3,9 @@ package tau.cs.wolf.tibet.percentage_apbt.main.spark;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
@@ -15,123 +14,84 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFlatMapFunction;
-import org.apache.spark.api.java.function.PairFunction;
+import org.apache.spark.broadcast.Broadcast;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import scala.Tuple2;
-import tau.cs.wolf.tibet.percentage_apbt.misc.SyllableScanner;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CartesFileContent;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.ConsolidateIndex;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.ReadFile;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.RunApbt;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.UniqueFilePairFilter;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContent;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PairsToMatch;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public class AppSpark {
+public class AppSpark implements Runnable {
+	
 	public static void main(String[] args) throws IOException {
-
+		new AppSpark().run();
+	}
+	
+	private Logger logger = LoggerFactory.getLogger(AppSpark.class);
+	
+	Broadcast<File> broadcastMatchesDir = null;
+	Broadcast<Args> broadcastArgs = null;
+	
+	
+	public void run() {
+		
 		// Local mode
 		SparkConf sparkConf = new SparkConf().setAppName("HelloWorld").setMaster("local");
 		try (JavaSparkContext ctx = new JavaSparkContext(sparkConf)) {
 
-			File inDir = new File("work/clean/");
-			File outFile = new File("work/out/test.txt");
+			File inDir = new File("src/test/resources/stem/");
+			File outDir = new File("work/out/spark");
+			boolean overwrite = true;
+			String fileFilterPattern = "in\\d+\\.txt";
 			
-			String prefixFilterStr = "";
-			String suffixFilterStr = ".txt";
-			IOFileFilter prefixFilter = FileFilterUtils.prefixFileFilter(prefixFilterStr);
-			IOFileFilter suffixFilter = FileFilterUtils.suffixFileFilter(suffixFilterStr);
-			IOFileFilter fileFilter = FileFilterUtils.and(prefixFilter, suffixFilter);
+			if (outDir.isDirectory()) {
+				if (overwrite) {
+					FileUtils.deleteDirectory(outDir);
+				} else {
+					throw new IllegalArgumentException("Output directory already exists");
+				}
+			}
+			
+			File outFile = new File(outDir, "index.txt");
+			File matchesDir = new File(outDir, "matches");
+			matchesDir.mkdirs();
+			
+			IOFileFilter fileFilter = new Utils.PatternFileFilter(Pattern.compile(fileFilterPattern));
 			IOFileFilter dirFilter = FileFilterUtils.trueFileFilter();
 			
-			List<File> files = new ArrayList<File>(FileUtils.listFiles(inDir, fileFilter, dirFilter));
-
-			JavaRDD<File> fileRDD = ctx.parallelize(files);
-			JavaRDD<Map<String, Integer>> wordCount  = fileRDD.map(new FileToWordCount());
-			JavaPairRDD<String, Integer> words = wordCount.flatMapToPair(new FlatMap());
-			JavaPairRDD<String, Integer> reducedWordCount = words.reduceByKey(new ReduceAdd());
-			JavaPairRDD<Integer, String> swapped = reducedWordCount.mapToPair(new EntryToPair());
-			JavaPairRDD<Integer, String> sorted = swapped.sortByKey(false);
-			if (outFile.isDirectory()) {
-				FileUtils.deleteDirectory(outFile);
-			}
-			sorted.saveAsTextFile(outFile.getPath());
-			System.out.println("Total Count: " + sorted.count());
-			JavaRDD<Integer> counts = sorted.map(new PairToKey());
-			int totalTokens = counts.reduce(new ReduceAdd());
+			Collection<File> filteredFiles = FileUtils.listFiles(inDir, fileFilter, dirFilter);
+			List<File> files = new ArrayList<File>(filteredFiles);
+			broadcastMatchesDir = ctx.broadcast(matchesDir);
 			
-			System.out.println("number of tokens:"+ totalTokens);
+			JavaRDD<File> fileRDD = ctx.parallelize(files);
+			JavaRDD<FileContent> fileContent  = fileRDD.map(new ReadFile());
+			JavaPairRDD<FileContent, FileContent> crossedFiles = fileContent.cartesian(fileContent);
+			JavaRDD<FileContentPair> allPairs = crossedFiles.map(new CartesFileContent());
+			JavaRDD<FileContentPair> filteredPairs = allPairs.filter(new UniqueFilePairFilter());
+			JavaPairRDD<FileContentPair, Long> indexedPairs = filteredPairs.zipWithIndex();
+			JavaRDD<PairsToMatch> pairsToMatch = indexedPairs.map(new ConsolidateIndex(this, broadcastMatchesDir));
+			pairsToMatch.cache();
+			
+			pairsToMatch.foreachAsync(new RunApbt());
+			
+			pairsToMatch.saveAsTextFile(outFile.getPath());
+		} catch (IOException e) {
+			throw new IllegalStateException(e);
 		}
 
 	}
 	
-
-	private static final class PairToKey implements Function<Tuple2<Integer, String>, Integer> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Integer call(Tuple2<Integer, String> v1) throws Exception {
-			return v1._1;
-		}
-	}
-
-	private static final class EntryToPair implements PairFunction<Tuple2<String, Integer>, Integer, String> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Tuple2<Integer, String> call(Tuple2<String, Integer> t) throws Exception {
-			return new Tuple2<Integer, String>(t._2, t._1);
-		}
-	}
-
-
-	private static final class ReduceAdd implements Function2<Integer, Integer, Integer> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Integer call(Integer v1, Integer v2) throws Exception {
-			return v1+v2;
-		}
-	}
-
-	private static class FileToWordCount implements Function<File, Map<String, Integer>> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Map<String, Integer> call(File f) throws Exception {
-			return new SyllableScanner().scan(f);
-		}
-		
+	public static String genOutFileName(long id) {
+		return "out"+id+".txt";
 	}
 	
-	private static class FlatMap implements PairFlatMapFunction<Map<String,Integer>, String, Integer> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Iterable<Tuple2<String, Integer>> call(final Map<String, Integer> t) throws Exception {
-			return new Iterable<Tuple2<String, Integer>>() {
-
-				@Override
-				public Iterator<Tuple2<String, Integer>> iterator() {
-					return new Iterator<Tuple2<String,Integer>>() {
-						final Iterator<Entry<String, Integer>> iter = t.entrySet().iterator();
-
-						@Override
-						public boolean hasNext() {
-							return iter.hasNext();
-						}
-
-						@Override
-						public Tuple2<String, Integer> next() {
-							Entry<String, Integer> entry = iter.next();
-							return new Tuple2<String, Integer>(entry.getKey(), entry.getValue());
-						}
-
-						@Override
-						public void remove() {
-							iter.remove();
-						}
-					};
-					
-				}
-			};
-		}
-	}
 }
 	

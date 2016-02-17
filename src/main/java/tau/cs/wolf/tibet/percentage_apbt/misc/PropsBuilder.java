@@ -39,8 +39,8 @@ public class PropsBuilder {
 	
 	public static final String STEP_SIZE_DEFAULT_VALUE = "12500";
 	public static final String READ_SIZE_DEFAULT_VALUE = "25000";
-	public static final String MIN_LENGTH_DEFAULT_VALUE = "60";
-	public static final String MAX_ERROR_DEFAULT_VALUE = "10";
+	public static final String MIN_LENGTH_DEFAULT_VALUE = "10";
+	public static final String MAX_ERROR_DEFAULT_VALUE = "5";
 	public static final String TIMEOUT_DEFAULT_VALUE = "PT10M"; // 10 minutes
 	public static final String MIN_DISTANCE_UNION_DEFAULT_VALUE = "10";
 	public static final String LOCAL_ALIGN_PAD_RATIO_DEFAULT_VALUE = "0.12";

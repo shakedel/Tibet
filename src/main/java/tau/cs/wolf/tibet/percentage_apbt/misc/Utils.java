@@ -17,9 +17,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.slf4j.Logger;
 
@@ -47,6 +49,8 @@ public class Utils {
 			throw new IllegalStateException(e);
 		}
 	}
+	
+	public static final Pattern whitespaces = Pattern.compile("\\s+");
 	
 	public static int[] readIntegerFile(File f, Pattern delimiter) {
 		List<Integer> res = new ArrayList<Integer>();
@@ -133,6 +137,32 @@ public class Utils {
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}
+	}
+	
+	public static class PatternFileFilter implements IOFileFilter {
+
+		private final Pattern pattern;
+		
+		public PatternFileFilter(Pattern pattern) {
+			this.pattern = pattern;
+		}
+		
+		@Override
+		public boolean accept(File file) {
+			return accept(file.getName());
+		}
+
+		@Override
+		public boolean accept(File dir, String name) {
+			return accept(name);
+		}
+		
+		private boolean accept(String name) {
+			Matcher m = this.pattern.matcher(name); 
+			return m.matches();
+		}
+
+		
 	}
 	
 	
