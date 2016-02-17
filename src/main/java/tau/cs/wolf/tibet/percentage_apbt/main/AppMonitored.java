@@ -9,7 +9,6 @@ import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMonitored;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
-import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppMonitored implements Runnable {
 
@@ -39,7 +38,6 @@ public class AppMonitored implements Runnable {
 
 	@Override
 	public void run() {
-		long startTime = System.currentTimeMillis();
 		BaseApp app = AppFactory.getMain(this.args.getAppType(), this.args, this.props, true);
 		Thread appThread = new Thread(app, "App");
 		final ThreadTimeMonitor monitor = new ThreadTimeMonitor(logger, appThread, args.getPollDuration(), appThread.getName());
@@ -55,10 +53,16 @@ public class AppMonitored implements Runnable {
 		appThread.start();
 		try {
 			appThread.join();
-			monitor.interrupt();
-			monitor.join();
 		} catch (InterruptedException e) {
 			throw new IllegalStateException(e);
+		} finally {
+			monitor.interrupt();
+			try {
+				monitor.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -9,8 +9,9 @@ import org.apache.commons.lang.ArrayUtils;
 import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
-import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThreadInt;
+import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
+import tau.cs.wolf.tibet.percentage_apbt.data.IntArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
@@ -34,17 +35,20 @@ public class AppPercentageInt extends BaseApp {
 		File apbtOutFile = new File(outFileBase + ".apbt.txt");
 		File unionFile = new File (outFileBase + ".union.txt");
 		
-		int[] seq1 = Utils.readIntegerFile(this.args.getInFile1(), Pattern.compile("\\s+"));
-		int[] seq2 = Utils.readIntegerFile(this.args.getInFile2(), Pattern.compile("\\s+"));
+		int[] seq1Arr = Utils.readIntegerFile(this.args.getInFile1(), Pattern.compile("\\s+"));
+		int[] seq2Arr = Utils.readIntegerFile(this.args.getInFile2(), Pattern.compile("\\s+"));
 		
-		Integer[] seq1Obj = ArrayUtils.toObject(seq1);
-		Integer[] seq2Obj = ArrayUtils.toObject(seq2);
+		IntArr seq1 = new IntArr(seq1Arr);
+		IntArr seq2 = new IntArr(seq2Arr);
+		
+		Integer[] seq1Obj = ArrayUtils.toObject(seq1Arr);
+		Integer[] seq2Obj = ArrayUtils.toObject(seq2Arr);
 				
 		MatchesContainer matchesContainer = new MatchesContainer(new MatchResult.DefaultFormatter(), -1);
 		
-		Interval interval = Interval.newIntervalByStartEnd(new IndexPair(0, 0), new IndexPair(seq1.length, seq2.length));
+		Interval interval = Interval.newIntervalByStartEnd(new IndexPair(0, 0), new IndexPair(seq1.length(), seq2.length()));
 		long startTime = System.currentTimeMillis();
-		new WorkerThreadInt(props, args, seq1, seq2, interval, matchesContainer, 0).run();
+		new WorkerThread<IntArr>(props, args, seq1, seq2, interval, matchesContainer, 0).run();
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished APBT");
 		matchesContainer.shutdown();
 		List<MatchResult> apbtMatches = matchesContainer.getResults();

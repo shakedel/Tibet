@@ -8,11 +8,12 @@ import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.CharArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
-import tau.cs.wolf.tibet.percentage_apbt.matching.AlignmentChar;
+import tau.cs.wolf.tibet.percentage_apbt.matching.AlignmentGeneric;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Union;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
@@ -32,17 +33,21 @@ public class AppPercentage extends BaseApp {
 		File apbtOutFile = new File(outFileBase + ".apbt.txt");
 		File unionFile = new File (outFileBase + ".union.txt");
 		
-		String strA = Utils.readFile(this.args.getInFile1());
-		String strB = Utils.readFile(this.args.getInFile2());
+		String seq1Str = Utils.readFile(this.args.getInFile1());
+		String seq2Str = Utils.readFile(this.args.getInFile2());
+		
+		CharArr seq1 = new CharArr(seq1Str.toCharArray());
+		CharArr seq2 = new CharArr(seq2Str.toCharArray());
+		
 		MatchesContainer matchesContainer = new MatchesContainer(new MatchResult.DefaultFormatter(), -1);
 		
-		Interval interval = Interval.newIntervalByStartEnd(new IndexPair(0, 0), new IndexPair(strA.length(), strB.length()));
-		new WorkerThread(props, args, strA, strB, interval, matchesContainer, 0).run();
+		Interval interval = Interval.newIntervalByStartEnd(new IndexPair(0, 0), new IndexPair(seq1.length(), seq2.length()));
+		new WorkerThread<CharArr>(props, args, seq1, seq2, interval, matchesContainer, 0).run();
 		
 		matchesContainer.shutdown();
 		List<MatchResult> apbtMatches = matchesContainer.getResults();
 		List<MatchResult> unitedMatches = new Union(props, args).uniteMatches(apbtMatches);
-		List<MatchResult> alignedMatches = new AlignmentChar(props, args).alignMatches(unitedMatches, strA, strB);
+		List<MatchResult> alignedMatches = new AlignmentGeneric<CharArr>(props, args).alignMatches(unitedMatches, seq1, seq2);
 
 		if (writeResults) {
 			Utils.writeMatches(apbtOutFile, apbtMatches, null);

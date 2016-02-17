@@ -14,6 +14,7 @@ import org.kohsuke.args4j.CmdLineException;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.ThreadPoolExecotorMonitor;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.CharArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
@@ -34,9 +35,12 @@ public class AppChunks extends BaseApp {
 
 		int maxThreadPoolSize = props.getNumThreads()!=null ? props.getNumThreads() : Runtime.getRuntime().availableProcessors();
 
-		String str1 = Utils.readFile(args.getInFile1());
-		String str2 = Utils.readFile(args.getInFile2());
-
+		String seq1Str = Utils.readFile(this.args.getInFile1());
+		String seq2Str = Utils.readFile(this.args.getInFile2());
+		
+		CharArr seq1 = new CharArr(seq1Str.toCharArray());
+		CharArr seq2 = new CharArr(seq2Str.toCharArray());
+		
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(maxThreadPoolSize, maxThreadPoolSize, 1, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 
 		// monitor executor active tasks
@@ -48,14 +52,14 @@ public class AppChunks extends BaseApp {
 
 			int taskCounter = 0;
 
-			for (int i=0; i < str1.length(); i=i+props.getStepSize()) {
-				for (int j=0; j < str2.length(); j=j+props.getStepSize()) {
+			for (int i=0; i < seq1.length(); i=i+props.getStepSize()) {
+				for (int j=0; j < seq2.length(); j=j+props.getStepSize()) {
 					IndexPair firstIndexPair = new IndexPair(i, j);
-					IndexPair secondIndexPair = new IndexPair(Math.min(i + props.getReadSize(), (str1.length()-1)), Math.min(j + props.getReadSize(), (str2.length()-1)));
+					IndexPair secondIndexPair = new IndexPair(Math.min(i + props.getReadSize(), (seq1.length()-1)), Math.min(j + props.getReadSize(), (seq2.length()-1)));
 
 					Interval workingInterval = Interval.newIntervalByStartEnd(firstIndexPair, secondIndexPair);
 
-					Runnable worker = new WorkerThread(props, args, str1, str2, workingInterval, matchesContainer, taskCounter++);
+					Runnable worker = new WorkerThread<CharArr>(props, args, seq1, seq2, workingInterval, matchesContainer, taskCounter++);
 					executor.execute(worker);
 
 				}

@@ -2,6 +2,7 @@
 package tau.cs.wolf.tibet.percentage_apbt.matching;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -149,6 +150,7 @@ public class ApbtInt implements Apbt<int[]> {
 			}
 		}
 
+		Collections.sort(ret);
 		return ret;
 
 	}

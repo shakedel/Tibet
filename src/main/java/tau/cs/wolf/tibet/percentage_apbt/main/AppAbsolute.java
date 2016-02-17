@@ -6,6 +6,7 @@ import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.CharArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
@@ -24,12 +25,16 @@ public class AppAbsolute extends BaseApp {
 	
 	@Override
 	public void run() {
-		String strA = Utils.readFile(this.args.getInFile1());
-		String strB = Utils.readFile(this.args.getInFile2());
+		String seq1Str = Utils.readFile(this.args.getInFile1());
+		String seq2Str = Utils.readFile(this.args.getInFile2());
+		
+		CharArr seq1 = new CharArr(seq1Str.toCharArray());
+		CharArr seq2 = new CharArr(seq2Str.toCharArray());
+		
 		MatchesContainer matchesContainer = new MatchesContainer(new MatchResult.DefaultFormatter(), -1);
 		
-		Interval interval = Interval.newIntervalByStartEnd(new IndexPair(0, 0), new IndexPair(strA.length(), strB.length()));
-		new WorkerThread(props, args, strA, strB, interval, matchesContainer, 0).run();
+		Interval interval = Interval.newIntervalByStartEnd(new IndexPair(0, 0), new IndexPair(seq1.length(), seq2.length()));
+		new WorkerThread<CharArr>(props, args, seq1, seq2, interval, matchesContainer, 0).run();
 		
 		matchesContainer.shutdown();
 		List<MatchResult> res = matchesContainer.getResults();

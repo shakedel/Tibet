@@ -2,7 +2,7 @@ package tau.cs.wolf.tibet.percentage_apbt.data;
 
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public class MatchResult {
+public class MatchResult implements Comparable<MatchResult> {
 
 	public Interval workInterval;
 	public double score;
@@ -57,5 +57,10 @@ public class MatchResult {
 			return sb.toString();
 		}
 
+	}
+
+	@Override
+	public int compareTo(MatchResult other) {
+		return this.workInterval.compareTo(other.workInterval);
 	}
 }
