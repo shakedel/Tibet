@@ -8,6 +8,7 @@ import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.data.CharArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
@@ -20,15 +21,13 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppPercentage extends BaseApp {
 	
-	private List<MatchResult> results = null;
-	
 	AppPercentage(Args args, Props props, boolean writeResults) {
 		super(args, props, writeResults);
 		
 	}
 	
 	@Override
-	public void run() {
+	public AppResults calcResults() {
 		String outFileBase = FilenameUtils.removeExtension(args.getOutFile().getPath());
 		File apbtOutFile = new File(outFileBase + ".apbt.txt");
 		File unionFile = new File (outFileBase + ".union.txt");
@@ -55,7 +54,7 @@ public class AppPercentage extends BaseApp {
 			Utils.writeMatches(args.getOutFile(), alignedMatches, null);
 		}
 		
-		this.results = alignedMatches;
+		return new AppResults(apbtMatches, unitedMatches, alignedMatches);
 	}
 
 	public static void main(String[] args) {
@@ -67,14 +66,5 @@ public class AppPercentage extends BaseApp {
 		}
 	}
 
-	@Override
-	protected List<MatchResult> _getResults() {
-		return this.results;
-	}
-	
-		
-
-	
-	
 
 }

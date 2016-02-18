@@ -14,6 +14,7 @@ import org.kohsuke.args4j.CmdLineException;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.ThreadPoolExecotorMonitor;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.data.CharArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
@@ -24,14 +25,12 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppChunks extends BaseApp {
 	
-	private List<MatchResult> results = null;
-	
 	AppChunks(Args args, Props props, boolean writeResults) {
 		super(args, props, writeResults);
 	}
 	
 	@Override
-	public void run() {
+	public AppResults calcResults() {
 
 		int maxThreadPoolSize = props.getNumThreads()!=null ? props.getNumThreads() : Runtime.getRuntime().availableProcessors();
 
@@ -80,10 +79,10 @@ public class AppChunks extends BaseApp {
 			
 			matchesContainer.shutdown();
 			List<MatchResult> res = matchesContainer.getResults();
-			this.results = res;
 			if (writeResults) {
 				Utils.writeMatches(args.getOutFile(), res, null);
 			}
+			return new AppResults(res);
 			
 		} catch (FileNotFoundException e) {
 			throw new IllegalStateException(e);
@@ -100,11 +99,6 @@ public class AppChunks extends BaseApp {
 			System.err.println(e.getMessage());
 			System.exit(1);
 		}
-	}
-
-	@Override
-	protected List<MatchResult> _getResults() {
-		return this.results;
 	}
 
 }

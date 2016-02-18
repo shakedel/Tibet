@@ -1,6 +1,7 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.spark.functions;
 
 import org.apache.spark.api.java.function.VoidFunction;
+import org.slf4j.LoggerFactory;
 
 import scala.Serializable;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppFactory;
@@ -23,5 +24,6 @@ public final class RunApbt implements VoidFunction<PairsToMatch>, Serializable {
 		AppPercentageInt app = (AppPercentageInt) AppFactory.getMain(AppType.STEM, args, null, true);
 		app.setup(f1.getContent(), f2.getContent());
 		app.run();
+		LoggerFactory.getLogger("matches").error(String.format("Finished matching file: %s, %s", f1.getFile(), f2.getFile()));
 	}
 }

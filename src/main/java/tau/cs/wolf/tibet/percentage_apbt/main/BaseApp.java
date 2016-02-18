@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
+import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
@@ -20,6 +21,8 @@ public abstract class BaseApp implements Runnable {
 	protected final Props props;
 	protected final boolean writeResults;
 	
+	private AppResults results;
+	
 	BaseApp(Args args, Props _props, boolean writeResults) {
 		this.args = args;
 		this.props = _props == null ? PropsBuilder.defaultProps() : _props;
@@ -33,14 +36,17 @@ public abstract class BaseApp implements Runnable {
 		this(args, null, writeResults);
 	}
 
-	public List<MatchResult> getResults() {
-		List<MatchResult> results = _getResults();
-		if (results == null) {
+	public AppResults getResults() {
+		if (this.results == null) {
 			throw new IllegalStateException("Cannot get results before run() was called");
 		}
-		return results;
+		return this.results;
 	}
 
+	@Override
+	public void run() {
+		this.results = calcResults();
+	}
 	
-	abstract protected List<MatchResult> _getResults();
+	abstract protected AppResults calcResults();
 }

@@ -10,6 +10,7 @@ import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
+import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.IntArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
@@ -21,8 +22,6 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppPercentageInt extends BaseApp {
-	
-	private List<MatchResult> results = null;
 	
 	AppPercentageInt(Args args, Props props, boolean writeResults) {
 		super(args, props, writeResults);
@@ -38,11 +37,7 @@ public class AppPercentageInt extends BaseApp {
 	}
 	
 	@Override
-	public void run() {
-		String outFileBase = FilenameUtils.removeExtension(args.getOutFile().getPath());
-		File apbtOutFile = new File(outFileBase + ".apbt.txt");
-		File unionFile = new File (outFileBase + ".union.txt");
-		
+	public AppResults calcResults() {
 		if (this.seq1Arr == null) {
 			seq1Arr = Utils.readIntegerFile(this.args.getInFile1(), Pattern.compile("\\s+"));
 		}
@@ -70,13 +65,17 @@ public class AppPercentageInt extends BaseApp {
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished Alignment");
 
 		if (writeResults) {
+			String outFileBase = FilenameUtils.removeExtension(args.getOutFile().getPath());
+			File apbtOutFile = new File(outFileBase + ".apbt.txt");
+			File unionFile = new File (outFileBase + ".union.txt");
+			
 			Utils.writeMatches(apbtOutFile, apbtMatches, null);
 			Utils.writeMatches(unionFile, unitedMatches, null);
 			Utils.writeMatches(args.getOutFile(), alignedMatches, null);
 			Utils.reportComputationTimeByStartTime(logger, startTime, "Finished writing results");
 		}
 		
-		this.results = alignedMatches;
+		return new AppResults(apbtMatches, unitedMatches, alignedMatches);
 	}
 
 	public static void main(String[] args) {
@@ -88,14 +87,5 @@ public class AppPercentageInt extends BaseApp {
 		}
 	}
 
-	@Override
-	protected List<MatchResult> _getResults() {
-		return this.results;
-	}
-	
-		
-
-	
-	
 
 }

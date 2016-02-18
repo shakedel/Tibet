@@ -5,12 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.ThreadTimeMonitor;
+import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMonitored;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
-public class AppMonitored implements Runnable {
+public class AppMonitored extends BaseApp {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -25,19 +25,20 @@ public class AppMonitored implements Runnable {
 
 	private final ArgsMonitored args;
 	private final Props props;
-
-	public AppMonitored(ArgsMonitored args, Props props) {
+	
+	public AppMonitored(ArgsMonitored args, Props props, boolean writeResults) {
+		super(args, props, writeResults);
 		this.args = args;
 		this.props = props;
 		ArgsUtils.overrideArgsWithProps(args, this.props);
 	}
 
 	private AppMonitored(String[] args) throws CmdLineException {
-		this(new ArgsMonitored(args), PropsBuilder.defaultProps());
+		this(new ArgsMonitored(args), null, true);
 	}
 
 	@Override
-	public void run() {
+	protected AppResults calcResults() {
 		BaseApp app = AppFactory.getMain(this.args.getAppType(), this.args, this.props, true);
 		Thread appThread = new Thread(app, "App");
 		final ThreadTimeMonitor monitor = new ThreadTimeMonitor(logger, appThread, args.getPollDuration(), appThread.getName());
@@ -53,6 +54,7 @@ public class AppMonitored implements Runnable {
 		appThread.start();
 		try {
 			appThread.join();
+			return app.getResults();
 		} catch (InterruptedException e) {
 			throw new IllegalStateException(e);
 		} finally {
@@ -60,8 +62,7 @@ public class AppMonitored implements Runnable {
 			try {
 				monitor.join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new IllegalStateException(e);
 			}
 		}
 	}

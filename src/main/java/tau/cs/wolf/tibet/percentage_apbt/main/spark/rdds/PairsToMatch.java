@@ -4,12 +4,12 @@ import java.io.File;
 
 import scala.Serializable;
 
-public final class PairsToMatch implements Serializable {
+public class PairsToMatch implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private final FileContent f1;
-	private final FileContent f2;
-	private final File outFile;
+	protected final FileContent f1;
+	protected final FileContent f2;
+	protected final File outFile;
 	
 	public PairsToMatch(FileContent f1, FileContent f2, File outFile) {
 		super();

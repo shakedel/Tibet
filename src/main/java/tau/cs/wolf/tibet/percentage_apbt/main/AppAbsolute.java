@@ -10,13 +10,12 @@ import tau.cs.wolf.tibet.percentage_apbt.data.CharArr;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
+import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppAbsolute extends BaseApp {
-	
-	private List<MatchResult> results = null;
 	
 	AppAbsolute(Args args, Props props, boolean writeResults) {
 		super(args, props, writeResults);
@@ -24,7 +23,7 @@ public class AppAbsolute extends BaseApp {
 	}
 	
 	@Override
-	public void run() {
+	public AppResults calcResults() {
 		String seq1Str = Utils.readFile(this.args.getInFile1());
 		String seq2Str = Utils.readFile(this.args.getInFile2());
 		
@@ -41,7 +40,7 @@ public class AppAbsolute extends BaseApp {
 		if (writeResults) {
 			Utils.writeMatches(args.getOutFile(), res, null);
 		}
-		this.results = res;
+		return new AppResults(res);
 	}
 
 	public static void main(String[] args) {
@@ -53,9 +52,5 @@ public class AppAbsolute extends BaseApp {
 		}
 	}
 
-	@Override
-	protected List<MatchResult> _getResults() {
-		return this.results;
-	}
 
 }
