@@ -6,15 +6,17 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
+import tau.cs.wolf.tibet.percentage_apbt.data.IndexSpan;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
+import tau.cs.wolf.tibet.percentage_apbt.data.MatchPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 public class Union extends BaseModule {
 
-	public Union(Props props, Args args) {
+	public Union(Props props, ArgsBase args) {
 		super(props, args);
 	}
 
@@ -31,33 +33,26 @@ public class Union extends BaseModule {
 			}
 		}
 
-		List<MatchResult> unitedMatches = unitePairs(matches, pairsToUnite);
-		for (MatchResult unitedMatch : unitedMatches) {
-			int tScore = -1
-					* (unitedMatch.workInterval.getEnd().getIndex1() - unitedMatch.workInterval.getStart().getIndex1());
-			unitedMatch.score = tScore;
-		}
-
-		return unitedMatches;
+		return unitePairs(matches, pairsToUnite);
 	}
 
 	private boolean checkUnion(MatchPair pair) {
-		if (!checkSegment(pair.left.workInterval.getSpan1(), pair.right.workInterval.getSpan1())) {
+		if (!checkSegment(pair.left.getInterval().getSpan1(), pair.right.getInterval().getSpan1())) {
 			return false;
 		}
-		if (!checkSegment(pair.left.workInterval.getSpan2(), pair.right.workInterval.getSpan2())) {
+		if (!checkSegment(pair.left.getInterval().getSpan2(), pair.right.getInterval().getSpan2())) {
 			return false;
 		}
 		return true;
 	}
 
-	private boolean checkSegment(IndexPair spanA, IndexPair spanB) {
-		if (spanB.getIndex1() < spanA.getIndex1()) {
+	private boolean checkSegment(IndexSpan spanA, IndexSpan spanB) {
+		if (spanB.getStart() < spanA.getStart()) {
 			return checkSegment(spanB, spanA);
 		}
 
-		if (spanA.getIndex2() < spanB.getIndex1()) {
-			return (spanB.getIndex1() - spanA.getIndex2() < args.getMinDistanceUnion());
+		if (spanA.getEnd() < spanB.getStart()) {
+			return (spanB.getStart() - spanA.getEnd() < args.getMinDistanceUnion());
 		}
 		return true;
 	}
@@ -103,7 +98,7 @@ public class Union extends BaseModule {
 					union = new MatchResult(matches.get(element));
 					continue;
 				}
-				union = uniteMatches(union, matches.get(element));
+				union = unitePair(union, matches.get(element));
 			}
 			unitesMatches.add(union);
 
@@ -111,16 +106,23 @@ public class Union extends BaseModule {
 		return unitesMatches;
 	}
 
-	private MatchResult uniteMatches(MatchResult m1, MatchResult m2) {
-		IndexPair unitedSpan1 = closSpans(m1.workInterval.getSpan1(), m2.workInterval.getSpan1());
-		IndexPair unitedSpan2 = closSpans(m1.workInterval.getSpan2(), m2.workInterval.getSpan2());
-		return new MatchResult(Interval.newIntervalBySpans(unitedSpan1, unitedSpan2), -1);
+	private MatchResult unitePair(MatchResult m1, MatchResult m2) {
+		IndexSpan unitedSpan1 = closSpans(m1.getInterval().getSpan1(), m2.getInterval().getSpan1());
+		IndexSpan unitedSpan2 = closSpans(m1.getInterval().getSpan2(), m2.getInterval().getSpan2());
+		
+		int span1Gap = m1.getInterval().calcGapSpan1(m2.getInterval());
+		int span2Gap = m1.getInterval().calcGapSpan2(m2.getInterval());
+		
+		double distance = m1.getScore() + m2.getScore() + Math.max(span1Gap, span2Gap);
+		
+		double score = props.getComputeLevenshteinDistance() ? distance : -1;
+		return new MatchResult(Interval.newIntervalBySpans(unitedSpan1, unitedSpan2), score);
 	}
 
-	private IndexPair closSpans(IndexPair spanA, IndexPair spanB) {
-		int start = Math.min(spanA.getIndex1(), spanB.getIndex1());
-		int end = Math.max(spanA.getIndex2(), spanB.getIndex2());
-		return new IndexPair(start, end);
+	private IndexSpan closSpans(IndexSpan spanA, IndexSpan spanB) {
+		int start = Math.min(spanA.getStart(), spanB.getStart());
+		int end = Math.max(spanA.getEnd(), spanB.getEnd());
+		return new IndexSpan(start, end);
 	}
 
 }

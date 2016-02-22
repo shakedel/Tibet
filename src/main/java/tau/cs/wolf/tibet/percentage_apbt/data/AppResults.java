@@ -4,9 +4,21 @@ import java.util.List;
 
 public class AppResults {
 	
-	private final List<MatchResult> apbtMatches;
-	private final List<MatchResult> unitedMatches;
-	private final List<MatchResult> alignedMatches;
+	private List<MatchResult> apbtMatches;
+	private List<MatchResult> unitedMatches;
+	public void setApbtMatches(List<MatchResult> apbtMatches) {
+		this.apbtMatches = apbtMatches;
+	}
+
+	public void setUnitedMatches(List<MatchResult> unitedMatches) {
+		this.unitedMatches = unitedMatches;
+	}
+
+	public void setAlignedMatches(List<MatchResult> alignedMatches) {
+		this.alignedMatches = alignedMatches;
+	}
+
+	private List<MatchResult> alignedMatches;
 	
 	public AppResults(List<MatchResult> apbtMatches, List<MatchResult> unitedMatches, List<MatchResult> alignedMatches) {
 		super();

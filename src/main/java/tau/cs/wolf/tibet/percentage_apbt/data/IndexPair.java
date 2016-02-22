@@ -6,8 +6,8 @@ public class IndexPair implements Serializable, Comparable<IndexPair> {
 
 	private static final long serialVersionUID = -3230705850675333275L;
 
-	private int idx1;
-	private int idx2;
+	protected int idx1;
+	protected int idx2;
 
 	public IndexPair(int index1, int index2) {
 		idx1 = index1;
@@ -68,5 +68,5 @@ public class IndexPair implements Serializable, Comparable<IndexPair> {
 			return false;
 		return true;
 	}
-
+	
 }

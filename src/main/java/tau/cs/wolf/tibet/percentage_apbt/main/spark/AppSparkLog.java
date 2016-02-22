@@ -14,12 +14,11 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.broadcast.Broadcast;
 import org.kohsuke.args4j.CmdLineException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMonitored;
+import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CalcApbt;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CartesFileContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.LogResults;
@@ -30,8 +29,9 @@ import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public class AppSparkLog implements Runnable {
+public class AppSparkLog<R> implements Runnable {
 	
+	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(AppSparkLog.class);
 	
 	private final SparkConf sparkConf;
@@ -59,18 +59,19 @@ public class AppSparkLog implements Runnable {
 		List<File> files = new ArrayList<File>(filteredFiles);
 		
 		JavaRDD<File> fileRDD = ctx.parallelize(files);
-		JavaRDD<FileContent> fileContent  = fileRDD.map(new ReadFile());
-		JavaPairRDD<FileContent, FileContent> crossedFiles = fileContent.cartesian(fileContent);
-		JavaRDD<FileContentPair> allPairs = crossedFiles.map(new CartesFileContent());
-		JavaRDD<FileContentPair> filteredPairs = allPairs.filter(new UniqueFilePairFilter());
-		JavaRDD<Matches> matches = filteredPairs.map(new CalcApbt());
-		matches.foreach(new LogResults());
+		// TODO: move form hard-coded data type to broadcast args like in AppSpark
+		JavaRDD<FileContent<R>> fileContent  = fileRDD.map(new ReadFile<R>(DataType.INT));
+		JavaPairRDD<FileContent<R>, FileContent<R>> crossedFiles = fileContent.cartesian(fileContent);
+		JavaRDD<FileContentPair<R>> allPairs = crossedFiles.map(new CartesFileContent<R>());
+		JavaRDD<FileContentPair<R>> filteredPairs = allPairs.filter(new UniqueFilePairFilter<R>());
+		JavaRDD<Matches<R>> matches = filteredPairs.map(new CalcApbt<R>());
+		matches.foreach(new LogResults<R>());
 	}
 	
 	public static void main(String[] args) throws IOException, CmdLineException {
 		// Local mode
 		SparkConf sparkConf = new SparkConf().setAppName("Tibet").setMaster("local");
-		new AppSparkLog(sparkConf).run();
+		new AppSparkLog<int[]>(sparkConf).run();
 	}
 	
 }

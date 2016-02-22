@@ -36,6 +36,7 @@ public class PropsBuilder {
 	public static final String CHUNK_SIZE_PROP_NAME = "chunkSize";
 	public static final String MAX_MATCH_LENGTH_PROP_NAME = "maxMatchLength";
 	public static final String POLL_DURATION_PROP_NAME = "pollDuration";
+	public static final String COMPUTE_LEVENSHTEIN_DISTANCE_PROP_NAME = "computeLevenshteinDistance";
 	
 	public static final String STEP_SIZE_DEFAULT_VALUE = "12500";
 	public static final String READ_SIZE_DEFAULT_VALUE = "25000";
@@ -50,6 +51,7 @@ public class PropsBuilder {
 	public static final String CHUNK_SIZE_DEFAULT_VALUE = "1000";
 	public static final String MAX_MATCH_LENGTH_DEFAULT_VALUE = "500";
 	public static final String POLL_DURATION_DEFAULT_VALUE = "PT5M"; // 5 minutes
+	public static final String COMPUTE_LEVENSHTEIN_DISTANCE_DEFAULT_VALUE = "true";
 	
 	public static interface Props {
 		@Config(NUM_THREADS_PROP_NAME)
@@ -107,6 +109,10 @@ public class PropsBuilder {
 		@Config(POLL_DURATION_PROP_NAME)
 		@Default(POLL_DURATION_DEFAULT_VALUE)
 		public Duration getPollDuration();
+		
+		@Config(COMPUTE_LEVENSHTEIN_DISTANCE_PROP_NAME)
+		@Default(COMPUTE_LEVENSHTEIN_DISTANCE_DEFAULT_VALUE)
+		public boolean getComputeLevenshteinDistance();
 		
 	}
 	

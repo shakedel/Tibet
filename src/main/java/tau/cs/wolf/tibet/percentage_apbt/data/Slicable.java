@@ -2,7 +2,8 @@ package tau.cs.wolf.tibet.percentage_apbt.data;
 
 public interface Slicable<R> {
 	public int length();
-	public R slice(int start, int end);
-	public boolean compare(int idx, R other, int otherIdx);
+	public Slicable<R> slice(int start, int end);
+	public boolean compare(int idx, Slicable<R> other, int otherIdx);
+	public R get();
 
 }

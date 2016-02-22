@@ -13,10 +13,7 @@ import java.net.URL;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,7 +23,6 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.slf4j.Logger;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
-import tau.cs.wolf.tibet.percentage_apbt.matching.Apbt;
 
 public class Utils {
 	public static interface Formatter<T> {
@@ -50,30 +46,6 @@ public class Utils {
 		}
 	}
 	
-	public static final Pattern whitespaces = Pattern.compile("\\s+");
-	
-	public static int[] readIntegerFile(File f, Pattern delimiter) {
-		List<Integer> res = new ArrayList<Integer>();
-		try (Scanner s = new Scanner(f)) {
-			s.useDelimiter(delimiter);
-			while (s.hasNextInt()) {
-				res.add(s.nextInt());
-			}
-		} catch (FileNotFoundException e) {
-			throw new IllegalStateException(e);
-		}
-		return convertIntegers(res);
-	}
-	
-	public static int[] convertIntegers(List<Integer> integers) {
-	    int[] ret = new int[integers.size()];
-	    Iterator<Integer> iterator = integers.iterator();
-	    for (int i = 0; i < ret.length; i++) {
-	        ret[i] = iterator.next().intValue();
-	    }
-	    return ret;
-	}
-
 	public static String gobbleInputStream(InputStream in) throws IOException {
 		StringWriter writer = new StringWriter();
 		IOUtils.copy(in, writer);
@@ -129,15 +101,15 @@ public class Utils {
 		
 	}
 	
-	public static <R> Apbt<R>  newApbt(String apbtClassName) {
-		try {
-			@SuppressWarnings("unchecked")
-			Class<? extends Apbt<R>> clazz = (Class<? extends Apbt<R>>) Class.forName(apbtClassName);
-			return clazz.newInstance();
-		} catch (Exception e) {
-			throw new IllegalArgumentException(e);
-		}
-	}
+//	public static <R> Apbt<R>  newApbt(String apbtClassName) {
+//		try {
+//			@SuppressWarnings("unchecked")
+//			Class<? extends Apbt<R>> clazz = (Class<? extends Apbt<R>>) Class.forName(apbtClassName);
+//			return clazz.newInstance();
+//		} catch (Exception e) {
+//			throw new IllegalArgumentException(e);
+//		}
+//	}
 	
 	public static class PatternFileFilter implements IOFileFilter {
 
@@ -164,6 +136,31 @@ public class Utils {
 
 		
 	}
+
+	public static int min(int a, int b, int c) {
+		return Math.min(Math.min(a, b), c);
+	}
 	
+	public static int max(Integer... ints ) {
+		if (ints.length == 0) {
+			throw new IllegalArgumentException("must have at least one value");
+		}
+		return recursiveMax(0, ints.length, ints);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(max(1,54 ,65, 65, 32, 32, 65, 98, 534 ,345));
+	}
+	
+	private static int recursiveMax(int startIdx, int endIdx, Integer... ints) {
+		int length = endIdx - startIdx;
+		switch (length) {
+		case 0: return Integer.MIN_VALUE;
+		case 1: return ints[startIdx];
+		default: 
+			int midIdx = startIdx + length/2;
+			return Math.max(recursiveMax(startIdx, midIdx, ints), recursiveMax(midIdx, endIdx, ints));
+		}
+	}
 	
 }

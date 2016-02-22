@@ -5,16 +5,25 @@ import java.io.File;
 import org.apache.spark.api.java.function.Function;
 
 import scala.Serializable;
+import tau.cs.wolf.tibet.percentage_apbt.data.FileParser;
+import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContent;
-import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public final class ReadFile implements Function<File, FileContent>, Serializable {
+public final class ReadFile<R> implements Function<File, FileContent<R>>, Serializable {
 	private static final long serialVersionUID = 1L;
 
+	private final DataType dataType; 
+	
+	
+	public ReadFile(DataType dataType) {
+		this.dataType = dataType;
+	}
+	
 	@Override
-	public FileContent call(File f) throws Exception {
-		int[] ints = Utils.readIntegerFile(f, Utils.whitespaces);
-		return new FileContent(f, ints);
+	public FileContent<R> call(File f) throws Exception {
+		@SuppressWarnings("unchecked")
+		FileParser<R> parser = (FileParser<R>) this.dataType.getAppClasses().newFileParser();
+		return new FileContent<R>(f, parser.parse(f));
 	}
 	
 }

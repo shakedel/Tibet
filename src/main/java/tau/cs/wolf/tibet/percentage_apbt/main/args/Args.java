@@ -8,15 +8,14 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
+import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
+import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils.OutputStreamGobbler;
 
 
-public class Args {
+public class Args extends ArgsBase {
 
-	@Option(name = "-h", aliases = { "-help", "--help" }, help = true, usage = "print this message")
-	private boolean help = false;
-	
 	private File inFile1;
 	@Option(name = "-f1", required = true, metaVar = "FILE", usage = "1st input file")
 	public void setInFile1(File f) throws CmdLineException {
@@ -37,7 +36,6 @@ public class Args {
 		return inFile2;
 	}
 	
-	
 	private File outFile;
 	@SuppressWarnings("deprecation")
 	@Option(name = "-out", required = true, metaVar = "FILE", usage = "output file")
@@ -53,60 +51,6 @@ public class Args {
 	public File getOutFile() {
 		return outFile;
 	}
-	
-	private Integer minLength = null;
-	@Option(name = "-minLength", metaVar = "int", usage = "minimin length for matches")
-	public void setMinlength(int minLength) throws CmdLineException {
-		ArgsUtils.assertIsNonNegative(minLength, "-minLength");
-		this.minLength = minLength;
-	}
-	public Integer getMinLength() {
-		return minLength;
-	}
-	
-	private Integer maxError = null;
-	@Option(name = "-maxError", metaVar = "int", usage = "maximum allowed Levenshtein distance")
-	public void setMaxError(Integer maxError) throws CmdLineException {
-		ArgsUtils.assertIsNonNegative(maxError, "-maxError");
-		this.maxError = maxError;
-	}
-	public Integer getMaxError() {
-		return maxError;
-	}
-	
-	private Duration timeout = null;
-	@Option(name = "-timeout", metaVar = "int", usage = "timeout for execution")
-	public void setTimeout(String timeoutStr) throws CmdLineException {
-			this.timeout = Period.parse(timeoutStr).toStandardDuration();
-//			throw new CmdLineException(e);
-	}
-	public void setTimeout(Duration duration) {
-		this.timeout = Duration.ZERO.plus(duration);
-	}
-	public Duration getTimeout() {
-		return timeout;
-	}
-	
-	private Integer minDistanceUnion = null;
-	@Option(name="-minDistanceUnion", metaVar="int", usage="min distance for union")
-	public void setMinDistanceUnion(Integer minDistanceUnion) throws CmdLineException {
-		ArgsUtils.assertIsNonNegative(minDistanceUnion, "-minDistanceUnion");
-		this.minDistanceUnion = minDistanceUnion;
-	}
-	public Integer getMinDistanceUnion() {
-		return minDistanceUnion;
-	}
-	
-	private Float localAlignPadRatio = null;
-	@Option(name="-localAlignPadRatio", metaVar="float", usage="ratio for local align pad")
-	public void setLocalAlignPadRatio(Float localAlignPadRatio) throws CmdLineException {
-		ArgsUtils.assertIsFraction(localAlignPadRatio, "-localAlignPadRatio");
-		this.localAlignPadRatio = localAlignPadRatio;
-	}
-	public Float getLocalAlignPadRatio() {
-		return this.localAlignPadRatio;
-	}
-	
 	
 	@SuppressWarnings("deprecation")
 	public Args(String[] args) throws CmdLineException {
@@ -126,12 +70,25 @@ public class Args {
 		
 	}
 	
+	private Duration pollDuration;
+	@Option(name = "-pollDuration", usage = "The duration between polls")
+	public void setPollDuration(String pollDurationStr) throws CmdLineException {
+		this.pollDuration = Period.parse(pollDurationStr).toStandardDuration();
+	}
+	public void setPollDuration(Duration pollDuration) throws CmdLineException {
+		this.pollDuration = pollDuration;
+	}
+	public Duration getPollDuration() {
+		return this.pollDuration;
+	}
+	
 	public Args(String[] args, Props props) throws CmdLineException {
 		this(args);
 		ArgsUtils.overrideArgsWithProps(this, props);
 	}
 	
-	public Args(File inFile1, File inFile2, File outFile) {
+	public Args(File inFile1, File inFile2, File outFile, AppStage appStage, DataType dataType) {
+		super(appStage, dataType);
 		try {
 			ArgsUtils.assertFileExists(inFile1, null);
 			ArgsUtils.assertFileExists(inFile2, null);

@@ -6,11 +6,11 @@ import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.ThreadTimeMonitor;
 import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMonitored;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
-public class AppMonitored extends BaseApp {
+public class AppMonitored extends AppBase {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -23,23 +23,21 @@ public class AppMonitored extends BaseApp {
 		}
 	}
 
-	private final ArgsMonitored args;
 	private final Props props;
 	
-	public AppMonitored(ArgsMonitored args, Props props, boolean writeResults) {
+	public AppMonitored(Args args, Props props, boolean writeResults) {
 		super(args, props, writeResults);
-		this.args = args;
 		this.props = props;
 		ArgsUtils.overrideArgsWithProps(args, this.props);
 	}
 
 	private AppMonitored(String[] args) throws CmdLineException {
-		this(new ArgsMonitored(args), null, true);
+		this(new Args(args), null, true);
 	}
 
 	@Override
 	protected AppResults calcResults() {
-		BaseApp app = AppFactory.getMain(this.args.getAppType(), this.args, this.props, true);
+		AppBase app = new AppMain(this.args, this.props, true);
 		Thread appThread = new Thread(app, "App");
 		final ThreadTimeMonitor monitor = new ThreadTimeMonitor(logger, appThread, args.getPollDuration(), appThread.getName());
 		Thread.UncaughtExceptionHandler handler = new Thread.UncaughtExceptionHandler() {

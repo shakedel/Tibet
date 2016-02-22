@@ -6,11 +6,11 @@ import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
 
-public class LogResults implements VoidFunction<Matches> {
+public class LogResults<R> implements VoidFunction<Matches<R>> {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void call(Matches matches) throws Exception {
+	public void call(Matches<R> matches) throws Exception {
 		Logger logger = LoggerFactory.getLogger("matches");
 		logger.info(matches.toString());
 	}

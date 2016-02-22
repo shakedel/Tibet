@@ -1,18 +1,15 @@
 package tau.cs.wolf.tibet.percentage_apbt.main;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
-public abstract class BaseApp implements Runnable {
+public abstract class AppBase implements Runnable {
 
 	public static final String CFG_PATH_VM_PROP_NAME = "percentage_apbt.cfgPath";
 	
@@ -23,7 +20,7 @@ public abstract class BaseApp implements Runnable {
 	
 	private AppResults results;
 	
-	BaseApp(Args args, Props _props, boolean writeResults) {
+	AppBase(Args args, Props _props, boolean writeResults) {
 		this.args = args;
 		this.props = _props == null ? PropsBuilder.defaultProps() : _props;
 		
@@ -32,7 +29,7 @@ public abstract class BaseApp implements Runnable {
 		ArgsUtils.overrideArgsWithProps(args, this.props);
 	}
 	
-	public BaseApp(Args args, boolean writeResults) {
+	public AppBase(Args args, boolean writeResults) {
 		this(args, null, writeResults);
 	}
 

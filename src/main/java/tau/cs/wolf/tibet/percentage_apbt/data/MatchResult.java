@@ -4,17 +4,17 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class MatchResult implements Comparable<MatchResult> {
 
-	public Interval workInterval;
-	public double score;
+	private final Interval interval;
+	private final double score;
 
 	public MatchResult(Interval workInterval, double score) {
-		this.workInterval = workInterval;
+		this.interval = workInterval;
 		this.score = score;
 	}
 	
 	public MatchResult(MatchResult match) {
-		this.workInterval = new Interval(match.workInterval);
-		this.score = match.score;
+		this.interval = new Interval(match.getInterval());
+		this.score = match.getScore();
 	}
 
 	@Override
@@ -26,20 +26,20 @@ public class MatchResult implements Comparable<MatchResult> {
 		if (getClass() != obj.getClass())
 			return false;
 		MatchResult other = (MatchResult) obj;
-		if (workInterval == null) {
-			if (other.workInterval != null)
+		if (getInterval() == null) {
+			if (other.getInterval() != null)
 				return false;
-		} else if (!workInterval.equals(other.workInterval))
+		} else if (!getInterval().equals(other.getInterval()))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		String str = workInterval.getStart().getIndex1() + ","
-				+ workInterval.getStart().getIndex2() + ","
-				+ workInterval.getEnd().getIndex1() + ","
-				+ workInterval.getEnd().getIndex2() + "," + score;
+		String str = getInterval().getStart().getIndex1() + ","
+				+ getInterval().getStart().getIndex2() + ","
+				+ getInterval().getEnd().getIndex1() + ","
+				+ getInterval().getEnd().getIndex2() + "," + getScore();
 		return str;
 	}
 
@@ -49,15 +49,15 @@ public class MatchResult implements Comparable<MatchResult> {
 		@Override
 		public String format(MatchResult match) {
 			StringBuilder sb = new StringBuilder();
-			sb.append(match.workInterval.getStart().getIndex1());
+			sb.append(match.getInterval().getStart().getIndex1());
 			sb.append(",");
-			sb.append(match.workInterval.getStart().getIndex2());
+			sb.append(match.getInterval().getStart().getIndex2());
 			sb.append(",");
-			sb.append(match.workInterval.getEnd().getIndex1());
+			sb.append(match.getInterval().getEnd().getIndex1());
 			sb.append(",");
-			sb.append(match.workInterval.getEnd().getIndex2());
+			sb.append(match.getInterval().getEnd().getIndex2());
 			sb.append(",");
-			sb.append(match.score);
+			sb.append(match.getScore());
 
 			return sb.toString();
 		}
@@ -66,6 +66,15 @@ public class MatchResult implements Comparable<MatchResult> {
 
 	@Override
 	public int compareTo(MatchResult other) {
-		return this.workInterval.compareTo(other.workInterval);
+		return this.getInterval().compareTo(other.getInterval());
 	}
+
+	public Interval getInterval() {
+		return interval;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
 }

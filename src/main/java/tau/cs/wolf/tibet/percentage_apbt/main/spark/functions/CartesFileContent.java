@@ -7,11 +7,11 @@ import scala.Tuple2;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
 
-public final class CartesFileContent implements Function<Tuple2<FileContent,FileContent>, FileContentPair>, Serializable  {
+public final class CartesFileContent<R> implements Function<Tuple2<FileContent<R>,FileContent<R>>, FileContentPair<R>>, Serializable  {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public FileContentPair call(Tuple2<FileContent, FileContent> tuple) throws Exception {
-		return new FileContentPair(tuple._1, tuple._2);
+	public FileContentPair<R> call(Tuple2<FileContent<R>, FileContent<R>> tuple) throws Exception {
+		return new FileContentPair<R>(tuple._1, tuple._2);
 	}
 }

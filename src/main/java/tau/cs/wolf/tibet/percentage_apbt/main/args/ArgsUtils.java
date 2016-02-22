@@ -1,6 +1,7 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
 import java.io.File;
+import java.util.EnumSet;
 
 import org.joda.time.Duration;
 import org.kohsuke.args4j.CmdLineException;
@@ -51,16 +52,28 @@ public final class ArgsUtils {
 			if (args.getLocalAlignPadRatio() == null) {
 				args.setLocalAlignPadRatio(props.getLocalAlignPadRatio());
 			}
-			if (args instanceof ArgsMonitored) {
-				ArgsMonitored argsMonitored = (ArgsMonitored) args;
-				if (argsMonitored.getPollDuration() == null) {
-					argsMonitored.setPollDuration(props.getPollDuration());
-				}
+			if (args.getPollDuration() == null) {
+				args.setPollDuration(props.getPollDuration());
 			}
 			
 		} catch (CmdLineException e) {
 			throw new IllegalArgumentException(e);
 		}
+	}
+	
+	public static <T extends Enum<T>> EnumSet<T> p(Class<T> t) {
+		return EnumSet.allOf(t);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static <T extends Enum<T>> T parseEnum(Class<T> t, String val) throws CmdLineException {
+		try {
+			return Enum.valueOf(t, val);
+		} catch (IllegalArgumentException e) {
+			;
+			throw new CmdLineException(String.format("Illegal value for enum %s: %s\nPossible values: %s",t.getSimpleName(), val, EnumSet.allOf(t).toString()));
+		}
+		
 	}
 
 }

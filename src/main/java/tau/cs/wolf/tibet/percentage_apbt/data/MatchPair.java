@@ -1,10 +1,8 @@
-package tau.cs.wolf.tibet.percentage_apbt.matching;
+package tau.cs.wolf.tibet.percentage_apbt.data;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 
-import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
-
-class MatchPair extends MutablePair<MatchResult, MatchResult> {
+public class MatchPair extends MutablePair<MatchResult, MatchResult> {
 	private static final long serialVersionUID = -6697198967755333700L;
 	
 	private MatchPair(MatchResult left, MatchResult right) {

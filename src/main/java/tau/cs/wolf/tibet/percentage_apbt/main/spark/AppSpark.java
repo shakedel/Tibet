@@ -29,12 +29,13 @@ import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PairsToMatch;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public class AppSpark implements Runnable {
+public class AppSpark<R> implements Runnable {
 	
 	public static void main(String[] args) throws IOException {
-		new AppSpark().run();
+		new AppSpark<int[]>().run();
 	}
 	
+	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(AppSpark.class);
 	
 	Broadcast<File> broadcastMatchesDir = null;
@@ -72,15 +73,15 @@ public class AppSpark implements Runnable {
 			broadcastMatchesDir = ctx.broadcast(matchesDir);
 			
 			JavaRDD<File> fileRDD = ctx.parallelize(files);
-			JavaRDD<FileContent> fileContent  = fileRDD.map(new ReadFile());
-			JavaPairRDD<FileContent, FileContent> crossedFiles = fileContent.cartesian(fileContent);
-			JavaRDD<FileContentPair> allPairs = crossedFiles.map(new CartesFileContent());
-			JavaRDD<FileContentPair> filteredPairs = allPairs.filter(new UniqueFilePairFilter());
-			JavaPairRDD<FileContentPair, Long> indexedPairs = filteredPairs.zipWithIndex();
-			JavaRDD<PairsToMatch> pairsToMatch = indexedPairs.map(new ConsolidateIndex(this, broadcastMatchesDir));
+			JavaRDD<FileContent<R>> fileContent  = fileRDD.map(new ReadFile<R>(broadcastArgs.getValue().getDataType()));
+			JavaPairRDD<FileContent<R>, FileContent<R>> crossedFiles = fileContent.cartesian(fileContent);
+			JavaRDD<FileContentPair<R>> allPairs = crossedFiles.map(new CartesFileContent<R>());
+			JavaRDD<FileContentPair<R>> filteredPairs = allPairs.filter(new UniqueFilePairFilter<R>());
+			JavaPairRDD<FileContentPair<R>, Long> indexedPairs = filteredPairs.zipWithIndex();
+			JavaRDD<PairsToMatch<R>> pairsToMatch = indexedPairs.map(new ConsolidateIndex<R>(this, broadcastMatchesDir));
 			pairsToMatch.cache();
 			
-			pairsToMatch.foreachAsync(new RunApbt());
+			pairsToMatch.foreachAsync(new RunApbt<R>());
 			
 			pairsToMatch.saveAsTextFile(outFile.getPath());
 		} catch (IOException e) {

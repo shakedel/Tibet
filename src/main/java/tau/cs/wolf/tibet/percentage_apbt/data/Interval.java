@@ -4,24 +4,24 @@ public class Interval implements java.io.Serializable, Comparable<Interval> {
 
 	private static final long serialVersionUID = -3230705851675333275L;
 
-	public static Interval newIntervalBySpans(IndexPair spanA, IndexPair spanB) {
-		IndexPair first = new IndexPair(spanA.getIndex1(), spanB.getIndex1());
-		IndexPair last = new IndexPair(spanA.getIndex2(), spanB.getIndex2());
+	public static Interval newIntervalBySpans(IndexSpan spanA, IndexSpan spanB) {
+		IndexPair first = new IndexPair(spanA.getStart(), spanB.getStart());
+		IndexPair last = new IndexPair(spanA.getEnd(), spanB.getEnd());
 		return new Interval(first, last, spanA, spanB);
 	}
 
 	public static Interval newIntervalByStartEnd(IndexPair start, IndexPair end) {
-		IndexPair spanA = new IndexPair(start.getIndex1(), end.getIndex1());
-		IndexPair spanB = new IndexPair(start.getIndex2(), end.getIndex2());
+		IndexSpan spanA = new IndexSpan(start.getIndex1(), end.getIndex1());
+		IndexSpan spanB = new IndexSpan(start.getIndex2(), end.getIndex2());
 		return new Interval(start, end, spanA, spanB);
 	}
 
 	private final IndexPair first;
 	private final IndexPair last;
-	private final IndexPair span1;
-	private final IndexPair span2;
+	private final IndexSpan span1;
+	private final IndexSpan span2;
 
-	private Interval(IndexPair start, IndexPair end, IndexPair span1, IndexPair span2) {
+	private Interval(IndexPair start, IndexPair end, IndexSpan span1, IndexSpan span2) {
 		this.span1 = span1;
 		this.span2 = span2;
 		this.first = start;
@@ -29,8 +29,8 @@ public class Interval implements java.io.Serializable, Comparable<Interval> {
 	}
 	
 	public Interval(Interval o) {
-		this.span1 = new IndexPair(o.span1);
-		this.span2 = new IndexPair(o.span2);
+		this.span1 = new IndexSpan(o.span1);
+		this.span2 = new IndexSpan(o.span2);
 		this.first = new IndexPair(o.first);
 		this.last = new IndexPair(o.last);
 	}
@@ -43,11 +43,11 @@ public class Interval implements java.io.Serializable, Comparable<Interval> {
 		return last;
 	}
 
-	public IndexPair getSpan1() {
+	public IndexSpan getSpan1() {
 		return this.span1;
 	}
 
-	public IndexPair getSpan2() {
+	public IndexSpan getSpan2() {
 		return this.span2;
 	}
 	
@@ -71,6 +71,24 @@ public class Interval implements java.io.Serializable, Comparable<Interval> {
 			this.first.incrementIndex2(shiftVal);
 			this.last.incrementIndex2(shiftVal);
 		}
+	}
+	
+	public int calcGapSpan1(Interval other) {
+		return calcGapSpan(this.getSpan1(), other.getSpan1());
+	}
+	
+	public int calcGapSpan2(Interval other) {
+		return calcGapSpan(this.getSpan2(), other.getSpan2());
+	}
+	
+	private int calcGapSpan(IndexSpan spanA, IndexSpan spanB) {
+		IndexSpan intersection = spanA.intersection(spanB);
+		if (intersection != null) {
+			return 0;
+		}
+		return Math.max(spanA.getStart()-spanB.getEnd(), spanB.getStart()-spanA.getEnd());
+		
+		
 	}
 
 	@Override

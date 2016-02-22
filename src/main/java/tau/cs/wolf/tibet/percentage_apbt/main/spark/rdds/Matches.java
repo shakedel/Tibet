@@ -3,12 +3,12 @@ package tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds;
 import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 
-public class Matches extends PairsToMatch {
+public class Matches<R> extends PairsToMatch<R> {
 	private static final long serialVersionUID = 1L;
 	
 	private final AppResults appResults;
 	
-	public Matches(FileContent f1, FileContent f2, AppResults appResults) {
+	public Matches(FileContent<R> f1, FileContent<R> f2, AppResults appResults) {
 		super(f1, f2, null);
 		this.appResults = appResults;
 	}
