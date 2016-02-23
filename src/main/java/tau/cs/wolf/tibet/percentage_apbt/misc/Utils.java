@@ -28,6 +28,10 @@ public class Utils {
 	public static interface Formatter<T> {
 		public String format(T t);
 	}
+	
+	public static interface Parser<T> {
+		public T parse(String str);
+	}
 
 	public static String formatDuration(long milliseconds) {
 		long seconds = milliseconds / 1000;
@@ -100,16 +104,6 @@ public class Utils {
 		}
 		
 	}
-	
-//	public static <R> Apbt<R>  newApbt(String apbtClassName) {
-//		try {
-//			@SuppressWarnings("unchecked")
-//			Class<? extends Apbt<R>> clazz = (Class<? extends Apbt<R>>) Class.forName(apbtClassName);
-//			return clazz.newInstance();
-//		} catch (Exception e) {
-//			throw new IllegalArgumentException(e);
-//		}
-//	}
 	
 	public static class PatternFileFilter implements IOFileFilter {
 

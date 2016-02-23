@@ -21,9 +21,10 @@ public final class RunApbt<R> implements VoidFunction<PairsToMatch<R>>, Serializ
 		
 		Args args = new Args(f1.getFile(), f2.getFile(), pairToMatch.getOutFile(), AppStage.UNION, DataType.INT);
 		
-		AppMain app = new AppMain(args, null, true);
+		AppMain app = new AppMain(args, null);
 		app.setup(f1.getContent(), f2.getContent());
 		app.run();
+		app.writeResults();
 		LoggerFactory.getLogger("matches").error(String.format("Finished matching file: %s, %s", f1.getFile(), f2.getFile()));
 	}
 }

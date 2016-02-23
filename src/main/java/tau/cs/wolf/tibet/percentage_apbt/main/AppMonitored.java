@@ -16,7 +16,9 @@ public class AppMonitored extends AppBase {
 
 	public static void main(String[] args) {
 		try {
-			new AppMonitored(args).run();
+			AppBase app = new AppMonitored(args);
+			app.run();
+			app.writeResults();
 		} catch (CmdLineException e) {
 			System.err.println(e.getMessage());
 			System.exit(1);
@@ -24,21 +26,23 @@ public class AppMonitored extends AppBase {
 	}
 
 	private final Props props;
+	private final AppBase monitoredApp;
 	
-	public AppMonitored(Args args, Props props, boolean writeResults) {
-		super(args, props, writeResults);
+	public AppMonitored(Args args, Props props) {
+		super(args, props);
 		this.props = props;
 		ArgsUtils.overrideArgsWithProps(args, this.props);
+		
+		this.monitoredApp = new AppMain(this.args, this.props);
 	}
 
 	private AppMonitored(String[] args) throws CmdLineException {
-		this(new Args(args), null, true);
+		this(new Args(args), null);
 	}
 
 	@Override
 	protected AppResults calcResults() {
-		AppBase app = new AppMain(this.args, this.props, true);
-		Thread appThread = new Thread(app, "App");
+		Thread appThread = new Thread(this.monitoredApp, "App");
 		final ThreadTimeMonitor monitor = new ThreadTimeMonitor(logger, appThread, args.getPollDuration(), appThread.getName());
 		Thread.UncaughtExceptionHandler handler = new Thread.UncaughtExceptionHandler() {
 		    public void uncaughtException(Thread th, Throwable ex) {
@@ -52,7 +56,7 @@ public class AppMonitored extends AppBase {
 		appThread.start();
 		try {
 			appThread.join();
-			return app.getResults();
+			return this.monitoredApp.getResults();
 		} catch (InterruptedException e) {
 			throw new IllegalStateException(e);
 		} finally {
@@ -63,6 +67,11 @@ public class AppMonitored extends AppBase {
 				throw new IllegalStateException(e);
 			}
 		}
+	}
+
+	@Override
+	protected void _writeResults(AppResults results) {
+		this.monitoredApp.writeResults();
 	}
 
 }

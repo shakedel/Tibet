@@ -16,21 +16,18 @@ public abstract class AppBase implements Runnable {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	protected final Args args;
 	protected final Props props;
-	protected final boolean writeResults;
 	
 	private AppResults results;
 	
-	AppBase(Args args, Props _props, boolean writeResults) {
+	AppBase(Args args, Props _props) {
 		this.args = args;
 		this.props = _props == null ? PropsBuilder.defaultProps() : _props;
-		
-		this.writeResults = writeResults;
 		
 		ArgsUtils.overrideArgsWithProps(args, this.props);
 	}
 	
 	public AppBase(Args args, boolean writeResults) {
-		this(args, null, writeResults);
+		this(args, null);
 	}
 
 	public AppResults getResults() {
@@ -39,6 +36,15 @@ public abstract class AppBase implements Runnable {
 		}
 		return this.results;
 	}
+	
+	public void writeResults() {
+		if (this.results == null) {
+			throw new IllegalStateException("Cannot write results before run() was called");
+		}
+		this._writeResults(this.results);
+	}
+	
+	protected abstract void _writeResults(AppResults results);
 
 	@Override
 	public void run() {

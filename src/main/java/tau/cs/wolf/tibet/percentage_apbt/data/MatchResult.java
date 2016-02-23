@@ -1,5 +1,7 @@
 package tau.cs.wolf.tibet.percentage_apbt.data;
 
+import java.util.regex.Pattern;
+
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class MatchResult implements Comparable<MatchResult> {
@@ -7,8 +9,8 @@ public class MatchResult implements Comparable<MatchResult> {
 	private final Interval interval;
 	private final double score;
 
-	public MatchResult(Interval workInterval, double score) {
-		this.interval = workInterval;
+	public MatchResult(Interval interval, double score) {
+		this.interval = interval;
 		this.score = score;
 	}
 	
@@ -43,9 +45,7 @@ public class MatchResult implements Comparable<MatchResult> {
 		return str;
 	}
 
-	public static class DefaultFormatter
-			implements
-				Utils.Formatter<MatchResult> {
+	public static class DefaultFormatter implements Utils.Formatter<MatchResult> {
 		@Override
 		public String format(MatchResult match) {
 			StringBuilder sb = new StringBuilder();
@@ -61,7 +61,35 @@ public class MatchResult implements Comparable<MatchResult> {
 
 			return sb.toString();
 		}
+	}
+	
+	private static final Pattern defaultParserDelimiter = Pattern.compile("\\s*,\\s*");
+	
+	public static class DefaultParser implements Utils.Parser<MatchResult> {
 
+		@Override
+		public MatchResult parse(String str) throws IllegalArgumentException {
+			String[] splitStr = defaultParserDelimiter.split(str, 6);
+			if (splitStr.length != 5) {
+				throw new IllegalArgumentException("each line must have exactly 5 comma delimited fields: "+str);
+			}
+			int[] indices = new int[4];
+			for (int i=0; i<4; i++) {
+				try {
+					indices[i] = Integer.parseInt(splitStr[i]);
+				} catch (NumberFormatException e) {
+					throw new IllegalArgumentException("field with index "+i+" is not an Integer", e);
+				}
+			}
+			double score;
+			try {
+				score = Double.parseDouble(splitStr[4]);
+			} catch (NumberFormatException e) {
+				throw new IllegalArgumentException("field with index "+4+" is not a Double", e);
+			}
+			return new MatchResult(Interval.newIntervalByStartEnd(new IndexPair(indices[0], indices[1]), new IndexPair(indices[2], indices[3])), score);
+		}
+		
 	}
 
 	@Override

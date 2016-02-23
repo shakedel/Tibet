@@ -21,11 +21,9 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppMain extends AppBase {
 
-	private final String outFileBase;
 	
-	public AppMain(Args args, Props props, boolean writeResults) {
-		super(args, props, writeResults);
-		this.outFileBase = FilenameUtils.removeExtension(args.getOutFile().getPath());
+	public AppMain(Args args, Props props) {
+		super(args, props);
 	}
 	
 	private Slicable<?> seq1 = null;
@@ -56,48 +54,63 @@ public class AppMain extends AppBase {
 		
 		switch (args.getAppStage()) {
 			case APBT: {
-				return doApbt(matchesContainer, args.getOutFile());
+				return doApbt(matchesContainer);
 			}
 			case UNION: {
-				return doUnion(matchesContainer, args.getOutFile());
+				return doUnion(matchesContainer);
 			}
 			case ALIGNMENT: {
-				return doAlignment(matchesContainer, args.getOutFile());
+				return doAlignment(matchesContainer);
 			}
 			default: {
 				throw new IllegalArgumentException("Unknown value: "+args.getAppStage());
 			}
-				
+		}
+	}
+	
+	@Override
+	protected void _writeResults(AppResults results) {
+		String outFileBase = FilenameUtils.removeExtension(args.getOutFile().getPath());
+		switch (args.getAppStage()) {
+			case APBT: {
+				Utils.writeMatches(this.args.getOutFile(), results.getApbtMatches(), null);
+				break;
+			}
+			case UNION: {
+				Utils.writeMatches(new File(outFileBase + ".apbt.txt"), results.getApbtMatches(), null);
+				Utils.writeMatches(this.args.getOutFile(), results.getUnitedMatches(), null);
+				break;
+			}
+			case ALIGNMENT: {
+				Utils.writeMatches(new File(outFileBase + ".apbt.txt"), results.getApbtMatches(), null);
+				Utils.writeMatches(new File(outFileBase + ".union.txt"), results.getUnitedMatches(), null);
+				Utils.writeMatches(this.args.getOutFile(), results.getAlignedMatches(), null);
+				break;
+			}
+			default: {
+				throw new IllegalArgumentException("Unknown value: "+args.getAppStage());
+			}
 		}
 	}
 
-	private AppResults doApbt(MatchesContainer matchesContainer, File outFile) {
+	private AppResults doApbt(MatchesContainer matchesContainer) {
 		List<MatchResult> apbtMatches = matchesContainer.getResults();
-		if (writeResults) {
-			Utils.writeMatches(outFile, apbtMatches, null);
-		}
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished APBT stage");
 		return new AppResults(apbtMatches, null, null);
 	}
 	
-	private AppResults doUnion(MatchesContainer matchesContainer, File outFile) {
-		AppResults res = doApbt(matchesContainer, new File(outFileBase + ".apbt.txt"));
+	private AppResults doUnion(MatchesContainer matchesContainer) {
+		AppResults res = doApbt(matchesContainer);
 		List<MatchResult> unitedMatches = new Union(props, args).uniteMatches(res.getApbtMatches());
-		if (writeResults) {
-			Utils.writeMatches(outFile, unitedMatches, null);
-		}
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished UNION stage");
 		res.setUnitedMatches(unitedMatches);
 		return res;
 	}
 	
 	@SuppressWarnings({"unchecked", "rawtypes"})
-	private AppResults doAlignment(MatchesContainer matchesContainer, File outFile) {
-		AppResults res = doUnion(matchesContainer, new File(outFileBase + ".union.txt"));
+	private AppResults doAlignment(MatchesContainer matchesContainer) {
+		AppResults res = doUnion(matchesContainer);
 		List<MatchResult> alignedMatches = new Alignment(props, args).alignMatches(res.getUnitedMatches(), seq1, seq2);
-		if (writeResults) {
-			Utils.writeMatches(outFile, alignedMatches, null);
-		}
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished ALIGNMENT stage");
 		res.setAlignedMatches(alignedMatches);
 		return res;
@@ -105,7 +118,9 @@ public class AppMain extends AppBase {
 	
 	public static void main(String[] args) {
 		try {
-			new AppMain(new Args(args), null, true).run();
+			AppMain app = new AppMain(new Args(args), null);
+			app.run();
+			app.writeResults();
 		} catch (CmdLineException e) {
 			System.err.println(e.getMessage());
 			System.exit(1);

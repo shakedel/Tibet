@@ -21,7 +21,7 @@ public final class CalcApbt<R> implements Function<FileContentPair<R>, Matches<R
 		
 		Args args = new Args(f1.getFile(), f2.getFile(), null, AppStage.ALIGNMENT, DataType.INT);
 		
-		AppMain app = new AppMain(args, null, false);
+		AppMain app = new AppMain(args, null);
 		app.setup(f1.getContent(), f2.getContent());
 		app.run();
 		return new Matches<R>(f1, f2, app.getResults());
