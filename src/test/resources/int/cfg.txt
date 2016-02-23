@@ -1,0 +1,8 @@
+#numThreads = <defaults to number of threads provided to JVM>
+#stepSize = 12500
+#readSize = 25000
+minLength = 10
+maxError = 3
+#timeout = PM10M
+#minDistanceUnion = 10
+#localAlignPadRatio = 0.12

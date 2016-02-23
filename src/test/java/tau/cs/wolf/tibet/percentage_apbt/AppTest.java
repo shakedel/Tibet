@@ -54,6 +54,9 @@ public class AppTest extends TestCase {
 			{ "/char/in1.txt", "/char/in2.txt", "/char/out.apbt.txt", AppStage.APBT, DataType.CHAR, "/char/cfg.txt" }, 
 			{ "/char/in1.txt", "/char/in2.txt", "/char/out.union.txt", AppStage.UNION, DataType.CHAR, "/char/cfg.txt" }, 
 			{ "/char/in1.txt", "/char/in2.txt", "/char/out.txt", AppStage.ALIGNMENT, DataType.CHAR, "/char/cfg.txt" }, 
+			{ "/int/in1.txt", "/int/in2.txt", "/int/out.apbt.txt", AppStage.APBT, DataType.INT, "/int/cfg.txt" }, 
+			{ "/int/in1.txt", "/int/in2.txt", "/int/out.union.txt", AppStage.UNION, DataType.INT, "/int/cfg.txt" }, 
+			{ "/int/in1.txt", "/int/in2.txt", "/int/out.txt", AppStage.ALIGNMENT, DataType.INT, "/int/cfg.txt" }, 
 		});
 	}
 	
