@@ -23,8 +23,8 @@
 	<appender name="MATCHES" class="org.apache.log4j.RollingFileAppender">
 		<param name="threshold" value="INFO" />
 	    <param name="append" value="false" />
-	    <param name="maxFileSize" value="10MB" />
-	    <param name="maxBackupIndex" value="10" />
+	    <param name="maxFileSize" value="50MB" />
+	    <param name="maxBackupIndex" value="1000" />
 	    <param name="file" value="work/logs/matches.txt" />
 	    <layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%m%n" />

@@ -20,7 +20,7 @@ public class Matches<R> extends PairsToMatch<R> {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("\n Comparison between %s and %s\n", getF1().getFile().getPath(), getF2().getFile().getPath()));
+		sb.append(String.format("Comparison between %s and %s\n", getF1().getFile().getPath(), getF2().getFile().getPath()));
 		sb.append("APBT MATCHES:\n");
 		for (MatchResult match: appResults.getApbtMatches()) {
 			sb.append(match);

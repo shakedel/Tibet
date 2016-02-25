@@ -32,7 +32,7 @@ public class PairsToMatch<R> implements Serializable {
 	
 	@Override
 	public String toString() {
-		return String.format("%s (%s, %s)", outFile, f1, f2);
+		return String.format("%s (%s, %s)", outFile, f1.getFile(), f2.getFile());
 	}
 	
 }

@@ -34,21 +34,14 @@ public class AppSparkLog<R> implements Runnable {
 	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(AppSparkLog.class);
 	
-	private final SparkConf sparkConf;
+	private final JavaSparkContext ctx;
 	
-	public AppSparkLog(SparkConf sparkConf) {
-		this.sparkConf = sparkConf;
+	public AppSparkLog(JavaSparkContext ctx) {
+		this.ctx = ctx;
 	}
 	
 	public void run() {
-		try (JavaSparkContext ctx = new JavaSparkContext(this.sparkConf)) {
-			this.spark(ctx);
-		}
-
-	}
-	
-	private void spark(JavaSparkContext ctx) {
-		File inDir = new File("src/test/resources/stem");
+		File inDir = new File("src/test/resources/int");
 		String fileFilterPattern = "in\\d+\\.txt";
 		String dirFilterPattern = null;
 		
@@ -71,7 +64,9 @@ public class AppSparkLog<R> implements Runnable {
 	public static void main(String[] args) throws IOException, CmdLineException {
 		// Local mode
 		SparkConf sparkConf = new SparkConf().setAppName("Tibet").setMaster("local");
-		new AppSparkLog<int[]>(sparkConf).run();
+		try (JavaSparkContext ctx = new JavaSparkContext(sparkConf)) {
+			new AppSparkLog<int[]>(ctx).run();
+		}
 	}
 	
 }

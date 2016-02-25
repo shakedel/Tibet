@@ -5,17 +5,17 @@ import java.io.File;
 import org.joda.time.Duration;
 import org.joda.time.Period;
 import org.kohsuke.args4j.CmdLineException;
-import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
-import tau.cs.wolf.tibet.percentage_apbt.misc.Utils.OutputStreamGobbler;
 
 
 public class Args extends ArgsBase {
 
+	private static final long serialVersionUID = 1L;
+	
 	private File inFile1;
 	@Option(name = "-f1", required = true, metaVar = "FILE", usage = "1st input file")
 	public void setInFile1(File f) throws CmdLineException {
@@ -52,22 +52,8 @@ public class Args extends ArgsBase {
 		return outFile;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public Args(String[] args) throws CmdLineException {
-		CmdLineParser parser = new CmdLineParser(this);
-		try {
-			// parse the arguments.
-			parser.parseArgument(args);
-			if (this.help) {
-				parser.printUsage(System.out);
-				System.out.println();
-			}
-		} catch (CmdLineException e) {
-			OutputStreamGobbler osg = new OutputStreamGobbler();
-			parser.printUsage(osg.get());
-			throw new CmdLineException(e.getMessage()+"\n"+osg.toString());
-		}
-		
+		super(args);
 	}
 	
 	private Duration pollDuration;
