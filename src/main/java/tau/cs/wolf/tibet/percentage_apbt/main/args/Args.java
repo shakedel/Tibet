@@ -12,7 +12,7 @@ import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 
-public class Args extends ArgsBase {
+public class Args extends ArgsCommon {
 
 	private static final long serialVersionUID = 1L;
 	

@@ -6,16 +6,16 @@ import org.slf4j.LoggerFactory;
 import scala.Serializable;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppMain;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PairsToMatch;
 
 public final class RunApbt<R> implements VoidFunction<PairsToMatch<R>>, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private final ArgsBase args;
+	private final ArgsCommon args;
 	
-	public RunApbt(ArgsBase args) {
+	public RunApbt(ArgsCommon args) {
 		this.args = args;
 	}
 	

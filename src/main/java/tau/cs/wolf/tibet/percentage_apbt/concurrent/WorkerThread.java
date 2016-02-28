@@ -7,6 +7,7 @@ import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.data.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Apbt;
 import tau.cs.wolf.tibet.percentage_apbt.matching.ProcessType;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
@@ -25,7 +26,7 @@ public class WorkerThread<R extends java.lang.reflect.Array> extends BaseModule 
 	private final MatchesContainer rContainer;
 	private final int threadId;
 
-	public WorkerThread(Props props, ArgsBase args, Slicable<R> seq1, Slicable<R> seq2, Interval workInterval, MatchesContainer rContainer, int threadId) {
+	public WorkerThread(Props props, ArgsCommon args, Slicable<R> seq1, Slicable<R> seq2, Interval workInterval, MatchesContainer rContainer, int threadId) {
 		super(props, args);
 		this.workInterval = workInterval;
 		this.seq1 = seq1;

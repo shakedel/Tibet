@@ -8,13 +8,13 @@ import tau.cs.wolf.tibet.percentage_apbt.data.IndexSpan;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.data.Slicable;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 public class Alignment<R> extends BaseModule {
 	
-	public Alignment(Props props, ArgsBase args) {
+	public Alignment(Props props, ArgsCommon args) {
 		super(props, args);
 	}
 

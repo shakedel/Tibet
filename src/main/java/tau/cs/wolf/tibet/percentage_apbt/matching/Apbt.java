@@ -18,6 +18,7 @@ import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 /**
@@ -59,7 +60,7 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 	private boolean[] emptyRow;
 
 	@SuppressWarnings("unchecked")
-	public void setup(Slicable<? extends R> seq1, Slicable<? extends R> seq2, ProcessType processBy, ArgsBase args, Props props) {
+	public void setup(Slicable<? extends R> seq1, Slicable<? extends R> seq2, ProcessType processBy, ArgsCommon args, Props props) {
 		if (args.getMinLength() > props.getMaxMatchLength()) {
 			throw new IllegalStateException("minimum match legth exceeds maximum alowed match length property");
 		}

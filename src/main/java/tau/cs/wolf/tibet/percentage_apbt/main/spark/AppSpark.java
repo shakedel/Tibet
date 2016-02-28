@@ -19,7 +19,7 @@ import org.kohsuke.args4j.CmdLineException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CartesFileContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.ConsolidateIndex;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.ReadFile;
@@ -42,12 +42,12 @@ public class AppSpark<R> implements Runnable {
 	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(AppSpark.class);
 	
-	private final Broadcast<ArgsBase> broadcastArgs;
+	private final Broadcast<ArgsCommon> broadcastArgs;
 	private final JavaSparkContext ctx;
 	private final File outFile;
 	private final Broadcast<File> broadcastMatchesDir;
 
-	public AppSpark(ArgsBase args, JavaSparkContext ctx) throws IOException {
+	public AppSpark(ArgsCommon args, JavaSparkContext ctx) throws IOException {
 		this.broadcastArgs = ctx.broadcast(args);
 		this.ctx = ctx;
 		
@@ -97,7 +97,7 @@ public class AppSpark<R> implements Runnable {
 		// Local mode
 		SparkConf sparkConf = new SparkConf().setAppName("AppSpark").setMaster("local");
 		try (JavaSparkContext ctx = new JavaSparkContext(sparkConf)) {
-			new AppSpark(new ArgsBase(args), ctx).run();
+			new AppSpark(new ArgsCommon(args), ctx).run();
 		}
 	}
 

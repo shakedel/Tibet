@@ -10,13 +10,13 @@ import tau.cs.wolf.tibet.percentage_apbt.data.IndexSpan;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 public class Union extends BaseModule {
 
-	public Union(Props props, ArgsBase args) {
+	public Union(Props props, ArgsCommon args) {
 		super(props, args);
 	}
 
