@@ -1,64 +1,73 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
-import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.Option;
 
-import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
-import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
-
-public class ArgsSpark extends ArgsCommon {
-
-	private static final long serialVersionUID = 1L;
-	
-	private File inDir;
-	@SuppressWarnings("deprecation")
-	@Option(name = "-d", required = true, metaVar = "DIR", usage = "input dir")
-	public void setInDir(File f) throws CmdLineException {
-		if (!f.isDirectory()) {
-			throw new CmdLineException("input dir is not a directory: "+f.getPath());
-		}
-		ArgsUtils.assertFileExists(f, "-f2");
-		this.inDir = f;
-	}
-	public File getInDir() {
-		return inDir;
-	}
-	
-	private File outFile;
-	@SuppressWarnings("deprecation")
-	@Option(name = "-out", required = true, metaVar = "FILE", usage = "output file")
-	public void setOutFile(File f) throws CmdLineException {
-		if (f.isFile()) {
-			throw new CmdLineException("output file already exists: "+f.getParent());
-		}
-		if (!f.getParentFile().isDirectory()) {
-			throw new CmdLineException("output file directory does not exist: "+f.getParent());
-		}
-		this.outFile = f;
-	}
-	public File getOutFile() {
-		return outFile;
-	}
-	
-	private Pattern filenamePattern;
-	@Option(name = "-p", aliases={"--patern"}, required = true, metaVar = "FILE", usage = "output file")
-	public void setFilenamePattern(String patternStr) throws CmdLineException {
-		this.filenamePattern = Pattern.compile(patternStr);
-	}
-	public Pattern getFilenamePattern() {
-		return this.filenamePattern;
-	}
-	
-	
-	public ArgsSpark(AppStage appStage, DataType dataType) {
-		super(appStage, dataType);
-	}
-
+public class ArgsSpark extends ArgsBase {
 	public ArgsSpark(String[] args) throws CmdLineException {
 		super(args);
 	}
 
+	private static final long serialVersionUID = 1L;
+	
+	private URI inDir;
+	@SuppressWarnings("deprecation")
+	@Option(name = "-d", required = true, metaVar = "URI", usage = "input dirirectory")
+	public void setInDir(String inDir) throws CmdLineException {
+		try {
+			this.inDir = new URI(inDir);
+		} catch (URISyntaxException e) {
+			new CmdLineException("Error parsing URI for -d option", e);
+		}
+	}
+	public URI getInDir() {
+		return inDir;
+	}
+	
+	private URI outFile;
+	@SuppressWarnings("deprecation")
+	@Option(name = "-outFile", required = true, metaVar = "URI", usage = "output file")
+	public void setOutFile(String uriStr) throws CmdLineException {
+		try {
+			outFile = new URI(uriStr);
+		} catch (URISyntaxException e) {
+			throw new CmdLineException("Error parsing URI for -outFile option", e);
+		}
+	}
+	public URI getOutFile() {
+		return outFile;
+	}
+	
+	private URI outDir;
+	@SuppressWarnings("deprecation")
+	@Option(name = "-outDir", metaVar = "URI", usage = "output directory")
+	public void setOutDir(String uriStr) throws CmdLineException {
+		try {
+			outDir = new URI(uriStr);
+		} catch (URISyntaxException e) {
+			throw new CmdLineException("Error parsing URI for -outDir option", e);
+		}
+	}
+	public URI getOutDir() {
+		return outDir;
+	}
+	
+	private Pattern filenamePattern;
+	@SuppressWarnings("deprecation")
+	@Option(name = "-p", aliases={"--pattern"}, metaVar = "REGEX", usage = "pattern to filter file names")
+	public void setFilenamePattern(String patternStr) throws CmdLineException {
+		try {
+			this.filenamePattern = Pattern.compile(patternStr);
+		} catch(PatternSyntaxException e) {
+			throw new CmdLineException("Error parsing REGEX for -p option", e);
+		}
+	}
+	public Pattern getFilenamePattern() {
+		return this.filenamePattern;
+	}
 }
