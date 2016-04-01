@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import scala.Serializable;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
 
-public final class UniqueFilePairFilter<R> implements Function<FileContentPair<R>, Boolean>, Serializable {
+public final class FilterPairUniqueFile<R> implements Function<FileContentPair<R>, Boolean>, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@SuppressWarnings("unused")

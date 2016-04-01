@@ -9,9 +9,9 @@ import scala.Serializable;
 import scala.Tuple2;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.AppSpark;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PairsToMatch;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FilePairsToMatch;
 
-public final class ConsolidateIndex<R> implements Function<Tuple2<FileContentPair<R>,Long>, PairsToMatch<R>>, Serializable {
+public final class ConsolidateIndex<R> implements Function<Tuple2<FileContentPair<R>,Long>, FilePairsToMatch<R>>, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private final Broadcast<File> broadcastMatchesDir;
@@ -21,9 +21,9 @@ public final class ConsolidateIndex<R> implements Function<Tuple2<FileContentPai
 	}
 
 	@Override
-	public PairsToMatch<R> call(Tuple2<FileContentPair<R>, Long> v1) throws Exception {
+	public FilePairsToMatch<R> call(Tuple2<FileContentPair<R>, Long> v1) throws Exception {
 		String outFileStr = AppSpark.genOutFileName(v1._2);
 		File outFile = new File(this.broadcastMatchesDir.getValue(), outFileStr);
-		return new PairsToMatch<R>(v1._1.getFileContent1(), v1._1.getFileContent2(), outFile);
+		return new FilePairsToMatch<R>(v1._1.getFileContent1(), v1._1.getFileContent2(), outFile);
 	}
 }

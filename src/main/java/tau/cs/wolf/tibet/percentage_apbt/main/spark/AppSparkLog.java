@@ -19,11 +19,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CalcApbt;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CalcApbtFile;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CartesFileContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.LogResults;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.ReadFile;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.UniqueFilePairFilter;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairUniqueFile;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
@@ -56,8 +56,8 @@ public class AppSparkLog<R> implements Runnable {
 		JavaRDD<FileContent<R>> fileContent  = fileRDD.map(new ReadFile<R>(DataType.INT));
 		JavaPairRDD<FileContent<R>, FileContent<R>> crossedFiles = fileContent.cartesian(fileContent);
 		JavaRDD<FileContentPair<R>> allPairs = crossedFiles.map(new CartesFileContent<R>());
-		JavaRDD<FileContentPair<R>> filteredPairs = allPairs.filter(new UniqueFilePairFilter<R>());
-		JavaRDD<Matches<R>> matches = filteredPairs.map(new CalcApbt<R>());
+		JavaRDD<FileContentPair<R>> filteredPairs = allPairs.filter(new FilterPairUniqueFile<R>());
+		JavaRDD<Matches<R>> matches = filteredPairs.map(new CalcApbtFile<R>());
 		matches.foreach(new LogResults<R>());
 	}
 	

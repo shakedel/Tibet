@@ -11,7 +11,7 @@ import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.FileContentPair;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
 
-public final class CalcApbt<R> implements Function<FileContentPair<R>, Matches<R>>, Serializable {
+public final class CalcApbtFile<R> implements Function<FileContentPair<R>, Matches<R>>, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Override

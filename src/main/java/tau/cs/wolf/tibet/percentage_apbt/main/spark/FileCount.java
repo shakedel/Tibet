@@ -9,8 +9,8 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSpark;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterFilenamePattern;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.SparkUtils;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.StringPatternFilter;
 
 public class FileCount implements Runnable {
 
@@ -20,6 +20,7 @@ public class FileCount implements Runnable {
 	public FileCount(ArgsSpark args, JavaSparkContext ctx) {
 		this.args = args;
 		this.ctx = ctx;
+		ctx.setLogLevel("WARN");
 	}
 
 	public static void main(String[] args) throws IOException, CmdLineException {
@@ -34,8 +35,8 @@ public class FileCount implements Runnable {
 	public void run() {
 		 JavaPairRDD<String,String> filesAndText = this.ctx.wholeTextFiles(this.args.getInDir().toString());
 		 JavaRDD<String> files = filesAndText.keys();
-		 JavaRDD<String> filteredFiles = files.filter(new StringPatternFilter(this.args.getFilenamePattern()));
-		 System.out.println("Number Of Files: "+SparkUtils.countSafe(filteredFiles));
+		 JavaRDD<String> filteredFiles = files.filter(new FilterFilenamePattern(this.args.getFilenamePattern()));
+		 System.out.println("XXX: Number Of Files: "+SparkUtils.countSafe(filteredFiles));
 	}
 
 }

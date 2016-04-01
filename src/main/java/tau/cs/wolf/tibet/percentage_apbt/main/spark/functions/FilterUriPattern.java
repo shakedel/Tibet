@@ -8,7 +8,7 @@ import org.apache.spark.api.java.function.Function;
 
 import scala.Tuple2;
 
-public class UriPatternFilter {
+public class FilterUriPattern {
 
 	public static <R> Function<Tuple2<String, R>, Boolean> byTuple2Key(Pattern pattern) {
 		return new ByTuple2Key<R>(pattern);

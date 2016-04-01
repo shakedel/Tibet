@@ -3,7 +3,7 @@ package tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds;
 import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 
-public class Matches<R> extends PairsToMatch<R> {
+public class Matches<R> extends FilePairsToMatch<R> {
 	private static final long serialVersionUID = 1L;
 	
 	private final AppResults appResults;
@@ -20,7 +20,7 @@ public class Matches<R> extends PairsToMatch<R> {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("Comparison between %s and %s\n", getF1().getFile().getPath(), getF2().getFile().getPath()));
+		sb.append(String.format("Comparison between %s and %s\n", getF1().getFile().getName(), getF2().getFile().getName()));
 		sb.append("APBT MATCHES:\n");
 		for (MatchResult match: appResults.getApbtMatches()) {
 			sb.append(match);

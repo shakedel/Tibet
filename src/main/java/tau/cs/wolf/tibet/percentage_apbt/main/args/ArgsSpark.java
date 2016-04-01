@@ -1,59 +1,65 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.IOException;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.Option;
 
-public class ArgsSpark extends ArgsBase {
+public class ArgsSpark extends ArgsCommon {
 	public ArgsSpark(String[] args) throws CmdLineException {
 		super(args);
 	}
 
 	private static final long serialVersionUID = 1L;
 	
-	private URI inDir;
-	@SuppressWarnings("deprecation")
-	@Option(name = "-d", required = true, metaVar = "URI", usage = "input dirirectory")
+	private Path inDir;
+	@Option(name = "-d", required = true, metaVar = "PATH", usage = "input directory")
 	public void setInDir(String inDir) throws CmdLineException {
-		try {
-			this.inDir = new URI(inDir);
-		} catch (URISyntaxException e) {
-			new CmdLineException("Error parsing URI for -d option", e);
-		}
+		this.inDir = new Path(inDir);
 	}
-	public URI getInDir() {
+	public Path getInDir() {
 		return inDir;
 	}
 	
-	private URI outFile;
+	private Path outFile;
 	@SuppressWarnings("deprecation")
-	@Option(name = "-outFile", required = true, metaVar = "URI", usage = "output file")
-	public void setOutFile(String uriStr) throws CmdLineException {
+	@Option(name = "-outFile", required = true, metaVar = "PATH", usage = "output file")
+	public void setOutFile(String outFileStr) throws CmdLineException {
+		Path outFile = new Path(outFileStr);
+		
 		try {
-			outFile = new URI(uriStr);
-		} catch (URISyntaxException e) {
-			throw new CmdLineException("Error parsing URI for -outFile option", e);
+			FileSystem fs = FileSystem.get(new Configuration());
+			if (fs.exists(outFile)) {
+				throw new IllegalArgumentException("Output file (-outFile option) already exists");
+			}
+		} catch (IOException e) {
+			throw new CmdLineException(e);
 		}
 	}
-	public URI getOutFile() {
+	public Path getOutFile() {
 		return outFile;
 	}
 	
-	private URI outDir;
+	private Path outDir;
 	@SuppressWarnings("deprecation")
-	@Option(name = "-outDir", metaVar = "URI", usage = "output directory")
-	public void setOutDir(String uriStr) throws CmdLineException {
+	@Option(name = "-outDir", metaVar = "PATH", usage = "output directory")
+	public void setOutDir(String outDirStr) throws CmdLineException {
+		outDir = new Path(outDirStr);
 		try {
-			outDir = new URI(uriStr);
-		} catch (URISyntaxException e) {
-			throw new CmdLineException("Error parsing URI for -outDir option", e);
+			FileSystem fs = FileSystem.get(new Configuration());
+			if (fs.exists(outDir)) {
+				throw new IllegalArgumentException("Output dir (-outDir option) already exists");
+			}
+		} catch (IOException e) {
+			throw new CmdLineException(e);
 		}
 	}
-	public URI getOutDir() {
+	public Path getOutDir() {
 		return outDir;
 	}
 	

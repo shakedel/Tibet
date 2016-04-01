@@ -19,6 +19,7 @@ import org.kohsuke.args4j.CmdLineException;
 
 import scala.Tuple2;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSpark;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairKeyFilenamePattern;
 import tau.cs.wolf.tibet.percentage_apbt.misc.SyllableScanner;
 
 public class UniqueSyllables implements Runnable {
@@ -44,7 +45,8 @@ public class UniqueSyllables implements Runnable {
 		try {
 			FileInputFormat.setInputDirRecursive(Job.getInstance(), true);
 			JavaPairRDD<String, String> fileAndText = ctx.wholeTextFiles(this.args.getInDir().toString());
-			JavaRDD<String> text = fileAndText.values();
+			JavaPairRDD<String, String> filteredFiles = fileAndText.filter(new FilterPairKeyFilenamePattern(this.args.getFilenamePattern()));
+			JavaRDD<String> text = filteredFiles.values();
 			JavaRDD<Map<String, Integer>> wordCount = text.map(new StringToWordCount());
 			JavaPairRDD<String, Integer> words = wordCount.flatMapToPair(new FlatMap());
 			JavaPairRDD<String, Integer> reducedWordCount = words.reduceByKey(new ReduceAdd());
@@ -53,22 +55,13 @@ public class UniqueSyllables implements Runnable {
 			sorted.cache();
 			JavaPairRDD<Integer, String> coalesced = sorted.coalesce(1);
 			coalesced.saveAsTextFile(this.args.getOutFile().toString());
-			System.out.println("Unique Words Count: " + sorted.count());
-			JavaRDD<Integer> counts = sorted.map(new PairToKey());
+			System.out.println("XXX: Unique Words Count: " + sorted.count());
+			JavaRDD<Integer> counts = sorted.keys();
 			int totalTokens = counts.reduce(new ReduceAdd());
 
-			System.out.println("Total Words Count:" + totalTokens);
+			System.out.println("XXX: Total Words Count:" + totalTokens);
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
-		}
-	}
-
-	private static final class PairToKey implements Function<Tuple2<Integer, String>, Integer> {
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Integer call(Tuple2<Integer, String> v1) throws Exception {
-			return v1._1;
 		}
 	}
 
