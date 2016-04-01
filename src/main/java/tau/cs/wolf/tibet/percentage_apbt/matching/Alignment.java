@@ -7,7 +7,7 @@ import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexSpan;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
-import tau.cs.wolf.tibet.percentage_apbt.data.Slicable;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;

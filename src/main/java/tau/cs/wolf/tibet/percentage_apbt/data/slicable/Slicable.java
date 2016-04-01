@@ -1,4 +1,4 @@
-package tau.cs.wolf.tibet.percentage_apbt.data;
+package tau.cs.wolf.tibet.percentage_apbt.data.slicable;
 
 public interface Slicable<R> {
 	public int length();

@@ -1,68 +1,65 @@
 package tau.cs.wolf.tibet.percentage_apbt.main;
 
-import tau.cs.wolf.tibet.percentage_apbt.data.ArrChar;
-import tau.cs.wolf.tibet.percentage_apbt.data.ArrInt;
-import tau.cs.wolf.tibet.percentage_apbt.data.FileParser;
-import tau.cs.wolf.tibet.percentage_apbt.data.FileParserChar;
-import tau.cs.wolf.tibet.percentage_apbt.data.FileParserInt;
-import tau.cs.wolf.tibet.percentage_apbt.data.Slicable;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParser;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserCharFile;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserCharPath;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserCharString;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntFile;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntPath;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntString;
 
 public class AppUtils {
 
 	@SuppressWarnings("unchecked")
-	public static <R> FileParser<? extends R> getFileParser(DataType dataType) {
+	public static <DATA, SRC> SlicableParser<? extends DATA, ? extends SRC> getParser(DataType dataType, SrcType srcType) {
+		SlicableParser<? extends DATA, ? extends SRC> res = null;
 		switch (dataType) {
 			case INT:
-				return (FileParser<? extends R>) new FileParserInt();
+				switch (srcType) {
+					case FILE: 
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserIntFile();
+						break;
+					case STRING:
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserIntString();
+						break;
+					case PATH:
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserIntPath();
+						break;
+				}
+				break;
 			case CHAR:
-				return (FileParser<? extends R>) new FileParserChar();
-			default:
-				throw new IllegalArgumentException("Unknown value: "+dataType);
+				switch (srcType) {
+					case FILE:
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserCharFile();
+						break;
+					case PATH:  
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserCharPath();
+						break;
+					case STRING: 
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserCharString();
+						break;
+				}
+				break;
 		}
+		if (res == null) {
+			throw new IllegalArgumentException("Unknown dataType: "+dataType+", srcType: "+srcType+" combination.");
+		}
+		return res;
 	}
 	
 	public static enum AppStage {
 		APBT, UNION, ALIGNMENT
 	}
 
+	public static enum SrcType {
+		FILE,
+		STRING,
+		PATH
+	}
+	
 	public static enum DataType {
-		CHAR(new AppClasses<char[]>(ArrChar.class, FileParserChar.class)), 
-		INT(new AppClasses<int[]>(ArrInt.class, FileParserInt.class));
-
-		private final AppClasses<?> appClasses;
-
-		private DataType(AppClasses<?> appClasses) {
-			this.appClasses = appClasses;
-		}
-
-		@SuppressWarnings("unchecked")
-		public <R> AppClasses<R> getAppClasses() {
-			return (AppClasses<R>) appClasses;
-		}
-
+		CHAR, 
+		INT
 	}
 
-	public static class AppClasses<R> {
-		private final Class<? extends Slicable<R>> dataClass;
-		private final Class<? extends FileParser<R>> fileParserClass;
-
-		public AppClasses(
-				Class<? extends Slicable<R>> dataClass,
-				Class<? extends FileParser<R>> fileParserClass) {
-			this.dataClass = dataClass;
-			this.fileParserClass = fileParserClass;
-		}
-
-		public Class<? extends Slicable<?>> getDataClass() {
-			return dataClass;
-		}
-
-		public FileParser<R> newFileParser() {
-			try {
-				return (FileParser<R>) fileParserClass.newInstance();
-			} catch (Exception e) {
-				throw new IllegalStateException(e);
-			}
-		}
-	}
 }

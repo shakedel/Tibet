@@ -12,7 +12,9 @@ import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
 import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
-import tau.cs.wolf.tibet.percentage_apbt.data.Slicable;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParser;
+import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.SrcType;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Alignment;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Union;
@@ -39,10 +41,12 @@ public class AppMain extends AppBase {
 	@Override
 	public AppResults calcResults() {
 		if (this.seq1 == null) {
-			seq1 = (Slicable<?>) AppUtils.getFileParser(args.getDataType()).parse(args.getInFile1());
+			SlicableParser<?, File> parser = (SlicableParser<?, File>) AppUtils.getParser(args.getDataType(), SrcType.FILE);
+			seq1 = parser.parse(args.getInFile1());
 		}
 		if (this.seq2 == null) {
-			seq2 = (Slicable<?>) AppUtils.getFileParser(args.getDataType()).parse(args.getInFile2());
+			SlicableParser<?, File> parser = (SlicableParser<?, File>) AppUtils.getParser(args.getDataType(), SrcType.FILE);
+			seq2 = parser.parse(args.getInFile2());
 		}
 		
 		startTime = System.currentTimeMillis();

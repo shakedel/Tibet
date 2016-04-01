@@ -1,15 +1,17 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.spark;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
+import org.apache.hadoop.fs.Path;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
 import org.kohsuke.args4j.CmdLineException;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSpark;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterFilenamePattern;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.SparkUtils;
 
 public class FileCount implements Runnable {
@@ -39,4 +41,36 @@ public class FileCount implements Runnable {
 		 System.out.println("XXX: Number Of Files: "+SparkUtils.countSafe(filteredFiles));
 	}
 
+	private static class FilterStringPattern implements Function<String, Boolean> {
+		private static final long serialVersionUID = 1L;
+		
+		private final Pattern pattern;
+		
+		public FilterStringPattern(Pattern filenamePattern) {
+			this.pattern = filenamePattern;
+		}
+
+		@Override
+		public Boolean call(String v1) throws Exception {
+			if (pattern == null) {
+				return true;
+			}
+			return this.pattern.matcher(v1).matches();
+		}
+	}
+	
+	
+	private static final class FilterFilenamePattern extends FilterStringPattern {
+		private static final long serialVersionUID = 1L;
+		
+		public FilterFilenamePattern(Pattern filenamePattern) {
+			super(filenamePattern);
+		}
+
+		@Override
+		public Boolean call(String v1) throws Exception {
+			return super.call(new Path(v1).getName());
+		}
+	}
+	
 }

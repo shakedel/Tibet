@@ -1,6 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.misc;
 
-import tau.cs.wolf.tibet.percentage_apbt.data.Slicable;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 
 public class LevenshteinDistance {
 	public static <R> int computeLevenshteinDistance(Slicable<R> seq1, Slicable<R> seq2) {

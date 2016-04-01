@@ -1,5 +1,7 @@
 package tau.cs.wolf.tibet.percentage_apbt.data;
 
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
+
 public class ArrChar implements Slicable<char[]>{
 
 	private final char[] arr;

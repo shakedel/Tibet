@@ -3,6 +3,8 @@ package tau.cs.wolf.tibet.percentage_apbt.data;
 import java.util.Iterator;
 import java.util.List;
 
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
+
 public class ArrInt implements Slicable<int[]>{
 
 	private final int[] arr;
