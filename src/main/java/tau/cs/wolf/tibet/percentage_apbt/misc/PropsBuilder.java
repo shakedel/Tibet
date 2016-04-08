@@ -14,7 +14,6 @@ import org.skife.config.Coercible;
 import org.skife.config.Config;
 import org.skife.config.ConfigurationObjectFactory;
 import org.skife.config.Default;
-import org.skife.config.DefaultNull;
 import org.slf4j.LoggerFactory;
 
 
@@ -22,9 +21,9 @@ public class PropsBuilder {
 	
 	public static final String CFG_PATH_VM_PROP_NAME = "percentage_apbt.cfgPath";
 	
-	public static final String NUM_THREADS_PROP_NAME = "numThreads";
-	public static final String STEP_SIZE_PROP_NAME = "stepSize";
-	public static final String READ_SIZE_PROP_NAME = "readSize";
+//	public static final String NUM_THREADS_PROP_NAME = "numThreads";
+//	public static final String STEP_SIZE_PROP_NAME = "stepSize";
+//	public static final String READ_SIZE_PROP_NAME = "readSize";
 	public static final String MIN_LENGTH_PROP_NAME = "minLength";
 	public static final String MAX_ERROR_PROP_NAME = "maxError";
 	public static final String TIMEOUT_PROP_NAME = "timeout";
@@ -38,11 +37,11 @@ public class PropsBuilder {
 	public static final String POLL_DURATION_PROP_NAME = "pollDuration";
 	public static final String COMPUTE_LEVENSHTEIN_DISTANCE_PROP_NAME = "computeLevenshteinDistance";
 	
-	public static final String STEP_SIZE_DEFAULT_VALUE = "12500";
-	public static final String READ_SIZE_DEFAULT_VALUE = "25000";
+//	public static final String STEP_SIZE_DEFAULT_VALUE = "12500";
+//	public static final String READ_SIZE_DEFAULT_VALUE = "25000";
 	public static final String MIN_LENGTH_DEFAULT_VALUE = "10";
 	public static final String MAX_ERROR_DEFAULT_VALUE = "5";
-	public static final String TIMEOUT_DEFAULT_VALUE = "PT10M"; // 10 minutes
+	public static final String TIMEOUT_DEFAULT_VALUE = "PT30M"; // 30 minutes
 	public static final String MIN_DISTANCE_UNION_DEFAULT_VALUE = "10";
 	public static final String LOCAL_ALIGN_PAD_RATIO_DEFAULT_VALUE = "0.12";
 	public static final String MATCH_AWARD_DEFAULT_VALUE = "1";
@@ -54,17 +53,17 @@ public class PropsBuilder {
 	public static final String COMPUTE_LEVENSHTEIN_DISTANCE_DEFAULT_VALUE = "true";
 	
 	public static interface Props {
-		@Config(NUM_THREADS_PROP_NAME)
-		@DefaultNull
-		public Integer getNumThreads();
-		
-		@Config(STEP_SIZE_PROP_NAME)
-		@Default(STEP_SIZE_DEFAULT_VALUE)
-		public int getStepSize();
-		
-		@Config(READ_SIZE_PROP_NAME)
-		@Default(READ_SIZE_DEFAULT_VALUE)
-		public int getReadSize();
+//		@Config(NUM_THREADS_PROP_NAME)
+//		@DefaultNull
+//		public Integer getNumThreads();
+//		
+//		@Config(STEP_SIZE_PROP_NAME)
+//		@Default(STEP_SIZE_DEFAULT_VALUE)
+//		public int getStepSize();
+//		
+//		@Config(READ_SIZE_PROP_NAME)
+//		@Default(READ_SIZE_DEFAULT_VALUE)
+//		public int getReadSize();
 		
 		@Config(MIN_LENGTH_PROP_NAME)
 		@Default(MIN_LENGTH_DEFAULT_VALUE)

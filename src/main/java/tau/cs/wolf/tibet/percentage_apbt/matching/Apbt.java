@@ -38,6 +38,8 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 
 	Logger logger = LoggerFactory.getLogger(getClass());
 
+	private int counter = 0;
+	
 	/**
 	 * This constant defines the size of a chunk of the matching matrix to be
 	 * processed simultaneously. This speeds up the calculation by decreasing
@@ -180,18 +182,22 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 		}
 		initializeMatrix(startJ, startJ + this.chunkSize + this.maxLength);
 
+		int maxCount = 0;
 		for (int i = 0; i <= this.seq1.length() - this.minLength; i++) {
-
 			for (int j = 0; j <= Math.min(this.chunkSize-1, this.seq2.length() - this.minLength); j++) {
-
+				counter = 0;
 				if (this.matrix[i][j]) {
 					createPaths(i, j, startJ);
+				}
+				if (counter > maxCount) {
+					maxCount = counter;
 				}
 			}
 			// reset the row of state array to use with the next added (i+this.maxLength)-th row:
 			this.state[(i) % this.maxLength] = new int[Math.min(this.chunkSize + this.maxLength, this.seq2.length())][];
 
 		}
+		System.out.println("counter: "+maxCount);
 	}
 
 	/**
@@ -210,6 +216,9 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 	
 	private void continuePath(int startI, int startJ, int currI, int currJ, int currlen, int currdiff, int shiftJ,
 			boolean continueFurther) {
+		counter++;
+//		this.logger.trace(String.format("executing 'cotinuePath(startI=%d, startJ=%d, currI=%d, currJ=%d, currlen=%d, currdiff=%d, shiftJ=%d, continueFurther=%b)", 
+//				startI, startJ, currI, currJ, currlen, currdiff, shiftJ, continueFurther));
 		if (currlen >= this.maxLength)
 			return;
 	
@@ -267,6 +276,8 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 			// eladsh
 //			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length)
 //					&& j < Math.min(currJ + this.maxDiff + 2 - currdiff, this.seq2.length) && !stop; i++, j++) {
+//			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length())
+//					&& j < Math.min(currJ + this.maxDiff + 2 - currdiff, this.seq2.length()) && !stop; i++, j++) {
 			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length())
 					&& j < Math.min(currJ + this.maxDiff + 2 - currdiff, this.matrix[i].length) && !stop; i++, j++) {
 				if (this.matrix[i][j]) {

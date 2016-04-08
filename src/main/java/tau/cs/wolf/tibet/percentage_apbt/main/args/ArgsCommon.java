@@ -4,6 +4,8 @@ import org.joda.time.Duration;
 import org.joda.time.Period;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.Option;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
@@ -11,6 +13,8 @@ import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 public class ArgsCommon extends ArgsBase {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static final Logger logger = LoggerFactory.getLogger(ArgsCommon.class); 
 	
 	public ArgsCommon(String[] args) throws CmdLineException {
 		super(args);
@@ -46,9 +50,11 @@ public class ArgsCommon extends ArgsBase {
 	@Option(name = "-timeout", metaVar = "int", usage = "timeout for execution")
 	public void setTimeout(String timeoutStr) throws CmdLineException {
 		this.timeout = Period.parse(timeoutStr).toStandardDuration();
+		logger.info("timeout set by String to: "+timeout);
 	}
 	public void setTimeout(Duration duration) {
 		this.timeout = Duration.ZERO.plus(duration);
+		logger.info("timeout set by Duration to: "+timeout);
 	}
 	public Duration getTimeout() {
 		return timeout;

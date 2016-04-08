@@ -1,6 +1,3 @@
-#numThreads = <defaults to number of threads provided to JVM>
-#stepSize = 12500
-#readSize = 25000
 minLength = 20
 maxError = 3
 #timeout = PM10M

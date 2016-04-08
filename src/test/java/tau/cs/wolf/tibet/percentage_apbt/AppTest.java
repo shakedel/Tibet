@@ -76,6 +76,7 @@ public class AppTest extends TestCase {
 	public static Iterable<Object[]> data1() {
 		return Arrays.asList(new Object[][] { 
 			{ "/char/in1.txt", "/char/in2.txt", "/char/out.apbt.txt", "/char/out.union.txt", "/char/out.align.txt", AppStage.ALIGNMENT, DataType.CHAR, "/char/cfg.txt" }, 
+			{ "/char/in1.txt", "/char/in1.txt", "/char/out.apbt.txt", "/char/out.union.txt", "/char/out.align.txt", AppStage.ALIGNMENT, DataType.CHAR, "/char/cfg.txt" }, 
 			{ "/int/in1.txt", "/int/in2.txt", "/int/out.apbt.txt", "/int/out.union.txt", "/int/out.align.txt", AppStage.ALIGNMENT, DataType.INT, "/int/cfg.txt" }, 
 		});
 	}

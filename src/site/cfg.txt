@@ -1,20 +1,21 @@
 # documentation of the available configuration
 
-numThreads = <defaults to number of threads provided to JVM>
-stepSize = 12500
-readSize = 25000
-minLength = 60
-maxError = 10
+minLength = 10
+maxError = 5
 
 # ISO-8601 duration
-timeout = PT10M 
+timeout = PT30M
+ 
 minDistanceUnion = 10
 localAlignPadRatio = 0.12
-matchAward = 1        
+
 mismatchPenalty = -1
-gapPenalty = -1        
+matchAward = 1        
+gapPenalty = -1    
+    
 chunkSize = 1000                
 maxMatchLength = 500
 
 // ISO-8601 duration           
 pollDuration = PT5M 
+computeLevenshteinDistance = true

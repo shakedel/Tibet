@@ -53,6 +53,7 @@ public class AppMonitored extends AppBase {
 		appThread.setUncaughtExceptionHandler(handler);
 		
 		monitor.start();
+		logger.info("starting app thread with timeout: "+args.getTimeout());
 		appThread.start();
 		try {
 			appThread.join();
