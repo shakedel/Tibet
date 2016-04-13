@@ -81,6 +81,10 @@ public class Interval implements java.io.Serializable, Comparable<Interval> {
 		return calcGapSpan(this.getSpan2(), other.getSpan2());
 	}
 	
+	public boolean includes(Interval other) {
+		return this.span1.contains(other.span1) && this.span2.contains(other.span2);
+	}
+	
 	private int calcGapSpan(IndexSpan spanA, IndexSpan spanB) {
 		IndexSpan intersection = spanA.intersection(spanB);
 		if (intersection != null) {

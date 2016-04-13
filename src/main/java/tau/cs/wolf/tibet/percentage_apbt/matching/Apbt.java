@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -38,8 +39,6 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 
 	Logger logger = LoggerFactory.getLogger(getClass());
 
-	private int counter = 0;
-	
 	/**
 	 * This constant defines the size of a chunk of the matching matrix to be
 	 * processed simultaneously. This speeds up the calculation by decreasing
@@ -50,11 +49,13 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 	private ProcessType processType;
 	private int chunkSize;
 	private int maxLength;
+	private int maxMatrixCols;
 	private SortedSet<Interval> _solutions = new TreeSet<Interval>();
 	private int maxDiff;
 	private int maxDiffPlus1;
 	private int minLength;
 
+	private int curMatrixCols = -1;
 	private boolean[][] matrix;
 	private Slicable<R> seq1;
 	private Slicable<R> seq2;
@@ -87,7 +88,9 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 		this.maxLength = props.getMaxMatchLength();
 		this.chunkSize = props.getChunkSize();
 		
-		this.emptyRow = new boolean[seq2.length()];
+		this.maxMatrixCols = this.maxLength + this.chunkSize;
+		
+		this.emptyRow = new boolean[Math.min(this.maxMatrixCols, seq2.length())];
 	}
 
 	
@@ -120,49 +123,6 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 		return new ArrayList<Interval>(_solutions);
 	}
 
-	/**
-	 * We try to expand paths to maximal length, but some of them may still be
-	 * non-maximal. This method is called in order to output only maximal
-	 * solurtions.
-	 * 
-	 * @return
-	 */
-	public List<Interval> getMaximalSolutions() {
-		List<Interval> solutions = new ArrayList<Interval>(_solutions);
-		List<Interval> ret = new LinkedList<Interval>();
-		if (solutions.size() <= 1) {
-			return solutions;
-		}
-
-		int maxI = 0;
-
-		Interval first = (Interval) solutions.get(0);
-		maxI = first.getEnd().getIndex1();
-
-		List<Interval> temp = new LinkedList<Interval>();
-		for (int i = 0; i < solutions.size(); i++) {
-			Interval curr = (Interval) solutions.get(i);
-			if (curr.getStart().getIndex1() <= maxI - this.minLength + 1) {
-				temp.add(curr);
-				maxI = Math.max(maxI, curr.getEnd().getIndex1());
-				if (i == solutions.size() - 1)
-					createMaximalSolutions(temp, ret);
-
-			} else {
-				createMaximalSolutions(temp, ret);
-				temp = new LinkedList<Interval>();
-				temp.add(curr);
-				maxI = curr.getEnd().getIndex1();
-
-				if (i == solutions.size() - 1)
-					createMaximalSolutions(temp, ret);
-			}
-		}
-
-		Collections.sort(ret);
-		return ret;
-
-	}
 	/********************************************************************************************
 	 * PRIVATE
 	 ********************************************************************************************/
@@ -180,32 +140,39 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 		if (startJ > this.seq2.length() - this.minLength) {
 			return;
 		}
-		initializeMatrix(startJ, startJ + this.chunkSize + this.maxLength);
+		
+		this.curMatrixCols = Math.min(this.maxMatrixCols, this.seq2.length()-startJ);
+				
+		initializeMatrix(startJ, startJ + this.curMatrixCols);
 
-		int maxCount = 0;
-		for (int i = 0; i <= this.seq1.length() - this.minLength; i++) {
-			for (int j = 0; j <= Math.min(this.chunkSize-1, this.seq2.length() - this.minLength); j++) {
-				counter = 0;
+		int rowIdxLimit = this.seq1.length() - this.minLength;
+		int colIdxLimit = this.curMatrixCols - this.minLength;
+		
+		for (int i = 0; i <= rowIdxLimit; i++) {
+			for (int j = 0; j <= colIdxLimit; j++) {
 				if (this.matrix[i][j]) {
 					createPaths(i, j, startJ);
 				}
-				if (counter > maxCount) {
-					maxCount = counter;
-				}
 			}
 			// reset the row of state array to use with the next added (i+this.maxLength)-th row:
-			this.state[(i) % this.maxLength] = new int[Math.min(this.chunkSize + this.maxLength, this.seq2.length())][];
+			this.state[(i) % this.maxLength] = new int[this.curMatrixCols][];
 
 		}
-		System.out.println("counter: "+maxCount);
 	}
 
+	private int startI;
+	private int startJ;
+	private int shiftJ;
+	
 	/**
 	 * Initializes a new path of ML=1, EN=0, starting from current true cell of
 	 * the matrix
 	 */
-	private void createPaths(int startI, int startJ, int shiftJ) {
-		continuePath(startI, startJ, startI, startJ, 1, 0, shiftJ, true);
+	private void createPaths(int _startI, int _startJ, int _shiftJ) {
+		this.startI = _startI;
+		this.startJ = _startJ;
+		this.shiftJ = _shiftJ;
+		continuePath(_startI, _startJ, 1, 0, true);
 	}
 
 	/**
@@ -214,13 +181,10 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 	 * collected ending at point (currI, currJ)
 	 */
 	
-	private void continuePath(int startI, int startJ, int currI, int currJ, int currlen, int currdiff, int shiftJ,
-			boolean continueFurther) {
-		counter++;
-//		this.logger.trace(String.format("executing 'cotinuePath(startI=%d, startJ=%d, currI=%d, currJ=%d, currlen=%d, currdiff=%d, shiftJ=%d, continueFurther=%b)", 
-//				startI, startJ, currI, currJ, currlen, currdiff, shiftJ, continueFurther));
-		if (currlen >= this.maxLength)
+	private void continuePath(int currI, int currJ, int currlen, int currdiff, boolean continueFurther) {
+		if (currlen >= this.maxLength) {
 			return;
+		}
 	
 		if (continueFurther) {
 			if (currlen > 1) {
@@ -260,9 +224,9 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 	
 			// define bounds of the target square
 			int LT_I = Math.min(currI + 1, this.seq1.length() - 1);
-			int LT_J = Math.min(currJ + 1, this.seq2.length() - 1);
+			int LT_J = Math.min(currJ + 1, this.curMatrixCols - 1);
 	
-			int RT_J = Math.min(LT_J + this.maxDiff + 1 - currdiff, this.seq2.length());
+			int RT_J = Math.min(LT_J + this.maxDiff + 1 - currdiff, this.curMatrixCols);
 			int LB_I = Math.min(LT_I + this.maxDiff + 1 - currdiff, this.seq1.length());
 	
 			int RB_J = RT_J;
@@ -274,16 +238,14 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 			boolean stop = false;
 	
 			// eladsh
-//			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length)
-//					&& j < Math.min(currJ + this.maxDiff + 2 - currdiff, this.seq2.length) && !stop; i++, j++) {
 //			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length())
 //					&& j < Math.min(currJ + this.maxDiff + 2 - currdiff, this.seq2.length()) && !stop; i++, j++) {
 			for (int i = currI + 1, j = currJ + 1; i < Math.min(currI + this.maxDiff + 2 - currdiff, this.seq1.length())
 					&& j < Math.min(currJ + this.maxDiff + 2 - currdiff, this.matrix[i].length) && !stop; i++, j++) {
 				if (this.matrix[i][j]) {
 	
-					continuePath(startI, startJ, i, j, Math.min(i - startI, j - startJ) + 1,
-							Math.max(i - currI, j - currJ) - 1 + currdiff, shiftJ, true);
+					continuePath(i, j, Math.min(i - startI, j - startJ) + 1,
+							Math.max(i - currI, j - currJ) - 1 + currdiff, true);
 					stop = true;
 					currJBound = j;
 					currIBound = i;
@@ -292,15 +254,15 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 	
 			for (int i = currIBound + 1; i < LB_I; i++) {
 				if (this.matrix[i][currJBound]) {
-					continuePath(startI, startJ, i, currJBound, Math.min(i - startI, currJBound - startJ) + 1,
-							Math.max(i - currI, currJBound - currJ) - 1 + currdiff, shiftJ, false);
+					continuePath(i, currJBound, Math.min(i - startI, currJBound - startJ) + 1,
+							Math.max(i - currI, currJBound - currJ) - 1 + currdiff, false);
 				}
 			}
 	
 			for (int j = currJBound + 1; j < RT_J; j++) {
 				if (this.matrix[currIBound][j]) {
-					continuePath(startI, startJ, currIBound, j, Math.min(currIBound - startI, j - startJ) + 1,
-							Math.max(currIBound - currI, j - currJ) - 1 + currdiff, shiftJ, false);
+					continuePath(currIBound, j, Math.min(currIBound - startI, j - startJ) + 1,
+							Math.max(currIBound - currI, j - currJ) - 1 + currdiff, false);
 				}
 			}
 	
@@ -311,15 +273,15 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 				for (int i = LT_I + k, j = LT_J; i < LB_I && j < currJBound && !stop; i++, j++) {
 					if (this.matrix[i][j]) {
 	
-						continuePath(startI, startJ, i, j, Math.min(i - startI, j - startJ) + 1,
-								Math.max(i - currI, j - currJ) - 1 + currdiff, shiftJ, true);
+						continuePath(i, j, Math.min(i - startI, j - startJ) + 1,
+								Math.max(i - currI, j - currJ) - 1 + currdiff, true);
 						if (j < currJBound) {
 							currJBound = j;
 							for (int m = i + 1; m < LB_I; m++) {
 								if (this.matrix[m][currJBound])
-									continuePath(startI, startJ, m, currJBound,
+									continuePath(m, currJBound,
 											Math.min(m - startI, currJBound - startJ) + 1,
-											Math.max(m - currI, currJBound - currJ) - 1 + currdiff, shiftJ, false);
+											Math.max(m - currI, currJBound - currJ) - 1 + currdiff, false);
 							}
 	
 						}
@@ -332,16 +294,16 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 				for (int i = LT_I, j = LT_J + k; i < currIBound && j < RT_J && !stop; i++, j++) {
 					if (this.matrix[i][j]) {
 	
-						continuePath(startI, startJ, i, j, Math.min(i - startI, j - startJ) + 1,
-								Math.max(i - currI, j - currJ) - 1 + currdiff, shiftJ, true);
+						continuePath(i, j, Math.min(i - startI, j - startJ) + 1,
+								Math.max(i - currI, j - currJ) - 1 + currdiff, true);
 						if (i < currIBound) {
 							currIBound = i;
 							for (int m = j + 1; m < RT_J; m++) {
 	
 								if (this.matrix[currIBound][m]) {
-									continuePath(startI, startJ, currIBound, m,
+									continuePath(currIBound, m,
 											Math.min(currIBound - startI, m - startJ) + 1,
-											Math.max(currIBound - currI, m - currJ) - 1 + currdiff, shiftJ, false);
+											Math.max(currIBound - currI, m - currJ) - 1 + currdiff, false);
 								}
 							}
 	
@@ -362,12 +324,12 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 
 	private void initializeMatrix(int from, int to) {
 		Map<Object, boolean[]> symbolPositions = new HashMap<Object, boolean[]>(100);
-		for (int j = from; j < Math.min(to, this.seq2.length()); j++) {
+		for (int j = from; j < to; j++) {
 			
 			Object curr = Array.get(this.seq2.get(), j);
 			boolean[] row = (boolean[]) symbolPositions.get(curr);
 			if (row == null) {
-				row = new boolean[Math.min(this.chunkSize + this.maxLength, this.seq2.length())];
+				row = new boolean[this.curMatrixCols];
 				symbolPositions.put(curr, row);
 			}
 			row[j - from] = true;
@@ -388,8 +350,6 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 
 	}
 	
-//	protected abstract void initializeMatrix(int from, int to); 
-	
 	private void addToSolutions(int startI, int startJ, int currI, int currJ) {
 
 		IndexPair start = null;
@@ -407,36 +367,20 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 		}
 
 		Interval interval = Interval.newIntervalByStartEnd(start, end);
-		_solutions.add(interval);
-	}
-
-	private void createMaximalSolutions(List<Interval> overlappings, List<Interval> res) {
-		if (overlappings.size() == 1) {
-			res.add(overlappings.get(0));
-			return;
-		}
-		for (int i = 0; i < overlappings.size(); i++) {
-			Interval curr1 = (Interval) overlappings.get(i);
-			for (int j = 0; j < overlappings.size(); j++) {
-				if (i != j) {
-					Interval curr2 = (Interval) overlappings.get(j);
-					if (curr1 != null && curr2 != null) {
-						if (curr2.getStart().getIndex1() >= curr1.getStart().getIndex1()
-								&& curr2.getStart().getIndex2() >= curr1.getStart().getIndex2()
-								&& curr2.getEnd().getIndex1() <= curr1.getEnd().getIndex1()
-								&& curr2.getEnd().getIndex2() <= curr1.getEnd().getIndex2())
-							overlappings.set(j, null);
-					}
-				}
+		
+		Set<Interval> solutionsToRemove = new TreeSet<Interval>(); 
+		
+		for (Interval solution: this._solutions) {
+			if (solution.includes(interval)) {
+				return;
+			}
+			if (interval.includes(solution)) {
+				solutionsToRemove.add(solution);
 			}
 		}
-
-		for (int i = 0; i < overlappings.size(); i++) {
-			Interval curr = (Interval) overlappings.get(i);
-			if (curr != null)
-				res.add(curr);
-		}
+		
+		this._solutions.removeAll(solutionsToRemove);
+		this._solutions.add(interval);
 	}
-
 
 }

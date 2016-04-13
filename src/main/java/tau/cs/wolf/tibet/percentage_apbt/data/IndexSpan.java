@@ -47,10 +47,6 @@ public class IndexSpan extends IndexPair {
 		return this.idx1 <= other.idx1 && this.idx2 >= other.idx2;
 	}
 	
-	public boolean contained(IndexSpan other) {
-		return other.contains(this);
-	}
-	
 	public IndexSpan intersection(IndexSpan other) {
 		int intersectionStart = Math.max(this.idx1, other.idx1);
 		int intersectionEnd = Math.min(this.idx2, other.idx2);

@@ -46,7 +46,7 @@ public class WorkerThread<R extends java.lang.reflect.Array> extends BaseModule 
 		apbt.run();
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Thread: "+this.threadId+". Finished processing");
 		
-		for(Interval curSolution: apbt.getMaximalSolutions()) {
+		for(Interval curSolution: apbt.getSolutions()) {
 			Slicable<R> seq1Slice = seq1.slice(curSolution.getStart().getIndex1(),curSolution.getEnd().getIndex1()+1);
 			Slicable<R> seq2Slice = seq2.slice(curSolution.getStart().getIndex2(),curSolution.getEnd().getIndex2()+1);
 			double score = props.getComputeLevenshteinDistance() ? LevenshteinDistance.computeLevenshteinDistance(seq1Slice, seq2Slice) : -1;
