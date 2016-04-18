@@ -8,10 +8,13 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.broadcast.Broadcast;
 import org.kohsuke.args4j.CmdLineException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import tau.cs.wolf.tibet.percentage_apbt.main.AppBase;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSpark;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CartesPathContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairKeyFilenamePattern;
@@ -21,17 +24,23 @@ import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.PathContentAdapter
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContentPair;
+import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
-public class AppSpark<R> implements Runnable {
+public class AppSpark<R> extends AppBase {
 
 	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(AppSpark.class);
 	
 	private final JavaSparkContext ctx;
 	private final ArgsSpark args;
+	private final Broadcast<? extends ArgsCommon> bcastArgs;
+	private final Broadcast<? extends Props> bcastProps;
 	
-	public AppSpark(ArgsSpark args, JavaSparkContext ctx) throws IOException {
+	public AppSpark(ArgsSpark args, Props props, JavaSparkContext ctx) throws IOException {
+		super(args, props);
 		this.args = args;
+		this.bcastArgs = ctx.broadcast(args);
+		this.bcastProps = ctx.broadcast(props);
 		this.ctx = ctx;
 	}
 
@@ -45,9 +54,11 @@ public class AppSpark<R> implements Runnable {
 			JavaPairRDD<PathContent<R>, PathContent<R>> crossedPaths = pathContent.cartesian(pathContent);
 			JavaRDD<PathContentPair<R>> allPairs = crossedPaths.map(new CartesPathContent<R>());
 			JavaRDD<PathContentPair<R>> filteredPairs = allPairs.filter(new FilterPairUniquePath<R>());
-			JavaRDD<Matches> matches = filteredPairs.map(new FindMatches<R>(this.args));
-			JavaRDD<Matches> coalesced = matches.coalesce(1);
-			coalesced.saveAsTextFile(this.args.getOutFile().toString());
+			JavaRDD<Matches> matches = filteredPairs.map(new FindMatches<R>(this.bcastArgs, this.bcastProps));
+			System.out.println("$$$ "+matches.isEmpty()+" $$$");;
+			System.out.println("### "+matches.count()+" ###");
+//			JavaRDD<Matches> coalesced = matches.coalesce(1);
+//			coalesced.saveAsTextFile(this.args.getOutFile().toString());
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
@@ -58,7 +69,7 @@ public class AppSpark<R> implements Runnable {
 		// Local mode
 		SparkConf sparkConf = new SparkConf().setAppName("AppSpark").setMaster("local");
 		try (JavaSparkContext ctx = new JavaSparkContext(sparkConf)) {
-			new AppSpark(new ArgsSpark(args), ctx).run();
+			new AppSpark(new ArgsSpark(args), null, ctx).run();
 		}
 	}
 

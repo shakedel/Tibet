@@ -17,51 +17,51 @@ public class ArgsSpark extends ArgsCommon {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Path inDir;
-	@Option(name = "-d", required = true, metaVar = "PATH", usage = "input directory")
+	private String inDir;
+	@Option(name = "-inDir", required = true, metaVar = "PATH", usage = "input directory")
 	public void setInDir(String inDir) throws CmdLineException {
-		this.inDir = new Path(inDir);
+		this.inDir = inDir;
 	}
-	public Path getInDir() {
+	public String getInDir() {
 		return inDir;
 	}
 	
-	private Path outFile;
+	private String outFile;
 	@SuppressWarnings("deprecation")
 	@Option(name = "-outFile", required = true, metaVar = "PATH", usage = "output file")
 	public void setOutFile(String outFileStr) throws CmdLineException {
-		Path outFile = new Path(outFileStr);
+		String outFile = outFileStr;
 		
 		try {
 			FileSystem fs = FileSystem.get(new Configuration());
-			if (fs.exists(outFile)) {
+			if (fs.exists(new Path(outFile))) {
 				throw new IllegalArgumentException("Output file (-outFile option) already exists");
 			}
 		} catch (IOException e) {
 			throw new CmdLineException(e);
 		}
 	}
-	public Path getOutFile() {
+	public String getOutFile() {
 		return outFile;
 	}
 	
-	private Path outDir;
-	@SuppressWarnings("deprecation")
-	@Option(name = "-outDir", metaVar = "PATH", usage = "output directory")
-	public void setOutDir(String outDirStr) throws CmdLineException {
-		outDir = new Path(outDirStr);
-		try {
-			FileSystem fs = FileSystem.get(new Configuration());
-			if (fs.exists(outDir)) {
-				throw new IllegalArgumentException("Output dir (-outDir option) already exists");
-			}
-		} catch (IOException e) {
-			throw new CmdLineException(e);
-		}
-	}
-	public Path getOutDir() {
-		return outDir;
-	}
+//	private Path outDir;
+//	@SuppressWarnings("deprecation")
+//	@Option(name = "-outDir", metaVar = "PATH", usage = "output directory")
+//	public void setOutDir(String outDirStr) throws CmdLineException {
+//		outDir = new Path(outDirStr);
+//		try {
+//			FileSystem fs = FileSystem.get(new Configuration());
+//			if (fs.exists(outDir)) {
+//				throw new IllegalArgumentException("Output dir (-outDir option) already exists");
+//			}
+//		} catch (IOException e) {
+//			throw new CmdLineException(e);
+//		}
+//	}
+//	public Path getOutDir() {
+//		return outDir;
+//	}
 	
 	private Pattern filenamePattern;
 	@SuppressWarnings("deprecation")

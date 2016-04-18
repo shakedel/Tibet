@@ -21,11 +21,14 @@ import tau.cs.wolf.tibet.percentage_apbt.matching.Union;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
-public class AppMain extends AppBase {
+public class AppMain extends AppCommon {
 
+	final protected Args args;
+	
 	
 	public AppMain(Args args, Props props) {
 		super(args, props);
+		this.args = args;
 	}
 	
 	private Slicable<?> seq1 = null;

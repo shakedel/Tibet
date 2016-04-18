@@ -73,11 +73,13 @@ public class Args extends ArgsCommon {
 		ArgsUtils.overrideArgsWithProps(this, props);
 	}
 	
-	public Args(File inFile1, File inFile2, File outFile, AppStage appStage, DataType dataType) {
+	public Args(File inFile1, File inFile2, File outFile, AppStage appStage, DataType dataType, boolean checkExistance) {
 		super(appStage, dataType);
 		try {
-			ArgsUtils.assertFileExists(inFile1, null);
-			ArgsUtils.assertFileExists(inFile2, null);
+			if (checkExistance) {
+				ArgsUtils.assertFileExists(inFile1, null);
+				ArgsUtils.assertFileExists(inFile2, null);
+			}
 			this.inFile1 = inFile1;
 			this.inFile2 = inFile2;
 			this.outFile = outFile;

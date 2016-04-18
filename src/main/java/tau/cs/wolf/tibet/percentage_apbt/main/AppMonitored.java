@@ -10,13 +10,13 @@ import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
-public class AppMonitored extends AppBase {
+public class AppMonitored extends AppCommon {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	public static void main(String[] args) {
 		try {
-			AppBase app = new AppMonitored(args);
+			AppCommon app = new AppMonitored(args);
 			app.run();
 			app.writeResults();
 		} catch (CmdLineException e) {
@@ -25,12 +25,12 @@ public class AppMonitored extends AppBase {
 		}
 	}
 
-	private final Props props;
-	private final AppBase monitoredApp;
+	final protected Args args;
+	private final AppCommon monitoredApp;
 	
 	public AppMonitored(Args args, Props props) {
 		super(args, props);
-		this.props = props;
+		this.args = args;
 		ArgsUtils.overrideArgsWithProps(args, this.props);
 		
 		this.monitoredApp = new AppMain(this.args, this.props);

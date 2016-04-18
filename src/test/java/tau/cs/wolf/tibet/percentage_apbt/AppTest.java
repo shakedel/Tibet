@@ -56,7 +56,7 @@ public class AppTest extends TestCase {
 			this.props = PropsBuilder.newProps(is);
 		}
 		
-		this.args = new Args(inFile1, inFile2, null, appStage, dataType);
+		this.args = new Args(inFile1, inFile2, null, appStage, dataType, true);
 	}
 
 	private List<MatchResult> parseMatchesFile(File f) throws IOException {

@@ -34,7 +34,7 @@ public final class ArgsUtils {
 		throw new CmdLineException("Option "+optionName+": "+msg);
 	}
 
-	public static void overrideArgsWithProps(Args args, Props props) {
+	public static void overrideArgsWithProps(ArgsCommon args, Props props) {
 		try {
 			if (args.getMinLength() == null) {
 				args.setMinlength(props.getMinLength());
@@ -52,8 +52,11 @@ public final class ArgsUtils {
 			if (args.getLocalAlignPadRatio() == null) {
 				args.setLocalAlignPadRatio(props.getLocalAlignPadRatio());
 			}
-			if (args.getPollDuration() == null) {
-				args.setPollDuration(props.getPollDuration());
+			if (Args.class.isAssignableFrom(args.getClass())) {
+				Args castedArgs = (Args) args;
+				if (castedArgs.getPollDuration() == null) {
+					castedArgs.setPollDuration(props.getPollDuration());
+				}
 			}
 			
 		} catch (CmdLineException e) {
