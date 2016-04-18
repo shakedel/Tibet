@@ -66,9 +66,7 @@ public class AppSpark<R> extends AppBase {
 
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws IOException, CmdLineException {
-		// Local mode
-		SparkConf sparkConf = new SparkConf().setAppName("AppSpark").setMaster("local");
-		try (JavaSparkContext ctx = new JavaSparkContext(sparkConf)) {
+		try (JavaSparkContext ctx = new JavaSparkContext(new SparkConf())) {
 			new AppSpark(new ArgsSpark(args), null, ctx).run();
 		}
 	}
