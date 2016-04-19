@@ -17,12 +17,12 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 public final class FindMatches<R> implements Function<PathContentPair<R>, Matches>, Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private final ArgsCommon args;
-	private final Props props;
+	private final Broadcast<? extends ArgsCommon> bcastArgs;
+	private final Broadcast<? extends Props> bcastProps;
 	
 	public FindMatches(Broadcast<? extends ArgsCommon> args, Broadcast<? extends Props> props) {
-		this.args = args.getValue();
-		this.props = props.getValue();
+		this.bcastArgs = args;
+		this.bcastProps = props;
 	}
 	
 	@Override
@@ -30,11 +30,11 @@ public final class FindMatches<R> implements Function<PathContentPair<R>, Matche
 		PathContent<R> p1 = pairToMatch.getPathContent1();
 		PathContent<R> p2 = pairToMatch.getPathContent2();
 		
-		Args args = new Args(new File(p1.getPath()), new File(p2.getPath()), null, this.args.getAppStage(), this.args.getDataType(), false);
+		Args args = new Args(new File(p1.getPath()), new File(p2.getPath()), null, this.bcastArgs.getValue().getAppStage(), this.bcastArgs.getValue().getDataType(), false);
 		
-		AppMain app = new AppMain(args, props);
+		AppMain app = new AppMain(args, bcastProps.getValue());
 		app.setup(p1.getContent(), p2.getContent());
 		app.run();
-		return new Matches(p1.getPath(), p2.getPath(), app.getResults());
+		return new Matches(p1.getPath(), p2.getPath(), app.getResults(), bcastArgs.getValue().getAppStage());
 	}
 }

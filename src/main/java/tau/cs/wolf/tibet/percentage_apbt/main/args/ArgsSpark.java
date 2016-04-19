@@ -30,7 +30,7 @@ public class ArgsSpark extends ArgsCommon {
 	@SuppressWarnings("deprecation")
 	@Option(name = "-outFile", required = true, metaVar = "PATH", usage = "output file")
 	public void setOutFile(String outFileStr) throws CmdLineException {
-		String outFile = outFileStr;
+		this.outFile = outFileStr;
 		
 		try {
 			FileSystem fs = FileSystem.get(new Configuration());

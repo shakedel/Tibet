@@ -14,10 +14,13 @@ import org.skife.config.Coercible;
 import org.skife.config.Config;
 import org.skife.config.ConfigurationObjectFactory;
 import org.skife.config.Default;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 public class PropsBuilder {
+	
+	private static Logger logger = LoggerFactory.getLogger(PropsBuilder.class);
 	
 	public static final String CFG_PATH_VM_PROP_NAME = "percentage_apbt.cfgPath";
 	
@@ -119,6 +122,7 @@ public class PropsBuilder {
 	public static Props defaultProps() {
 		String cfgPathStr = System.getProperty(CFG_PATH_VM_PROP_NAME);
 		if (cfgPathStr == null) {
+			logger.info("no JVM property: "+CFG_PATH_VM_PROP_NAME);
 			return newProps(new Properties());
 		}
 		File propsFile = new File(cfgPathStr);
@@ -126,6 +130,7 @@ public class PropsBuilder {
 			throw new IllegalArgumentException("vm argument '"+CFG_PATH_VM_PROP_NAME+"' does not point to an existing file!");
 		}
 		try {
+			logger.info("getting props from JVM property: "+CFG_PATH_VM_PROP_NAME);
 			return PropsBuilder.newProps(propsFile);
 		} catch (IOException e) {
 			throw new IllegalStateException("Should not have reached this code line");

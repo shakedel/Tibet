@@ -25,14 +25,10 @@ public class AppMonitored extends AppCommon {
 		}
 	}
 
-	final protected Args args;
 	private final AppCommon monitoredApp;
 	
 	public AppMonitored(Args args, Props props) {
 		super(args, props);
-		this.args = args;
-		ArgsUtils.overrideArgsWithProps(args, this.props);
-		
 		this.monitoredApp = new AppMain(this.args, this.props);
 	}
 

@@ -28,7 +28,6 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 public class AppSpark<R> extends AppBase {
 
-	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(AppSpark.class);
 	
 	private final JavaSparkContext ctx;
@@ -39,6 +38,8 @@ public class AppSpark<R> extends AppBase {
 	public AppSpark(ArgsSpark args, Props props, JavaSparkContext ctx) throws IOException {
 		super(args, props);
 		this.args = args;
+		logger.info("setup with args: "+this.args);
+		
 		this.bcastArgs = ctx.broadcast(args);
 		this.bcastProps = ctx.broadcast(props);
 		this.ctx = ctx;
@@ -55,10 +56,8 @@ public class AppSpark<R> extends AppBase {
 			JavaRDD<PathContentPair<R>> allPairs = crossedPaths.map(new CartesPathContent<R>());
 			JavaRDD<PathContentPair<R>> filteredPairs = allPairs.filter(new FilterPairUniquePath<R>());
 			JavaRDD<Matches> matches = filteredPairs.map(new FindMatches<R>(this.bcastArgs, this.bcastProps));
-			System.out.println("$$$ "+matches.isEmpty()+" $$$");;
-			System.out.println("### "+matches.count()+" ###");
-//			JavaRDD<Matches> coalesced = matches.coalesce(1);
-//			coalesced.saveAsTextFile(this.args.getOutFile().toString());
+			JavaRDD<Matches> coalesced = matches.coalesce(1);
+			coalesced.saveAsTextFile(this.args.getOutFile());
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}

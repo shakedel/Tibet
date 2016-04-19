@@ -12,9 +12,12 @@ public abstract class AppCommon extends AppBase {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private AppResults results;
+	protected final Args args;
 	
 	AppCommon(Args args, Props _props) {
 		super(args, _props);
+		this.args = args;
+		logger.info("setup with args: "+this.args);
 	}
 	
 	public AppCommon(Args args) {

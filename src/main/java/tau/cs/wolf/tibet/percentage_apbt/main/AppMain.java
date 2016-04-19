@@ -23,12 +23,8 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppMain extends AppCommon {
 
-	final protected Args args;
-	
-	
 	public AppMain(Args args, Props props) {
 		super(args, props);
-		this.args = args;
 	}
 	
 	private Slicable<?> seq1 = null;
@@ -102,14 +98,14 @@ public class AppMain extends AppCommon {
 
 	private AppResults doApbt(MatchesContainer matchesContainer) {
 		List<MatchResult> apbtMatches = matchesContainer.getResults();
-		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished APBT stage");
+		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished APBT stage with "+apbtMatches.size()+" matches");
 		return new AppResults(apbtMatches, null, null);
 	}
 	
 	private AppResults doUnion(MatchesContainer matchesContainer) {
 		AppResults res = doApbt(matchesContainer);
 		List<MatchResult> unitedMatches = new Union(props, args).uniteMatches(res.getApbtMatches());
-		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished UNION stage");
+		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished UNION stage with "+unitedMatches.size()+" matches");
 		res.setUnitedMatches(unitedMatches);
 		return res;
 	}
@@ -118,7 +114,7 @@ public class AppMain extends AppCommon {
 	private AppResults doAlignment(MatchesContainer matchesContainer) {
 		AppResults res = doUnion(matchesContainer);
 		List<MatchResult> alignedMatches = new Alignment(props, args).alignMatches(res.getUnitedMatches(), seq1, seq2);
-		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished ALIGNMENT stage");
+		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished ALIGNMENT stage with "+alignedMatches.size()+" matches");
 		res.setAlignedMatches(alignedMatches);
 		return res;
 	}

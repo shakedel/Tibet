@@ -2,7 +2,11 @@ package tau.cs.wolf.tibet.percentage_apbt.data;
 
 import java.util.List;
 
-public class AppResults {
+import scala.Serializable;
+
+public class AppResults implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private List<MatchResult> apbtMatches;
 	private List<MatchResult> unitedMatches;

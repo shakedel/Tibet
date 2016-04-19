@@ -41,7 +41,7 @@ public class MatchesContainer {
 	
 	public List<MatchResult> getResults() {
 		assertShutdown();
-		return Collections.unmodifiableList(new ArrayList<MatchResult>(this.matches));
+		return new ArrayList<MatchResult>(this.matches);
 	}
 	
 	public synchronized void addResult(MatchResult newMatch) {
