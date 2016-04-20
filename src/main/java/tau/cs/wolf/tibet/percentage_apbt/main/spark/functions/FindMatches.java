@@ -34,7 +34,11 @@ public final class FindMatches<R> implements Function<PathContentPair<R>, Matche
 		
 		AppMain app = new AppMain(args, bcastProps.getValue());
 		app.setup(p1.getContent(), p2.getContent());
-		app.run();
+		try {
+			app.run();
+		} catch (Exception e) {
+			throw new RuntimeException("Algorithm failed on "+p1.getPath()+" and "+p2.getPath(), e);
+		}
 		return new Matches(p1.getPath(), p2.getPath(), app.getResults(), bcastArgs.getValue().getAppStage());
 	}
 }

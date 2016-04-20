@@ -1,8 +1,8 @@
 package tau.cs.wolf.tibet.percentage_apbt.data;
 
+import java.io.Serializable;
 import java.util.List;
 
-import scala.Serializable;
 
 public class AppResults implements Serializable {
 	
