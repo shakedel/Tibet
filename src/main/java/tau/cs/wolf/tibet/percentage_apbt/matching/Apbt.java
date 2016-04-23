@@ -90,7 +90,7 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 		
 		this.maxMatrixCols = this.maxLength + this.chunkSize;
 		
-		this.emptyRow = new boolean[Math.min(this.maxMatrixCols, seq2.length())];
+		this.emptyRow = new boolean[Math.min(this.maxMatrixCols, this.seq2.length())];
 	}
 
 	
