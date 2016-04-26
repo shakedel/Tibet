@@ -35,7 +35,7 @@ public class ArgsSpark extends ArgsCommon {
 		try {
 			FileSystem fs = FileSystem.get(new Configuration());
 			if (fs.exists(new Path(outFile))) {
-				throw new IllegalArgumentException("Output file (-outFile option) already exists");
+				throw new IllegalArgumentException("Output file (-outFile option) already exists: "+outFile);
 			}
 		} catch (IOException e) {
 			throw new CmdLineException(e);
