@@ -20,34 +20,29 @@ import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CartesPathContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairKeyFilenamePattern;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairUniquePath;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FindMatches;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.LogMatches;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.PathContentAdapter;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.SparkUtils;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContentPair;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.StringPairSet;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
-public class AppSpark<R> extends AppBase {
+public class AppSparkLogging<R> extends AppBase {
 
-	private Logger logger = LoggerFactory.getLogger(AppSpark.class);
+	private Logger logger = LoggerFactory.getLogger(AppSparkLogging.class);
 	
 	private final JavaSparkContext ctx;
 	private final ArgsSpark args;
 	private final Broadcast<? extends ArgsCommon> bcastArgs;
 	private final Broadcast<? extends Props> bcastProps;
-	private final Broadcast<StringPairSet> bcastExistingPairs;
 	
-	public AppSpark(ArgsSpark args, Props props, JavaSparkContext ctx) throws IOException {
+	public AppSparkLogging(ArgsSpark args, Props props, JavaSparkContext ctx) throws IOException {
 		super(args, props);
 		this.args = args;
 		logger.info("setup with args: "+this.args);
 		
 		this.bcastArgs = ctx.broadcast(args);
 		this.bcastProps = ctx.broadcast(props);
-		StringPairSet existingPairs = args.getExistingPairsFile()==null ? new StringPairSet() : 
-				SparkUtils.parseExistingFiles(args.getExistingPairsFile());
-		this.bcastExistingPairs = ctx.broadcast(existingPairs);
 		this.ctx = ctx;
 	}
 
@@ -60,10 +55,10 @@ public class AppSpark<R> extends AppBase {
 			JavaRDD<PathContent<R>> pathContent = filteredFiles.map(new PathContentAdapter<R>(this.args.getDataType()));
 			JavaPairRDD<PathContent<R>, PathContent<R>> crossedPaths = pathContent.cartesian(pathContent);
 			JavaRDD<PathContentPair<R>> allPairs = crossedPaths.map(new CartesPathContent<R>());
-			JavaRDD<PathContentPair<R>> filteredPairs = allPairs.filter(new FilterPairUniquePath<R>(bcastExistingPairs));
+			JavaRDD<PathContentPair<R>> filteredPairs = allPairs.filter(new FilterPairUniquePath<R>(null));
 			JavaRDD<Matches> matches = filteredPairs.map(new FindMatches<R>(this.bcastArgs, this.bcastProps));
-			JavaRDD<Matches> coalesced = matches.coalesce(1);
-			coalesced.saveAsTextFile(this.args.getOutFile());
+			matches.foreachAsync(new LogMatches());
+			System.out.println("XXX: "+matches.count());
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
@@ -72,7 +67,7 @@ public class AppSpark<R> extends AppBase {
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws IOException, CmdLineException {
 		try (JavaSparkContext ctx = new JavaSparkContext(new SparkConf())) {
-			new AppSpark(new ArgsSpark(args), null, ctx).run();
+			new AppSparkLogging(new ArgsSpark(args), null, ctx).run();
 		}
 	}
 

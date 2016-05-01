@@ -1,5 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -16,6 +17,16 @@ public class ArgsSpark extends ArgsCommon {
 	}
 
 	private static final long serialVersionUID = 1L;
+	
+	private File existingPairsFile;
+	@Option(name = "-f", required = false, metaVar = "FILE", usage = "existing pairs file")
+	public void setInFile1(File f) throws CmdLineException {
+		ArgsUtils.assertFileExists(f, "-f");
+		this.existingPairsFile = f;
+	}
+	public File getExistingPairsFile() {
+		return this.existingPairsFile;
+	}
 	
 	private String inDir;
 	@Option(name = "-inDir", required = true, metaVar = "PATH", usage = "input directory")
