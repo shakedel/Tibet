@@ -1,0 +1,6 @@
+host = soul
+port = 12345
+protocol = tcp
+append = true
+outFile = syslogServer.log
+timeout = 0

@@ -1,0 +1,3 @@
+host = soul
+port = 12345
+protocol = tcp

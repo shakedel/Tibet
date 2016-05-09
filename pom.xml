@@ -94,6 +94,12 @@
 			<version>2.9.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.syslog4j</groupId>
+			<artifactId>syslog4j</artifactId>
+			<version>0.9.47</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
