@@ -96,8 +96,8 @@
 
 		<dependency>
 			<groupId>org.syslog4j</groupId>
-			<artifactId>syslog4j</artifactId>
-			<version>0.9.47</version>
+			<artifactId>syslog4j-var</artifactId>
+			<version>0.9.46</version>
 		</dependency>
 
 	</dependencies>

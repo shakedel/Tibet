@@ -1,10 +1,9 @@
-package tau.cs.wolf.tibet.percentage_apbt.spark_logging;
+package tau.cs.wolf.tibet.percentage_apbt.main;
 
 import java.io.IOException;
 
-import org.productivity.java.syslog4j.server.SyslogServer;
 import org.productivity.java.syslog4j.server.SyslogServerConfigIF;
-import org.productivity.java.syslog4j.server.SyslogServerEventFormatter;
+import org.productivity.java.syslog4j.server.SyslogServerEventFormatterIF;
 import org.productivity.java.syslog4j.server.SyslogServerEventIF;
 import org.productivity.java.syslog4j.server.SyslogServerIF;
 import org.productivity.java.syslog4j.server.SyslogServerSessionEventHandlerIF;
@@ -12,10 +11,12 @@ import org.productivity.java.syslog4j.server.impl.event.printstream.FileSyslogSe
 import org.productivity.java.syslog4j.server.impl.event.printstream.SystemOutSyslogServerEventHandler;
 import org.productivity.java.syslog4j.util.SyslogUtility;
 
-public class Server {
+import tau.cs.wolf.tibet.percentage_apbt.misc.SyslogProps;
+
+public class SyslogServer {
 	
 	public static void main(String args[]) throws IOException {
-		SyslogServerEventFormatter formatter = new SyslogServerEventFormatter() {
+		SyslogServerEventFormatterIF formatter = new SyslogServerEventFormatterIF() {
 			@Override
 			public String format(SyslogServerEventIF event) {
 				return event.getMessage();
@@ -23,7 +24,7 @@ public class Server {
 		};
 		
 		SyslogProps.ServerProps serverProps = SyslogProps.serverVmProps();
-		SyslogServerIF syslogServer = SyslogServer.getInstance(serverProps.getProtocol());
+		SyslogServerIF syslogServer = org.productivity.java.syslog4j.server.SyslogServer.getInstance(serverProps.getProtocol());
 		
 		SyslogServerConfigIF config = syslogServer.getConfig();
 		SyslogProps.applySyslogServerProps(config, serverProps);
@@ -37,7 +38,7 @@ public class Server {
 			}
 		}
 		
-		SyslogServer.getThreadedInstance(syslogServer);
+		org.productivity.java.syslog4j.server.SyslogServer.getThreadedInstance(syslogServer);
 		while(true) {
 			SyslogUtility.sleep(1000);
 		}

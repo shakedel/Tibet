@@ -1,4 +1,4 @@
-package tau.cs.wolf.tibet.percentage_apbt.spark_logging;
+package tau.cs.wolf.tibet.percentage_apbt.misc;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -90,7 +90,7 @@ public class SyslogProps {
 	}
 	
 	public static ServerProps serverVmProps() {
-		return serverProps(Utils.propsFromVmArg(SYSLOG_SERVER_CFG_PATH_VM_PROP_NAME, true));
+		return serverProps(tau.cs.wolf.tibet.percentage_apbt.misc.Utils.propsFromVmArg(SYSLOG_SERVER_CFG_PATH_VM_PROP_NAME, true));
 		
 	}
 	
@@ -102,7 +102,7 @@ public class SyslogProps {
 	
 	
 	public static ClientProps clientVmProps() {
-		return clientProps(Utils.propsFromVmArg(SYSLOG_CLIENT_CFG_PATH_VM_PROP_NAME, true));
+		return clientProps(tau.cs.wolf.tibet.percentage_apbt.misc.Utils.propsFromVmArg(SYSLOG_CLIENT_CFG_PATH_VM_PROP_NAME, true));
 		
 	}
 	

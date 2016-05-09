@@ -1,9 +1,11 @@
-package tau.cs.wolf.tibet.percentage_apbt.spark_logging;
+package tau.cs.wolf.tibet.percentage_apbt.main;
 
 import org.productivity.java.syslog4j.Syslog;
 import org.productivity.java.syslog4j.SyslogIF;
 
-public class Client {
+import tau.cs.wolf.tibet.percentage_apbt.misc.SyslogProps;
+
+public class SyslogClient {
 	
 	public static void main(String args[]) throws InterruptedException {
 		SyslogProps.ClientProps clientProps = SyslogProps.clientVmProps();

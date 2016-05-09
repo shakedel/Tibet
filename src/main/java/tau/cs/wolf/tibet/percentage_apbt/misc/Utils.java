@@ -14,6 +14,7 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -155,6 +156,30 @@ public class Utils {
 			int midIdx = startIdx + length/2;
 			return Math.max(recursiveMax(startIdx, midIdx, ints), recursiveMax(midIdx, endIdx, ints));
 		}
+	}
+
+	public static Properties propsFromVmArg(String vmArgName, boolean mandatory) {
+		String pathStr = System.getProperty(vmArgName);
+		if (pathStr == null) {
+			if (mandatory) {
+				throw new IllegalArgumentException("no JVM property: "+vmArgName);
+			}
+			return new Properties();
+		}
+		File propsFile = new File(pathStr);
+		if (!propsFile.isFile()) {
+			throw new IllegalArgumentException("vm argument '"+vmArgName+"' does not point to an existing file!");
+		}
+		try {
+			try (InputStream is = new FileInputStream(propsFile)) {
+				Properties props = new Properties();
+				props.load(is);
+				return props;
+			}
+		} catch (IOException e) {
+			throw new IllegalStateException("Should not have reached this code line");
+		}
+		
 	}
 	
 }
