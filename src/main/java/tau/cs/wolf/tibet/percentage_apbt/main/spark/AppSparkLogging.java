@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppBase;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSpark;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSparkCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.CartesPathContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairKeyFilenamePattern;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairUniquePath;
@@ -32,11 +32,11 @@ public class AppSparkLogging<R> extends AppBase {
 	private Logger logger = LoggerFactory.getLogger(AppSparkLogging.class);
 	
 	private final JavaSparkContext ctx;
-	private final ArgsSpark args;
+	private final ArgsSparkCommon args;
 	private final Broadcast<? extends ArgsCommon> bcastArgs;
 	private final Broadcast<? extends Props> bcastProps;
 	
-	public AppSparkLogging(ArgsSpark args, Props props, JavaSparkContext ctx) throws IOException {
+	public AppSparkLogging(ArgsSparkCommon args, Props props, JavaSparkContext ctx) throws IOException {
 		super(args, props);
 		this.args = args;
 		logger.info("setup with args: "+this.args);
@@ -58,7 +58,7 @@ public class AppSparkLogging<R> extends AppBase {
 			JavaRDD<PathContentPair<R>> filteredPairs = allPairs.filter(new FilterPairUniquePath<R>(null));
 			JavaRDD<Matches> matches = filteredPairs.map(new FindMatches<R>(this.bcastArgs, this.bcastProps));
 			matches.foreachAsync(new LogMatches());
-			System.out.println("XXX: "+matches.count());
+			System.out.println("Number of Matches: "+matches.count());
 		} catch (IOException e) {
 			throw new IllegalStateException(e);
 		}
@@ -67,7 +67,7 @@ public class AppSparkLogging<R> extends AppBase {
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws IOException, CmdLineException {
 		try (JavaSparkContext ctx = new JavaSparkContext(new SparkConf())) {
-			new AppSparkLogging(new ArgsSpark(args), null, ctx).run();
+			new AppSparkLogging(new ArgsSparkCommon(args), null, ctx).run();
 		}
 	}
 

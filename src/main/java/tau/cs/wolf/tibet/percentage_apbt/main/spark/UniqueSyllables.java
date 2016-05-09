@@ -33,10 +33,8 @@ public class UniqueSyllables implements Runnable {
 	}
 
 	public static void main(String[] args) throws IOException, CmdLineException {
-		ArgsSpark argsObj = new ArgsSpark(args);
-		SparkConf sparkConf = new SparkConf();
-		try (JavaSparkContext ctx = new JavaSparkContext(sparkConf)) {
-			new UniqueSyllables(argsObj, ctx).run();
+		try (JavaSparkContext ctx = new JavaSparkContext(new SparkConf())) {
+			new UniqueSyllables(new ArgsSpark(args), ctx).run();
 		}
 	}
 

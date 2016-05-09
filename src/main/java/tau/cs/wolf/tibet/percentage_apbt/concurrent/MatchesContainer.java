@@ -1,7 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.concurrent;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 

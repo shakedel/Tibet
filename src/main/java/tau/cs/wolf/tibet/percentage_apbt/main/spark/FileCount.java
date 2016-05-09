@@ -11,22 +11,22 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.kohsuke.args4j.CmdLineException;
 
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSpark;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSparkCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.SparkUtils;
 
 public class FileCount implements Runnable {
 
 	 private final JavaSparkContext ctx;
-	private final ArgsSpark args;
+	private final ArgsSparkCommon args;
 
-	public FileCount(ArgsSpark args, JavaSparkContext ctx) {
+	public FileCount(ArgsSparkCommon args, JavaSparkContext ctx) {
 		this.args = args;
 		this.ctx = ctx;
 		ctx.setLogLevel("WARN");
 	}
 
 	public static void main(String[] args) throws IOException, CmdLineException {
-		ArgsSpark argsObj = new ArgsSpark(args);
+		ArgsSparkCommon argsObj = new ArgsSparkCommon(args);
 		 SparkConf sparkConf = new SparkConf();
 		 try (JavaSparkContext ctx = new JavaSparkContext(sparkConf)) {
 			 new FileCount(argsObj, ctx).run();
