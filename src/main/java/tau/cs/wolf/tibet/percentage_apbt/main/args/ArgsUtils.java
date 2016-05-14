@@ -6,7 +6,7 @@ import java.util.EnumSet;
 import org.joda.time.Duration;
 import org.kohsuke.args4j.CmdLineException;
 
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public final class ArgsUtils {
 

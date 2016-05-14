@@ -8,12 +8,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -143,10 +146,6 @@ public class Utils {
 		return recursiveMax(0, ints.length, ints);
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(max(1,54 ,65, 65, 32, 32, 65, 98, 534 ,345));
-	}
-	
 	private static int recursiveMax(int startIdx, int endIdx, Integer... ints) {
 		int length = endIdx - startIdx;
 		switch (length) {
@@ -180,6 +179,31 @@ public class Utils {
 			throw new IllegalStateException("Should not have reached this code line");
 		}
 		
+	}
+	
+	public static int toBytes(String filesize) {
+	    int returnValue = -1;
+	    Pattern patt = Pattern.compile("([\\d.]+)([GMK]B?)", Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = patt.matcher(filesize);
+	    Map<String, Integer> powerMap = new HashMap<String, Integer>();
+	    powerMap.put("GB", 3);
+	    powerMap.put("G", 3);
+	    powerMap.put("MB", 2);
+	    powerMap.put("M", 2);
+	    powerMap.put("KB", 1);
+	    powerMap.put("K", 1);
+	    if (matcher.find()) {
+	      String number = matcher.group(1);
+	      int pow = powerMap.get(matcher.group(2).toUpperCase());
+	      BigDecimal bytes = new BigDecimal(number);
+	      bytes = bytes.multiply(BigDecimal.valueOf(1024).pow(pow));
+	      returnValue = bytes.intValue();
+	    }
+	    return returnValue;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println((toBytes("0.96k")));
 	}
 	
 }

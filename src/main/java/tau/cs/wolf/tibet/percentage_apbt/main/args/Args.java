@@ -9,7 +9,7 @@ import org.kohsuke.args4j.Option;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 
 public class Args extends ArgsCommon {

@@ -12,7 +12,7 @@ import tau.cs.wolf.tibet.percentage_apbt.matching.Apbt;
 import tau.cs.wolf.tibet.percentage_apbt.matching.ProcessType;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BaseModule;
 import tau.cs.wolf.tibet.percentage_apbt.misc.LevenshteinDistance;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 @SuppressWarnings("all")

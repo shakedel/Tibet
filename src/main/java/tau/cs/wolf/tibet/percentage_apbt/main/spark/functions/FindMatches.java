@@ -12,7 +12,7 @@ import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContentPair;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public final class FindMatches<R> implements Function<PathContentPair<R>, Matches>, Serializable {
 	private static final long serialVersionUID = 1L;

@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public abstract class AppCommon extends AppBase {
 

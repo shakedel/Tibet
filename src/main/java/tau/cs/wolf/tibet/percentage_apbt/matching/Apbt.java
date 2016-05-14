@@ -20,7 +20,7 @@ import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsBase;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 /**
  * This class implements the APBT algorithm for finding in two strings, all the
@@ -107,7 +107,7 @@ public class Apbt<R extends java.lang.reflect.Array> implements Runnable {
 		
 		for (int chunkIdx = 0; chunkIdx < numChunks; chunkIdx++) {
 			int startJ = chunkIdx * this.chunkSize;
-			logger.debug(String.format("processing chunk %d/%d",  chunkIdx+1, numChunks));
+			logger.trace(String.format("processing chunk %d/%d",  chunkIdx+1, numChunks));
 			process(startJ);
 		}
 	}

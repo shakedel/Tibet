@@ -1,7 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.misc;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 public class BaseModule {
 	protected final Props props;

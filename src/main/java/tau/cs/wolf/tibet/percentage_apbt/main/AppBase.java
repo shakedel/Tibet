@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
 
 public abstract class AppBase implements Runnable {
 
@@ -19,7 +19,6 @@ public abstract class AppBase implements Runnable {
 	public AppBase(ArgsCommon args, Props _props) {
 		this.props = _props == null ? PropsBuilder.defaultProps() : _props;
 		ArgsUtils.overrideArgsWithProps(args, this.props);
-		logger.info("setup with props: "+this.props);
 	}
 	
 	public AppBase(ArgsCommon args) {

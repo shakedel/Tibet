@@ -7,13 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.joda.time.Duration;
-import org.joda.time.Period;
-import org.skife.config.Coercer;
-import org.skife.config.Coercible;
-import org.skife.config.Config;
-import org.skife.config.ConfigurationObjectFactory;
-import org.skife.config.Default;
 import org.slf4j.LoggerFactory;
 
 
@@ -21,101 +14,17 @@ public class PropsBuilder {
 	
 	public static final String CFG_PATH_VM_PROP_NAME = "percentage_apbt.cfgPath";
 	
-	public static final String MIN_LENGTH_PROP_NAME = "minLength";
-	public static final String MAX_ERROR_PROP_NAME = "maxError";
-	public static final String TIMEOUT_PROP_NAME = "timeout";
-	public static final String MIN_DISTANCE_UNION_PROP_NAME = "minDistanceUnion";
-	public static final String LOCAL_ALIGN_PAD_RATIO_PROP_NAME = "localAlignPadRatio";
-	public static final String MATCH_AWARD_PROP_NAME = "matchAward";
-	public static final String MISMATCH_PENALTY_PROP_NAME = "mismatchPenalty";
-	public static final String GAP_PENALTY_PROP_NAME = "gapPenalty";
-	public static final String CHUNK_SIZE_PROP_NAME = "chunkSize";
-	public static final String MAX_MATCH_LENGTH_PROP_NAME = "maxMatchLength";
-	public static final String POLL_DURATION_PROP_NAME = "pollDuration";
-	public static final String COMPUTE_LEVENSHTEIN_DISTANCE_PROP_NAME = "computeLevenshteinDistance";
-	
-	public static final String MIN_LENGTH_DEFAULT_VALUE = "10";
-	public static final String MAX_ERROR_DEFAULT_VALUE = "5";
-	public static final String TIMEOUT_DEFAULT_VALUE = "PT30M"; // 30 minutes
-	public static final String MIN_DISTANCE_UNION_DEFAULT_VALUE = "10";
-	public static final String LOCAL_ALIGN_PAD_RATIO_DEFAULT_VALUE = "0.12";
-	public static final String MATCH_AWARD_DEFAULT_VALUE = "1";
-	public static final String MISMATCH_PENALTY_DEFAULT_VALUE = "-1";
-	public static final String GAP_PENALTY_DEFAULT_VALUE = "-1";
-	public static final String CHUNK_SIZE_DEFAULT_VALUE = "1000";
-	public static final String MAX_MATCH_LENGTH_DEFAULT_VALUE = "500";
-	public static final String POLL_DURATION_DEFAULT_VALUE = "PT5M"; // 5 minutes
-	public static final String COMPUTE_LEVENSHTEIN_DISTANCE_DEFAULT_VALUE = "true";
-	
-	public static interface Props {
-		@Config(MIN_LENGTH_PROP_NAME)
-		@Default(MIN_LENGTH_DEFAULT_VALUE)
-		public int getMinLength();
-		
-		@Config(MAX_ERROR_PROP_NAME)
-		@Default(MAX_ERROR_DEFAULT_VALUE)
-		public int getMaxError();
-		
-		@Config(TIMEOUT_PROP_NAME)
-		@Default(TIMEOUT_DEFAULT_VALUE)
-		public Duration getTimeout();
-
-		@Config(MIN_DISTANCE_UNION_PROP_NAME)
-		@Default(MIN_DISTANCE_UNION_DEFAULT_VALUE)
-		public int getMinDistanceUnion();
-		
-		@Config(LOCAL_ALIGN_PAD_RATIO_PROP_NAME)
-		@Default(LOCAL_ALIGN_PAD_RATIO_DEFAULT_VALUE)
-		public float getLocalAlignPadRatio();
-
-		@Config(MISMATCH_PENALTY_PROP_NAME)
-		@Default(MISMATCH_PENALTY_DEFAULT_VALUE)
-		public int getMismatchPenalty();
-		
-		@Config(MATCH_AWARD_PROP_NAME)
-		@Default(MATCH_AWARD_DEFAULT_VALUE)
-		public int getMatchAward();
-		
-		@Config(GAP_PENALTY_PROP_NAME)
-		@Default(GAP_PENALTY_DEFAULT_VALUE)
-		public int getGapPenalty();
-		
-		@Config(CHUNK_SIZE_PROP_NAME)
-		@Default(CHUNK_SIZE_DEFAULT_VALUE)
-		public int getChunkSize();
-		 
-		@Config(MAX_MATCH_LENGTH_PROP_NAME)
-		@Default(MAX_MATCH_LENGTH_DEFAULT_VALUE)
-		public int getMaxMatchLength();
-		
-		@Config(POLL_DURATION_PROP_NAME)
-		@Default(POLL_DURATION_DEFAULT_VALUE)
-		public Duration getPollDuration();
-		
-		@Config(COMPUTE_LEVENSHTEIN_DISTANCE_PROP_NAME)
-		@Default(COMPUTE_LEVENSHTEIN_DISTANCE_DEFAULT_VALUE)
-		public boolean getComputeLevenshteinDistance();
-		
-	}
-	
-	public Props getProps() {
-		return props;
-	}
-
 	private final Props props;
 	
-	
 	private PropsBuilder(Properties props) {
-		ConfigurationObjectFactory factory = new ConfigurationObjectFactory(props);
-		factory.addCoercible(new DurationCoercible());
-		this.props = factory.build(Props.class);
+		this.props = new PropsImpl(props);
 	}
+	
 	
 	public static Props newProps(Properties props) {
-		return new PropsBuilder(props).getProps();
+		return new PropsBuilder(props).props;
 	}
 
-	
 	public static Props defaultProps() {
 		Properties props = Utils.propsFromVmArg(CFG_PATH_VM_PROP_NAME, true);
 		return PropsBuilder.newProps(props);
@@ -144,17 +53,4 @@ public class PropsBuilder {
 		return newProps(new File(pathToProps));
 	}
 	
-	public static class DurationCoercible implements Coercible<Duration> {
-		
-		@Override
-		public Coercer<Duration> accept(Class<?> clazz) {
-			return new Coercer<Duration>() {
-				public Duration coerce(String value) {
-					return Period.parse(value).toStandardDuration();
-				};
-			};
-		};
-	}
-	
-
 }

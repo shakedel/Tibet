@@ -22,27 +22,30 @@ public class Matches implements Serializable {
 
 	@Override
 	public String toString() {
+		String in1 = this.p1.substring(this.p1.lastIndexOf('/')+1);
+		String in2 = this.p2.substring(this.p2.lastIndexOf('/')+1);
+		
 		StringBuilder sb = new StringBuilder();
-		sb.append(String.format("Comparison between %s and %s\n", this.p1, this.p2));
-		if (this.appStage.ordinal() >= AppStage.APBT.ordinal()) {
-			sb.append("APBT MATCHES:\n");
+		sb.append(String.format("%s\t%s\t", in1, in2));
+		if (this.appStage.order() >= AppStage.APBT.order()) {
+			sb.append("APBT:\t");
 			for (MatchResult match: appResults.getApbtMatches()) {
 				sb.append(match);
-				sb.append("\n");
+				sb.append("\t");
 			}
 		}
-		if (this.appStage.ordinal() >= AppStage.UNION.ordinal()) {
-			sb.append("UNION MATCHES:\n");
+		if (this.appStage.order() >= AppStage.UNION.order()) {
+			sb.append("UNION:\t");
 			for (MatchResult match: appResults.getUnitedMatches()) {
 				sb.append(match);
-				sb.append("\n");
+				sb.append("\t");
 			}
 		}
-		if (this.appStage.ordinal() >= AppStage.ALIGNMENT.ordinal()) {
-			sb.append("ALIGNED MATCHES:\n");
+		if (this.appStage.order() >= AppStage.ALIGNMENT.order()) {
+			sb.append("ALIGNED:\t");
 			for (MatchResult match: appResults.getAlignedMatches()) {
 				sb.append(match);
-				sb.append("\n");
+				sb.append("\t");
 			}
 		}
 		return sb.toString();

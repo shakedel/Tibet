@@ -48,7 +48,18 @@ public class AppUtils {
 	}
 	
 	public static enum AppStage {
-		APBT, UNION, ALIGNMENT
+		// The order of the instances matter!!!
+		APBT(1d), 
+		UNION(2d), 
+		ALIGNMENT(3d);
+		
+		private final double order;
+		private AppStage(double order) {
+			this.order = order;
+		}
+		public double order() {
+			return this.order;
+		}
 	}
 
 	public static enum SrcType {
