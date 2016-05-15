@@ -3,7 +3,7 @@ package tau.cs.wolf.tibet.percentage_apbt.ranking;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Alignment;
-import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder.Props;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public class IntRankingAlignment extends Alignment<int[]> {
 
