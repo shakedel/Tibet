@@ -51,20 +51,20 @@ public class Alignment<R> extends BaseModule {
 	public MatchResult water(Slicable<R> seq1, Slicable<R> seq2) {
 		// Generate DP table and traceback path pointer matrix
 
-		int[][] scores = new int[seq1.length()+1][seq2.length()+1];  // the DP table               
+		double[][] scores = new double[seq1.length()+1][seq2.length()+1];  // the DP table               
 		PathTrace[][] pointer = new PathTrace[seq1.length()+1][seq2.length()+1];// to store the traceback path
 
-		int maxScore = 0;// initial maximum score in DP table
+		double maxScore = 0;// initial maximum score in DP table
 
 		int maxI = -1, maxJ = -1;
 
 		// Calculate DP table and mark pointers
 		for (int i=1; i<seq1.length()+1; i++) {
 			for (int j=1; j<seq2.length()+1; j++) {
-				int scoreDiagonal = scores[i-1][j-1] + matchScore(seq1.compare(i-1, seq2, j-1));
-				int scoreUp = scores[i-1][j] + props.getGapPenalty();
-				int scoreLeft = scores[i][j-1] + props.getGapPenalty();
-				int score = maxOf4(0,scoreLeft, scoreUp, scoreDiagonal);
+				double scoreDiagonal = scores[i-1][j-1] + matchScore(seq1,i-1, seq2, j-1);
+				double scoreUp = scores[i-1][j] + gapPenalty(seq1, i-1);
+				double scoreLeft = scores[i][j-1] + gapPenalty(seq2, j-1);
+				double score = maxOf4(0,scoreLeft, scoreUp, scoreDiagonal);
 				scores[i][j] = score;
 
 				if (score==0) {
@@ -109,11 +109,18 @@ public class Alignment<R> extends BaseModule {
 		return new MatchResult(Interval.newIntervalByStartEnd(new IndexPair(i, j), new IndexPair(maxI, maxJ)), maxScore);
 	}
 
-	private static int maxOf4(int n1, int n2, int n3, int n4) {
+
+	private static double maxOf4(double n1, double n2, double n3, double n4) {
 		return Math.max(Math.max(n1, n2), Math.max(n3, n4));
 	}
 
-	public int matchScore(boolean matches) {
-		return matches ? props.getMatchAward() : props.getMismatchPenalty();
+	
+	public double matchScore(Slicable<R> seq1, int seq1Index, Slicable<R> seq2, int seq2Index ){
+		return seq1.compare(seq1Index, seq2, seq2Index)? props.getMatchAward() : props.getMismatchPenalty();
+ 
+	}
+	
+	public double gapPenalty(Slicable<R> seq1, int i) {
+		 return props.getGapPenalty();
 	}
 }

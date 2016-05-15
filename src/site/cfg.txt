@@ -1,6 +1,7 @@
 # documentation of the available configuration
 
 minLength = 10
+#minLength = 30
 maxError = 5
 
 # ISO-8601 duration
@@ -10,12 +11,12 @@ minDistanceUnion = 10
 localAlignPadRatio = 0.12
 
 mismatchPenalty = -1
-matchAward = 1        
-gapPenalty = -1    
+matchAward = 1
+gapPenalty = -1
     
-chunkSize = 1000                
+chunkSize = 1000
 maxMatchLength = 500
 
 // ISO-8601 duration           
-pollDuration = PT5M 
+pollDuration = PT5M
 computeLevenshteinDistance = true
