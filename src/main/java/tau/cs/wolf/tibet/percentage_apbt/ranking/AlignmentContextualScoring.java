@@ -1,5 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.ranking;
 
+
 public interface AlignmentContextualScoring {
 
 	double matchScore(int token);
