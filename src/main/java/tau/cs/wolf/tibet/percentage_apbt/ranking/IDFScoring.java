@@ -24,7 +24,7 @@ public class IDFScoring implements AlignmentContextualScoring {
 
 	@Override
 	public double replaceScore(int token1, int token2) {
-		return getEditDistanceBetweenTwoStems(token1, token2);
+		return getLCSBetweenTwoStems(token1, token2);
 	}
 
 	@Override
@@ -37,6 +37,39 @@ public class IDFScoring implements AlignmentContextualScoring {
 		String stem1 = StemUtils.getStemForInt(token1);
 		String stem2 = StemUtils.getStemForInt(token2);
 		return getLevinshteinDistance(stem1, stem2);
+	}
+	
+	private double getLCSBetweenTwoStems(int token1, int token2){
+		String stem1 = StemUtils.getStemForInt(token1);
+		String stem2 = StemUtils.getStemForInt(token2);
+		int lcs = getLCS(stem1, stem2);
+		return lcs/(double)Math.max(stem1.length(), stem2.length());
+	}
+
+	
+	
+	private int getLCS(String stem1, String stem2){
+		char[] stem1Chars = stem1.toCharArray();
+		char[] stem2Chars = stem2.toCharArray();
+		int[][] editDistanceMatrix = new int[stem1.length()+1][stem2.length()+1];
+		for (int i = 0; i <= stem1.length(); i++)
+			editDistanceMatrix[i][0] = 0;
+		for (int j = 1; j <= stem2.length(); j++)
+			editDistanceMatrix[0][j] = 0;
+		for (int i = 1; i <= stem1.length(); i++) {
+
+			for (int j = 1; j <= stem2.length(); j++) {
+
+				editDistanceMatrix[i][j] = Math.max(
+						editDistanceMatrix[i - 1][j] ,
+						Math.max(editDistanceMatrix[i][j - 1],
+						editDistanceMatrix[i - 1][j - 1]
+								+ (stem1Chars[i-1] == stem2Chars[j-1] ? 1 : 0)));
+			}
+		}
+		return editDistanceMatrix[stem1.length()][stem2.length()];
+
+
 	}
 	
 	private double getLevinshteinDistance(String stem1, String stem2){
@@ -65,6 +98,7 @@ public class IDFScoring implements AlignmentContextualScoring {
 	}
 	public static void main(String[] args){
 		System.out.println(new IDFScoring().getLevinshteinDistance("abcd", "ab"));
+		System.out.println(new IDFScoring().getLCS("abcd", "abeed"));
 		System.out.println(new IDFScoring().gapScore(1));
 	}
 

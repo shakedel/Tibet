@@ -18,7 +18,7 @@ import tau.cs.wolf.tibet.percentage_apbt.ranking.utils.stemming.StemUtils;
 public class TermFrequencyForCorpus {
 	private static final String mainDir = "C:\\data\\Kangyur_Tenjur-CLEAN-2016-05-14\\enum_stem\\enum_stem";
 	private static final String outputDir = "C:\\data\\TFIDF\\";
-	private static final String tfDFFileName = "tf.txt";
+	private static final String tfDFFileName = "resources/data/TFIDF/tf.txt";
 	public static final int DOC_NUM_IN_CORPUS = 4282;
 
 	private static Map<Integer, Integer> tfMap;
@@ -37,7 +37,7 @@ public class TermFrequencyForCorpus {
 	
 	
 	private static void loadTFDFCounts() throws IOException{
-		List<String> lines = Files.readAllLines(Paths.get(outputDir,tfDFFileName), Charset.defaultCharset());
+		List<String> lines = Files.readAllLines(Paths.get(tfDFFileName), Charset.defaultCharset());
 		for (int i = 1; i < lines.size(); i++){
 			String[] words = lines.get(i).split(",");
 			Integer stemAsInt = Integer.parseInt(words[0]);
