@@ -43,6 +43,11 @@ public class ArrChar implements Slicable<char[]>{
 	public char[] get() {
 		return this.arr;
 	}
+
+	@Override
+	public int getRealIndex(int i) {
+		return i + this.fromIdx;
+	}
 	
 
 }

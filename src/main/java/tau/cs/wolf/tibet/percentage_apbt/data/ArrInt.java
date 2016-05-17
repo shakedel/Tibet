@@ -61,6 +61,11 @@ public class ArrInt implements Slicable<int[]>{
 	public int[] get() {
 		return this.arr;
 	}
-	
 
+
+	@Override
+	public int getRealIndex(int i) {
+		return i + this.fromIdx;
+	}
+	
 }

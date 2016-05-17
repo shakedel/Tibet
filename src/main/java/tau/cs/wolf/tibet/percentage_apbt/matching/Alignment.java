@@ -62,6 +62,13 @@ public class Alignment<R> extends BaseModule {
 		for (int i=1; i<seq1.length()+1; i++) {
 			for (int j=1; j<seq2.length()+1; j++) {
 				double scoreDiagonal = scores[i-1][j-1] + matchScore(seq1,i-1, seq2, j-1);
+//				if (scoreDiagonal > 0.91890628){
+//					System.out.println("prevScore: " + scores[i-1][j-1]);
+//					System.out.println("currScore: " + matchScore(seq1,i-1, seq2, j-1));
+//					int[] seq1Array = (int[])seq1.get();
+//					int[] seq2Array = (int[])seq2.get();
+//					System.out.println("currMatches: "  + seq1Array[i-1] + " ; " + seq2Array[j-1]);
+//				} 
 				double scoreUp = scores[i-1][j] + gapPenalty(seq1, i-1);
 				double scoreLeft = scores[i][j-1] + gapPenalty(seq2, j-1);
 				double score = maxOf4(0,scoreLeft, scoreUp, scoreDiagonal);
