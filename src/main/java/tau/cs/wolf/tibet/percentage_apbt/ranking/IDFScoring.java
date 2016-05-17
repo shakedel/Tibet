@@ -43,7 +43,12 @@ public class IDFScoring implements AlignmentContextualScoring {
 		String stem1 = StemUtils.getStemForInt(token1);
 		String stem2 = StemUtils.getStemForInt(token2);
 		int lcs = getLCS(stem1, stem2);
-		return lcs/(double)Math.max(stem1.length(), stem2.length());
+		if (lcs > Math.max(stem1.length(), stem2.length())*0.5){ // if most of the letters are shared
+			return lcs/(double)Math.max(stem1.length(), stem2.length()) * Math.max(matchScore(token1), matchScore(token2));
+		}
+		else{ //most of the letters are different
+			return Math.min(gapScore(token1), gapScore(token2));
+		}
 	}
 
 	
