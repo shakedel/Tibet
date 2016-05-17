@@ -14,12 +14,15 @@ import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParser;
+import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.SrcType;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Alignment;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Union;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
+import tau.cs.wolf.tibet.percentage_apbt.ranking.IDFScoring;
+import tau.cs.wolf.tibet.percentage_apbt.ranking.IntRankingAlignment;
 
 public class AppMain extends AppCommon {
 
@@ -113,7 +116,13 @@ public class AppMain extends AppCommon {
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	private AppResults doAlignment(MatchesContainer matchesContainer) {
 		AppResults res = doUnion(matchesContainer);
-		List<MatchResult> alignedMatches = new Alignment(props, args).alignMatches(res.getUnitedMatches(), seq1, seq2);
+		List<MatchResult> alignedMatches;
+		if (args.getDataType() == DataType.INT){ 
+			alignedMatches = new IntRankingAlignment(props, args,new IDFScoring()).alignMatches(res.getUnitedMatches(), (Slicable<int[]>) seq1, (Slicable<int[]>) seq2);
+		}
+		else{
+			alignedMatches = new Alignment(props, args).alignMatches(res.getUnitedMatches(), seq1, seq2);
+		}
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished ALIGNMENT stage with "+alignedMatches.size()+" matches");
 		res.setAlignedMatches(alignedMatches);
 		return res;
