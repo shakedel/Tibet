@@ -1,12 +1,15 @@
 package tau.cs.wolf.tibet.percentage_apbt.data;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 
-public class ArrInt implements Slicable<int[]>{
+public class ArrInt implements Slicable<int[]>, Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private final int[] arr;
 	private final int fromIdx;
 	private final int length;
