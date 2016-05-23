@@ -33,7 +33,8 @@ public class SyslogServer {
 			if (eventHandler instanceof FileSyslogServerEventHandler) {
 				((PrintStreamSyslogServerEventHandler) eventHandler).setFormatter(messageOnlyFormatter);
 			} else if (eventHandler instanceof SystemOutSyslogServerEventHandler) {
-				((PrintStreamSyslogServerEventHandler) eventHandler).setFormatter(warnThrshFormatter);
+				// keep default formatter
+//				((PrintStreamSyslogServerEventHandler) eventHandler).setFormatter(warnThrshFormatter);
 			}
 		}
 		
