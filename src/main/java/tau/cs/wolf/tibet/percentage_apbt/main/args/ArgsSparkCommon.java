@@ -1,6 +1,7 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.args;
 
-import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -14,23 +15,24 @@ public class ArgsSparkCommon extends ArgsCommon {
 
 	private static final long serialVersionUID = 1L;
 	
-	private File existingPairsFile;
-//	@Option(name = "-f", required = false, metaVar = "FILE", usage = "existing pairs file")
-//	public void setInFile1(File f) throws CmdLineException {
-//		ArgsUtils.assertFileExists(f, "-f");
-//		this.existingPairsFile = f;
-//	}
-	public File getExistingPairsFile() {
-		return this.existingPairsFile;
-	}
-	
-	private String inDir;
+	private URI inDir;
+	@SuppressWarnings("deprecation")
 	@Option(name = "-inDir", required = true, metaVar = "PATH", usage = "input directory")
 	public void setInDir(String inDir) throws CmdLineException {
-		this.inDir = inDir;
+		try {
+			this.inDir = new URI(inDir);
+		} catch (URISyntaxException e) {
+			throw new CmdLineException(e);
+		}
 	}
-	public String getInDir() {
+	public URI getInDir() {
 		return inDir;
+	}
+	
+	@Option(name = "-isAsync", usage = "spark foreach sync")
+	private boolean isAsynced;
+	public boolean isAsynced() {
+		return isAsynced;
 	}
 	
 	private Pattern filenamePattern;

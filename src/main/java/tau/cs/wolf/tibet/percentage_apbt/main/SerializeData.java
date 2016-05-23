@@ -5,8 +5,6 @@ import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.AbstractMap;
-import java.util.Map.Entry;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -14,6 +12,7 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.Option;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableEntry;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParser;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.SrcType;
@@ -40,7 +39,7 @@ public class SerializeData implements Runnable {
 			os.writeInt(files.length);
 			for (File f: files) {
 				Slicable<?> slice = parser.parse(f);
-				SlicableEntry entry = new SlicableEntry(f, slice);
+				SlicableEntry entry = new SlicableEntry(f.getPath(), slice);
 				os.writeObject(entry);
 				System.out.println("successfuly serialized "+f.getPath());
 			}
@@ -110,14 +109,6 @@ public class SerializeData implements Runnable {
 		}
 		public File getOutFile() {
 			return outFile;
-		}
-	}
-	
-	public static class SlicableEntry extends AbstractMap.SimpleEntry<File, Slicable<?>> {
-		private static final long serialVersionUID = 1L;
-		
-		public SlicableEntry(File key, Slicable<?> value) {
-			super(key, value);
 		}
 	}
 }

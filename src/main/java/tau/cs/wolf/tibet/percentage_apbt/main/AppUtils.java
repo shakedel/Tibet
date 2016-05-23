@@ -2,9 +2,11 @@ package tau.cs.wolf.tibet.percentage_apbt.main;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParser;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserCharFile;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserCharInputStream;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserCharPath;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserCharString;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntFile;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntInputStream;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntPath;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntString;
 
@@ -16,6 +18,9 @@ public class AppUtils {
 		switch (dataType) {
 			case INT:
 				switch (srcType) {
+					case INPUT_STREAM: 
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserIntInputStream();
+						break;
 					case FILE: 
 						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserIntFile();
 						break;
@@ -29,6 +34,9 @@ public class AppUtils {
 				break;
 			case CHAR:
 				switch (srcType) {
+					case INPUT_STREAM:
+						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserCharInputStream();
+						break;
 					case FILE:
 						res = (SlicableParser<? extends DATA, ? extends SRC>) new SlicableParserCharFile();
 						break;
@@ -63,6 +71,7 @@ public class AppUtils {
 	}
 
 	public static enum SrcType {
+		INPUT_STREAM,
 		FILE,
 		STRING,
 		PATH

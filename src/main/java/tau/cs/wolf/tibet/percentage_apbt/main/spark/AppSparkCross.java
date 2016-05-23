@@ -30,9 +30,9 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.SyslogProps;
 import tau.cs.wolf.tibet.percentage_apbt.misc.SyslogProps.ClientProps;
 
-public class AppSparkLogging<R> extends AppBase {
+public class AppSparkCross<R> extends AppBase {
 
-	private Logger logger = LoggerFactory.getLogger(AppSparkLogging.class);
+	private Logger logger = LoggerFactory.getLogger(AppSparkCross.class);
 	
 	private final JavaSparkContext ctx;
 	private final ArgsSparkCommon args;
@@ -40,7 +40,7 @@ public class AppSparkLogging<R> extends AppBase {
 	private final Broadcast<? extends Props> bcastProps;
 	private final Broadcast<? extends ClientProps> bcastClientProps;
 	
-	public AppSparkLogging(ArgsSparkCommon args, JavaSparkContext ctx) throws IOException {
+	public AppSparkCross(ArgsSparkCommon args, JavaSparkContext ctx) throws IOException {
 		super(args, null);
 		
 		this.args = args;
@@ -79,7 +79,7 @@ public class AppSparkLogging<R> extends AppBase {
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws IOException, CmdLineException {
 		try (JavaSparkContext ctx = new JavaSparkContext(new SparkConf())) {
-			new AppSparkLogging(new ArgsSparkCommon(args), ctx).run();
+			new AppSparkCross(new ArgsSparkCommon(args), ctx).run();
 		}
 	}
 

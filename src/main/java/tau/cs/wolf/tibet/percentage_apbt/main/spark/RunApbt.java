@@ -1,5 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.main.spark;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
@@ -7,8 +8,8 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.broadcast.Broadcast;
 
 import scala.Tuple2;
+import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableEntry;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppMain;
-import tau.cs.wolf.tibet.percentage_apbt.main.SerializeData.SlicableEntry;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
@@ -45,16 +46,16 @@ final class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer>
 						SlicableEntry entry1 = bcastEntries.getValue().get(indexPair._1);
 						SlicableEntry entry2 = bcastEntries.getValue().get(indexPair._2);
 						
-						Args args = new Args(entry1.getKey(), entry2.getKey(), null, bcastArgs.getValue().getAppStage(), bcastArgs.getValue().getDataType(), false);
+						Args args = new Args(new File(entry1.getKey()), new File(entry2.getKey()), null, bcastArgs.getValue().getAppStage(), bcastArgs.getValue().getDataType(), false);
 						
 						AppMain app = new AppMain(args, bcastProps.getValue());
 						app.setup(entry1.getValue(), entry2.getValue());
 						try {
 							app.run();
 						} catch (Exception e) {
-							throw new RuntimeException("Algorithm failed on "+entry1.getKey().getPath()+" and "+entry2.getKey().getPath(), e);
+							throw new RuntimeException("Algorithm failed on "+entry1.getKey()+" and "+entry2.getKey(), e);
 						}
-						return new Matches(entry1.getKey().getPath(), entry2.getKey().getPath(), app.getResults(), bcastArgs.getValue().getAppStage());
+						return new Matches(entry1.getKey(), entry2.getKey(), app.getResults(), bcastArgs.getValue().getAppStage());
 					}
 
 					@Override
