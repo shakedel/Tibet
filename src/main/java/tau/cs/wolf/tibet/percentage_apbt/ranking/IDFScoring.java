@@ -13,13 +13,13 @@ public class IDFScoring implements AlignmentContextualScoring {
 	public double matchScore(int token) {
 		int df = TermFrequencyForCorpus.getDFForStem(token);
 		if (df >= MIN_DOC_FREQUENCY_TH){
-			return (TermFrequencyForCorpus.DOC_NUM_IN_CORPUS - df)/(double)(TermFrequencyForCorpus.DOC_NUM_IN_CORPUS- MIN_DOC_FREQUENCY_TH);
+			return (TermFrequencyForCorpus.DOC_NUM_IN_CORPUS - df + 3)/(double)(TermFrequencyForCorpus.DOC_NUM_IN_CORPUS- MIN_DOC_FREQUENCY_TH);
 		}
 		else{
 			// if the word is not frequent enough, we treat it as an insignificant word, that is, a very frequent one.
 			return 0;
 		}
-
+		//return 1;
 	}
 
 	@Override
@@ -29,6 +29,9 @@ public class IDFScoring implements AlignmentContextualScoring {
 
 	@Override
 	public double gapScore(int token) {
+		if (token == -1){
+			return -3; //
+		}
 		return -matchScore( token);
 	}
 	
