@@ -2,7 +2,7 @@ f1 = open("Klong.txt", "r")
 f2 = open("phya.txt", "r")
 
 alignments_file = open("correct alignment.csv", "r")
-
+output_file = open("correct_alignment_spans.csv", "w")
 
 def file_to_list(f):
     res = []
@@ -34,5 +34,8 @@ def load_csv(alignments):
         first_span = find_span_in_text(first, file1)
         second_span = find_span_in_text(second, file2)
         print i , (first_span), (second_span)
+        output_file.write(str(first_span[0]) + "," + str(second_span[0])  + "," + str(first_span[1]) + "," + str(second_span[1]) + ",1") 
+        output_file.write("\n")
         i += 1
+    output_file.close()
 load_csv(alignments_file)
