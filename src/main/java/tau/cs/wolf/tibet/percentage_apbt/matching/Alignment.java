@@ -1,7 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.matching;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.IndexPair;
@@ -30,7 +29,6 @@ public class Alignment<R> extends BaseModule {
 			int endOne = Math.min(paddedSpan1.getEnd(), seq1.length()-1);
 			int startTwo = Math.max(0, paddedSpan2.getStart());
 			int endTwo = Math.min(paddedSpan2.getEnd() ,seq2.length()-1);
-			System.out.println(startOne + "," +endOne +","+ startTwo + "," + endTwo);
 			MatchResult wateredUnitedMatch = water(seq1.slice(startOne, endOne), seq2.slice(startTwo, endTwo));
 			wateredUnitedMatch.getInterval().shiftSpans(startOne, startTwo);
 			res.add(wateredUnitedMatch);
