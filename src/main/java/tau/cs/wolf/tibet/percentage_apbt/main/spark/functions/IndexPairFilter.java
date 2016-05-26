@@ -1,10 +1,10 @@
-package tau.cs.wolf.tibet.percentage_apbt.main.spark;
+package tau.cs.wolf.tibet.percentage_apbt.main.spark.functions;
 
 import org.apache.spark.api.java.function.Function;
 
 import scala.Tuple2;
 
-final class IndexPairFilter implements Function<Tuple2<Integer, Integer>, Boolean> {
+public final class IndexPairFilter implements Function<Tuple2<Integer, Integer>, Boolean> {
 	private static final long serialVersionUID = 1L;
 
 	@Override

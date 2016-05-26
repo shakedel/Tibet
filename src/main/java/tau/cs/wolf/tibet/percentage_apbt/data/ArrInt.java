@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 
 public class ArrInt implements Slicable<int[]>, Serializable {
@@ -65,5 +67,14 @@ public class ArrInt implements Slicable<int[]>, Serializable {
 		return this.arr;
 	}
 	
+	@Override
+	public String toString() {
+		return StringUtils.join(this.arr, ' ', this.fromIdx, this.fromIdx+this.length);
+	}
+
+	@Override
+	public String getStringHead(int n) {
+		return StringUtils.join(this.arr, ' ', this.fromIdx, this.fromIdx+Math.min(this.length, n));
+	}
 
 }

@@ -2,7 +2,6 @@ package tau.cs.wolf.tibet.percentage_apbt.main;
 
 import java.io.IOException;
 
-import org.productivity.java.syslog4j.SyslogConstants;
 import org.productivity.java.syslog4j.server.SyslogServerConfigIF;
 import org.productivity.java.syslog4j.server.SyslogServerEventFormatterIF;
 import org.productivity.java.syslog4j.server.SyslogServerEventIF;
@@ -20,7 +19,7 @@ public class SyslogServer {
 	
 	public static void main(String args[]) throws IOException {
 		SyslogServerEventFormatterIF messageOnlyFormatter = new MessageOnlyForamtter();
-		SyslogServerEventFormatterIF warnThrshFormatter = new SeverityThresholdFilter(SyslogConstants.LEVEL_WARN);
+//		SyslogServerEventFormatterIF warnThrshFormatter = new SeverityThresholdFilter(SyslogConstants.LEVEL_WARN);
 		
 		SyslogProps.ServerProps serverProps = SyslogProps.serverVmProps();
 		SyslogServerIF syslogServer = org.productivity.java.syslog4j.server.SyslogServer.getInstance(serverProps.getProtocol());
@@ -44,7 +43,7 @@ public class SyslogServer {
 		}
 	}
 
-	private static final class MessageOnlyForamtter implements SyslogServerEventFormatterIF {
+	public static final class MessageOnlyForamtter implements SyslogServerEventFormatterIF {
 		@Override
 		public String format(SyslogServerEventIF event) {
 			StringBuilder sb = new StringBuilder();
@@ -53,7 +52,7 @@ public class SyslogServer {
 		}
 	}
 	
-	private static final class SeverityThresholdFilter implements SyslogServerEventFormatterIF {
+	public static final class SeverityThresholdFilter implements SyslogServerEventFormatterIF {
 		
 		private SyslogServerEventFormatterIF formatter = new SyslogServerEventFormatterDefault(); 
 		private final int level;

@@ -1,4 +1,4 @@
-package tau.cs.wolf.tibet.percentage_apbt.main.spark;
+package tau.cs.wolf.tibet.percentage_apbt.main.spark.functions;
 
 import java.io.File;
 import java.util.Iterator;
@@ -15,7 +15,7 @@ import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
-final class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer>>, Matches> {
+public class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer>>, Matches> {
 	private static final long serialVersionUID = 1L;
 	
 	private final Broadcast<? extends ArgsCommon> bcastArgs;

@@ -47,5 +47,15 @@ public class ArrChar implements Slicable<char[]>, Serializable {
 		return this.arr;
 	}
 	
+	@Override
+	public String toString() {
+		return new String(this.arr, this.fromIdx, this.length);
+	}
+
+	@Override
+	public String getStringHead(int n) {
+		return new String(this.arr, this.fromIdx, Math.min(this.length, n));
+	}
+	
 
 }
