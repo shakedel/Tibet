@@ -62,10 +62,11 @@ public class AppSparkLogIndices extends AppBase {
 		JavaRDD<Integer> indicesRdd = ctx.parallelize(indices);
 		JavaPairRDD<Integer, Integer> indexPairs = indicesRdd.cartesian(indicesRdd);
 		JavaPairRDD<Integer, Integer> filteredIndexPairs = indexPairs.filter(new IndexPairFilter());
+		LogIndices logIndices = new LogIndices(this.bcastArgs, this.bcastProps, this.bcastClientProps, this.bcastEntries);
 		if (this.args.isAsynced()) {
-			filteredIndexPairs.foreachPartitionAsync(new LogIndices(this.bcastArgs, this.bcastProps, this.bcastClientProps, this.bcastEntries));
+			filteredIndexPairs.foreachPartitionAsync(logIndices);
 		} else {
-			filteredIndexPairs.foreachPartition(new LogIndices(this.bcastArgs, this.bcastProps, this.bcastClientProps, this.bcastEntries));
+			filteredIndexPairs.foreachPartition(logIndices);
 		}
 		logger.info("Number of Matchings: "+filteredIndexPairs.count());
 	}
