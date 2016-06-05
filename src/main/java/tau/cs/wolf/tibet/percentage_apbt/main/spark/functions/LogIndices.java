@@ -42,6 +42,8 @@ public class LogIndices implements VoidFunction<Iterator<Tuple2<Integer, Integer
 			throw new IllegalStateException("exception thrown: "+e.getMessage()+"\nstack trace:\n"+ExceptionUtils.getStackTrace(e));
 			
 		} finally {
+			// needed to let the syslog send the messages!
+			Thread.sleep(60000);
 			// is flush needed?
 			if (syslogClient != null) {
 				syslogClient.flush();

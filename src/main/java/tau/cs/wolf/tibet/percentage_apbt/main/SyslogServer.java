@@ -9,7 +9,6 @@ import org.productivity.java.syslog4j.server.SyslogServerIF;
 import org.productivity.java.syslog4j.server.SyslogServerSessionEventHandlerIF;
 import org.productivity.java.syslog4j.server.impl.event.SyslogServerEventFormatterDefault;
 import org.productivity.java.syslog4j.server.impl.event.printstream.FileSyslogServerEventHandler;
-import org.productivity.java.syslog4j.server.impl.event.printstream.PrintStreamSyslogServerEventHandler;
 import org.productivity.java.syslog4j.server.impl.event.printstream.SystemOutSyslogServerEventHandler;
 import org.productivity.java.syslog4j.util.SyslogUtility;
 
@@ -18,7 +17,7 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.SyslogProps;
 public class SyslogServer {
 	
 	public static void main(String args[]) throws IOException {
-		SyslogServerEventFormatterIF messageOnlyFormatter = new MessageOnlyForamtter();
+//		SyslogServerEventFormatterIF messageOnlyFormatter = new MessageOnlyForamtter();
 //		SyslogServerEventFormatterIF warnThrshFormatter = new SeverityThresholdFilter(SyslogConstants.LEVEL_WARN);
 		
 		SyslogProps.ServerProps serverProps = SyslogProps.serverVmProps();
@@ -30,7 +29,8 @@ public class SyslogServer {
 		for (Object obj: config.getEventHandlers()) {
 			SyslogServerSessionEventHandlerIF eventHandler = (SyslogServerSessionEventHandlerIF) obj;
 			if (eventHandler instanceof FileSyslogServerEventHandler) {
-				((PrintStreamSyslogServerEventHandler) eventHandler).setFormatter(messageOnlyFormatter);
+				// keep default formatter
+//				((PrintStreamSyslogServerEventHandler) eventHandler).setFormatter(messageOnlyFormatter);
 			} else if (eventHandler instanceof SystemOutSyslogServerEventHandler) {
 				// keep default formatter
 //				((PrintStreamSyslogServerEventHandler) eventHandler).setFormatter(warnThrshFormatter);
