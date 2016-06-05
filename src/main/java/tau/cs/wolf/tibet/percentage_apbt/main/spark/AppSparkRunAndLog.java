@@ -62,12 +62,13 @@ public class AppSparkRunAndLog extends AppBase {
 		JavaRDD<Integer> indicesRdd = ctx.parallelize(indices);
 		JavaPairRDD<Integer, Integer> indexPairs = indicesRdd.cartesian(indicesRdd);
 		JavaPairRDD<Integer, Integer> filteredIndexPairs = indexPairs.filter(new IndexPairFilter());
+		RunAndLog runAndLog = new RunAndLog(this.bcastArgs, this.bcastProps, this.bcastClientProps, this.bcastEntries);
 		if (this.args.isAsynced()) {
-			filteredIndexPairs.foreachPartitionAsync(new RunAndLog(this.bcastArgs, this.bcastProps, this.bcastClientProps, this.bcastEntries));
+			filteredIndexPairs.foreachPartitionAsync(runAndLog);
 		} else {
-			filteredIndexPairs.foreachPartition(new RunAndLog(this.bcastArgs, this.bcastProps, this.bcastClientProps, this.bcastEntries));
+			filteredIndexPairs.foreachPartition(runAndLog);
 		}
-		logger.info("Number of Matchings: "+filteredIndexPairs.count());
+		logger.warn("Number of Matchings: "+filteredIndexPairs.count());
 	}
 	
 	public static void main(String[] args) throws IOException, CmdLineException, ClassNotFoundException {
