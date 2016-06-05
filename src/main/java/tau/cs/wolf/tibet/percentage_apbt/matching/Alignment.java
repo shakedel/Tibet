@@ -97,10 +97,10 @@ public class Alignment<R> extends BaseModule {
 				j--;
 				break;
 			case UP:
-				j--;
+				i--;
 				break;
 			case LEFT:
-				i--;
+				j--;
 				break;
 			default:
 				throw new IllegalStateException("Unknown value: "+pointer[i][j]);
