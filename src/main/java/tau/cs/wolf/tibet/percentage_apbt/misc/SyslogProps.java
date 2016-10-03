@@ -37,6 +37,7 @@ public class SyslogProps {
 	public static final String FACILITY_DEFAULT_VALUE = null;
 	public static final String PROTOCOL_DEFAULT_VALUE = SyslogConstants.TCP;
 	public static final int MAX_MSG_LEN_DEFAULT_VALUE = Utils.toBytes("1M");
+	public static final boolean DAEMON_DEFAULT_VALUE = false;
 	
 	public static interface ClientProps extends Serializable {
 		public String getHost();
@@ -54,6 +55,7 @@ public class SyslogProps {
 		public File getOutDir();
 		public boolean isSysoutHandler();
 		public Integer getTimeout();
+		public Boolean isDaemon();
 	}
 	
 	private static class ClientPropsImpl implements ClientProps {
@@ -106,6 +108,7 @@ public class SyslogProps {
 		private boolean sysoutHandler = SYSOUT_HANDLER_DEFAULT_VALUE;
 		private File outDir;
 		private int timeout = TIMEOUT_DEFAULT_VALUE;
+		private boolean daemon = DAEMON_DEFAULT_VALUE;
 		
 		public ServerPropsImpl(Properties props) {
 			this.host = props.getProperty(HOST_PROP_NAME);
@@ -153,6 +156,7 @@ public class SyslogProps {
 		@Override public File getOutDir() { return this.outDir; }
 		@Override public boolean isSysoutHandler() { return this.sysoutHandler; }
 		@Override public Integer getTimeout() { return this.timeout; }
+		@Override public Boolean isDaemon() { return this.daemon; }
 
 		@Override
 		public String toString() {
@@ -235,5 +239,10 @@ public class SyslogProps {
 			SyslogServerEventHandlerIF eventHandler = SystemOutSyslogServerEventHandler.create();
 			syslogServerConfig.addEventHandler(eventHandler);
 		}
+		
+		if (serverProps.isDaemon() != null) {
+			syslogServerConfig.setUseDaemonThread(serverProps.isDaemon());
+		}
+		
 	}
 }
