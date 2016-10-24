@@ -9,7 +9,6 @@ import org.kohsuke.args4j.Option;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
-import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 
 public class Args extends ArgsCommon {
@@ -66,11 +65,6 @@ public class Args extends ArgsCommon {
 	}
 	public Duration getPollDuration() {
 		return this.pollDuration;
-	}
-	
-	public Args(String[] args, Props props) throws CmdLineException {
-		this(args);
-		ArgsUtils.overrideArgsWithProps(this, props);
 	}
 	
 	public Args(File inFile1, File inFile2, File outFile, AppStage appStage, DataType dataType, boolean checkExistance) {

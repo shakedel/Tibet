@@ -3,10 +3,7 @@ package tau.cs.wolf.tibet.percentage_apbt.main.args;
 import java.io.File;
 import java.util.EnumSet;
 
-import org.joda.time.Duration;
 import org.kohsuke.args4j.CmdLineException;
-
-import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public final class ArgsUtils {
 
@@ -34,36 +31,6 @@ public final class ArgsUtils {
 		throw new CmdLineException("Option "+optionName+": "+msg);
 	}
 
-	public static void overrideArgsWithProps(ArgsCommon args, Props props) {
-		try {
-			if (args.getMinLength() == null) {
-				args.setMinlength(props.getMinLength());
-			}
-			if (args.getMaxError() == null) {
-				args.setMaxError(props.getMaxError());
-			}
-			if (args.getTimeout() == null) {
-				Duration t = props.getTimeout();
-				args.setTimeout(t);
-			}
-			if (args.getMinDistanceUnion() == null) {
-				args.setMinDistanceUnion(props.getMinDistanceUnion());
-			}
-			if (args.getLocalAlignPadRatio() == null) {
-				args.setLocalAlignPadRatio(props.getLocalAlignPadRatio());
-			}
-			if (Args.class.isAssignableFrom(args.getClass())) {
-				Args castedArgs = (Args) args;
-				if (castedArgs.getPollDuration() == null) {
-					castedArgs.setPollDuration(props.getPollDuration());
-				}
-			}
-			
-		} catch (CmdLineException e) {
-			throw new IllegalArgumentException(e);
-		}
-	}
-	
 	public static <T extends Enum<T>> EnumSet<T> p(Class<T> t) {
 		return EnumSet.allOf(t);
 	}
