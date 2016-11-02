@@ -19,8 +19,8 @@ import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsPreprocess;
 import tau.cs.wolf.tibet.percentage_apbt.misc.IdGenerator;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.UnorderedIntPair;
-import tau.cs.wolf.tibet.percentage_apbt.preprocess.DirStructureMarshaller;
-import tau.cs.wolf.tibet.percentage_apbt.preprocess.DirStructureMarshallerImpl;
+import tau.cs.wolf.tibet.percentage_apbt.preprocess.PreprocessDirStructureMarshaller;
+import tau.cs.wolf.tibet.percentage_apbt.preprocess.PreprocessDirStructureMarshallerImpl;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -33,12 +33,12 @@ public class AppPreprocess extends AppBase {
 	
 	private final IdGenerator<Set<UnorderedIntPair>> grpIdGenerator = new IdGenerator.SequentialIdGenerator<>(0, 1);
 	
-	private final DirStructureMarshaller marshaller;
+	private final PreprocessDirStructureMarshaller marshaller;
 
 	public AppPreprocess(ArgsPreprocess args, Props _props) {
 		super(args, _props);
 		this.args = args;
-		this.marshaller = new DirStructureMarshallerImpl(args.getOutDir());
+		this.marshaller = new PreprocessDirStructureMarshallerImpl(args.getOutDir());
 	}
 
 	@Override
@@ -53,7 +53,6 @@ public class AppPreprocess extends AppBase {
 	public void runWithIOException() throws IOException {
 		
 		marshaller.writeArgs(this.args);
-		marshaller.writeProps(this.props);
 		
 		// create docs dir
 		Path docsDir = this.args.getOutDir().resolve("docs");
@@ -75,7 +74,9 @@ public class AppPreprocess extends AppBase {
 		// create grps map
 		{
 			Map<Integer, Set<UnorderedIntPair>> grps = addGrps();
+			List<Integer> grpsList = new ArrayList<>(grps.keySet());
 			this.marshaller.writeGrpMap(grps);
+			this.marshaller.writeGrpIds(grpsList);
 		}
 
 	}
@@ -96,9 +97,14 @@ public class AppPreprocess extends AppBase {
 				Set<UnorderedIntPair> grp = new UnorderedIntPair.UnorderedIntPairSet();
 				UnorderedIntPair pair = new UnorderedIntPair(Integer.MAX_VALUE, Integer.MAX_VALUE);
 				
-				for (int row=startRow; row<len && row<this.inDocIds1.size(); row++) {
-					for (int col=startCol; col<len && col<this.inDocIds2.size(); col++) {
-						pair.set(this.inDocIds1.get(row), this.inDocIds2.get(col));
+				for (int row=startRow; row<startRow+len && row<this.inDocIds1.size(); row++) {
+					for (int col=startCol; col<startCol+len && col<this.inDocIds2.size(); col++) {
+						int docId1 = this.inDocIds1.get(row);
+						int docId2 = this.inDocIds2.get(col);
+						if (docId1 == docId2) {
+							continue;
+						}
+						pair.set(docId1, docId2);
 						boolean isNewPair = allPairs.add(pair);
 						if (isNewPair) {
 							grp.add(pair);
@@ -140,14 +146,15 @@ public class AppPreprocess extends AppBase {
 		@SuppressWarnings("unchecked")
 		SlicableParser<?, Path> parser = (SlicableParser<?, Path>) AppUtils.getParser(args.getDataType(), SrcType.PATH);
 		for (Path path: inPaths) {
-			Integer docId = docs.get(path);
+			Integer docId = docs.get(path.toAbsolutePath().toString());
 			if (docId == null) {
 				docId = idGenerator.nextId(path);
-				docs.put(path.toString(), docId);
+				logger.info("assigning ID: "+docId+" to doc: "+path);
+				docs.put(path.toAbsolutePath().toString(), docId);
+				Slicable<?> content = parser.parse(path);
+				this.marshaller.writeDoc(docId, content);
 			}
 			inDocIds.add(docId);
-			Slicable<?> content = parser.parse(path);
-			this.marshaller.writeDoc(docId, content);
 		}
 	}
 

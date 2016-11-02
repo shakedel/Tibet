@@ -6,6 +6,7 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils.OutputStreamGobbler;
 
 public class ArgsBase implements Serializable {
@@ -35,5 +36,9 @@ public class ArgsBase implements Serializable {
 
 	@Option(name = "-h", aliases = { "-help", "--help" }, help = true, usage = "print this message")
 	private boolean help = false;
+	
+	public void fillWithProps(Props props) throws CmdLineException {
+		// do nothing
+	}
 
 }

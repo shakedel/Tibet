@@ -10,22 +10,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsPreprocess;
-import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.UnorderedIntPair;
 
 import com.google.common.collect.BiMap;
 
-public class DirStructureMarshallerImpl implements DirStructureMarshaller {
+public class PreprocessDirStructureMarshallerImpl implements PreprocessDirStructureMarshaller {
 
 	private final Path argsBinPath;
 	private final Path argsTextPath;
-	private final Path propsBinPath;
-	private final Path propsTextPath;
 	
 	private final Path docsBinDirPath;
 	private final Path docsMapBinPath;
@@ -34,14 +32,14 @@ public class DirStructureMarshallerImpl implements DirStructureMarshaller {
 	private final Path grpsBinDirPath;
 	private final Path grpsMapBinPath;
 	private final Path grpsMapTextPath;
+	private final Path grpsIdsBinPath;
+	private final Path grpsIdsTextPath;
 	
-	public DirStructureMarshallerImpl(Path basePath) {
+	public PreprocessDirStructureMarshallerImpl(Path basePath) {
 		
 		Path configDir = basePath.resolve("config");
 		this.argsBinPath = configDir.resolve("args.bin");
 		this.argsTextPath = configDir.resolve("args.txt");
-		this.propsBinPath = configDir.resolve("props.bin");
-		this.propsTextPath = configDir.resolve("props.txt");
 		
 		Path docsDir = basePath.resolve("docs");
 		this.docsBinDirPath = docsDir.resolve("bin");
@@ -54,6 +52,8 @@ public class DirStructureMarshallerImpl implements DirStructureMarshaller {
 		Path grpsMapDir = grpsDir.resolve("map");
 		this.grpsMapBinPath = grpsMapDir.resolve("id_map.bin");
 		this.grpsMapTextPath = grpsMapDir.resolve("id_map.txt");
+		this.grpsIdsBinPath = grpsMapDir.resolve("id_list.bin");
+		this.grpsIdsTextPath = grpsMapDir.resolve("id_list.txt");
 	}
 	
 	@Override
@@ -65,17 +65,6 @@ public class DirStructureMarshallerImpl implements DirStructureMarshaller {
 	@Override
 	public ArgsPreprocess readArgs() throws IOException {
 		return read(argsBinPath);
-	}
-
-	@Override
-	public void writeProps(Props props) throws IOException {
-		write(this.propsBinPath, props);
-		write(this.propsTextPath, props.toString());
-	}
-
-	@Override
-	public Props readProps() throws IOException {
-		return read(this.propsBinPath);
 	}
 
 	@Override
@@ -103,29 +92,41 @@ public class DirStructureMarshallerImpl implements DirStructureMarshaller {
 
 	@Override
 	public void writeDoc(int docId, Slicable<?> content) throws IOException {
-		Path path = this.docsBinDirPath.resolve(formatId(docId));
+		Path path = this.docsBinDirPath.resolve(formatIdBinFile(docId));
 		write(path, content);
 	}
 
 	@Override
 	public Slicable<?> readDoc(int docId) throws IOException {
-		Path path = this.docsBinDirPath.resolve(formatId(docId));
+		Path path = this.docsBinDirPath.resolve(formatIdBinFile(docId));
 		return read(path);
 	}
 
 	@Override
 	public void writeGrp(int grpId, Set<UnorderedIntPair> grp) throws IOException {
-		Path path = this.grpsBinDirPath.resolve(formatId(grpId));
+		Path path = this.grpsBinDirPath.resolve(formatIdBinFile(grpId));
 		write(path, grp);
 	}
 
 	@Override
 	public Set<UnorderedIntPair> readGrp(int grpId) throws IOException {
-		Path path = this.grpsBinDirPath.resolve(formatId(grpId));
+		Path path = this.grpsBinDirPath.resolve(formatIdBinFile(grpId));
 		return read(path);
 	}
 	
 	
+	@Override
+	public void writeGrpIds(
+			List<Integer> grpIds) throws IOException {
+		write(this.grpsIdsBinPath, grpIds);
+		write(this.grpsIdsTextPath, grpIds.toString());
+	}
+
+	@Override
+	public List<Integer> readGrpIds() throws IOException {
+		return read(this.grpsIdsBinPath);
+	}
+
 	private static void write(Path path, Object obj) throws IOException {
 		Files.createDirectories(path.getParent());
 		OutputStream os = Files.newOutputStream(path, StandardOpenOption.CREATE_NEW);
@@ -151,11 +152,14 @@ public class DirStructureMarshallerImpl implements DirStructureMarshaller {
 		}
 	}
 	
-	private static Path formatId(int id) {
-		String dirname = String.format("%08d--", id/100);
-		String filename = String.format("%010d.bin", id);
-		return Paths.get(dirname, filename);
+	public static Path formatIdBinFile(int id) {
+		return formatId(id, ".bin");
 	}
 	
+	public static Path formatId(int id, String suffix) {
+		String dirname = String.format("%08d--", id/100);
+		String filename = String.format("%010d", id);
+		return Paths.get(dirname, filename+suffix);
+	}
 	
 }

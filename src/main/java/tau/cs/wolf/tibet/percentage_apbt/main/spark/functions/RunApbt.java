@@ -10,12 +10,12 @@ import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableEntry;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppMain;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMain;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.ApbtMatches;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
-public class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer>>, Matches> {
+public class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer>>, ApbtMatches> {
 	private static final long serialVersionUID = 1L;
 	
 	private final Broadcast<? extends ArgsCommon> bcastArgs;
@@ -29,11 +29,11 @@ public class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer
 	}
 
 	@Override
-	public Iterable<Matches> call(final Iterator<Tuple2<Integer, Integer>> t) throws Exception {
-		return new Iterable<Matches>() {
+	public Iterable<ApbtMatches> call(final Iterator<Tuple2<Integer, Integer>> t) throws Exception {
+		return new Iterable<ApbtMatches>() {
 			@Override
-			public Iterator<Matches> iterator() {
-				return new Iterator<Matches>() {
+			public Iterator<ApbtMatches> iterator() {
+				return new Iterator<ApbtMatches>() {
 
 					@Override
 					public boolean hasNext() {
@@ -41,12 +41,12 @@ public class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer
 					}
 
 					@Override
-					public Matches next() {
+					public ApbtMatches next() {
 						Tuple2<Integer, Integer> indexPair = t.next();
 						SlicableEntry entry1 = bcastEntries.getValue().get(indexPair._1);
 						SlicableEntry entry2 = bcastEntries.getValue().get(indexPair._2);
 						
-						Args args = new Args(new File(entry1.getKey()), new File(entry2.getKey()), null, bcastArgs.getValue().getAppStage(), bcastArgs.getValue().getDataType(), false);
+						ArgsMain args = new ArgsMain(new File(entry1.getKey()), new File(entry2.getKey()), null, bcastArgs.getValue().getAppStage(), bcastArgs.getValue().getDataType(), false);
 						
 						AppMain app = new AppMain(args, bcastProps.getValue());
 						app.setup(entry1.getValue(), entry2.getValue());
@@ -55,7 +55,7 @@ public class RunApbt implements FlatMapFunction<Iterator<Tuple2<Integer, Integer
 						} catch (Exception e) {
 							throw new RuntimeException("Algorithm failed on "+entry1.getKey()+" and "+entry2.getKey(), e);
 						}
-						return new Matches(entry1.getKey(), entry2.getKey(), app.getResults(), bcastArgs.getValue().getAppStage());
+						return new ApbtMatches(entry1.getKey(), entry2.getKey(), app.getResults(), bcastArgs.getValue().getAppStage());
 					}
 
 					@Override

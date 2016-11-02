@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.ThreadTimeMonitor;
 import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMain;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public class AppMonitored extends AppCommon {
@@ -27,26 +26,15 @@ public class AppMonitored extends AppCommon {
 
 	private final AppCommon monitoredApp;
 	
-	public AppMonitored(Args args, Props props) {
+	public AppMonitored(ArgsMain args, Props props) {
 		super(args, props);
 		this.monitoredApp = new AppMain(this.args, this.props);
 	}
 
 	private AppMonitored(String[] args) throws CmdLineException {
-		this(new Args(args), null);
+		this(new ArgsMain(args), null);
 	}
 	
-	@Override
-	protected void overrideArgsWithProps(ArgsCommon args, Props props) throws CmdLineException {
-		super.overrideArgsWithProps(args, props);
-		if (Args.class.isAssignableFrom(args.getClass())) {
-			Args castedArgs = (Args) args;
-			if (castedArgs.getPollDuration() == null) {
-				castedArgs.setPollDuration(props.getPollDuration());
-			}
-		}
-	};
-
 	@Override
 	protected AppResults calcResults() {
 		Thread appThread = new Thread(this.monitoredApp, "App");

@@ -9,9 +9,10 @@ import org.kohsuke.args4j.Option;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 
-public class Args extends ArgsCommon {
+public class ArgsMain extends ArgsCommon {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -51,7 +52,7 @@ public class Args extends ArgsCommon {
 		return outFile;
 	}
 	
-	public Args(String[] args) throws CmdLineException {
+	public ArgsMain(String[] args) throws CmdLineException {
 		super(args);
 	}
 	
@@ -67,8 +68,8 @@ public class Args extends ArgsCommon {
 		return this.pollDuration;
 	}
 	
-	public Args(File inFile1, File inFile2, File outFile, AppStage appStage, DataType dataType, boolean checkExistance) {
-		super(appStage, dataType);
+	public ArgsMain(ArgsCommon argsCommon, File inFile1, File inFile2, File outFile, boolean checkExistance) {
+		super(argsCommon);
 		try {
 			if (checkExistance) {
 				ArgsUtils.assertFileExists(inFile1, null);
@@ -79,6 +80,18 @@ public class Args extends ArgsCommon {
 			this.outFile = outFile;
 		} catch (CmdLineException e) {
 			throw new IllegalArgumentException(e.getMessage());
+		}
+	}
+	
+	public ArgsMain(File inFile1, File inFile2, File outFile, AppStage appStage, DataType dataType, boolean checkExistance) {
+		this(new ArgsCommon(appStage, dataType), inFile1, inFile2, outFile, checkExistance);
+	}
+	
+	@Override 
+	public void fillWithProps(Props props) throws CmdLineException {
+		super.fillWithProps(props);
+		if (this.getPollDuration() == null) {
+			this.setPollDuration(props.getPollDuration());
 		}
 	}
 	

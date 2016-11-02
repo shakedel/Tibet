@@ -7,6 +7,7 @@ import org.kohsuke.args4j.Option;
 
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public class ArgsCommon extends ArgsBase {
 
@@ -14,6 +15,16 @@ public class ArgsCommon extends ArgsBase {
 	
 	public ArgsCommon(String[] args) throws CmdLineException {
 		super(args);
+	}
+	
+	public ArgsCommon(ArgsCommon other) {
+		this.appStage = other.appStage;
+		this.dataType = other.dataType;
+		this.localAlignPadRatio = other.localAlignPadRatio;
+		this.maxError = other.maxError;
+		this.minDistanceUnion = other.minDistanceUnion;
+		this.minLength = other.minLength;
+		this.timeout = other.timeout;
 	}
 
 	public ArgsCommon(AppStage appStage, DataType dataType) {
@@ -91,5 +102,25 @@ public class ArgsCommon extends ArgsBase {
 	public AppStage getAppStage() {
 		return this.appStage;
 	}
-
+	
+	public void fillWithProps(Props props) throws CmdLineException {
+		super.fillWithProps(props);
+		
+		if (this.getMinLength() == null) {
+			this.setMinlength(props.getMinLength());
+		}
+		if (this.getMaxError() == null) {
+			this.setMaxError(props.getMaxError());
+		}
+		if (this.getTimeout() == null) {
+			Duration t = props.getTimeout();
+			this.setTimeout(t);
+		}
+		if (this.getMinDistanceUnion() == null) {
+			this.setMinDistanceUnion(props.getMinDistanceUnion());
+		}
+		if (this.getLocalAlignPadRatio() == null) {
+			this.setLocalAlignPadRatio(props.getLocalAlignPadRatio());
+		}
+	}
 }

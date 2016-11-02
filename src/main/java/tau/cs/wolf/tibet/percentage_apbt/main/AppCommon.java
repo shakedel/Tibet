@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMain;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public abstract class AppCommon extends AppBase {
@@ -12,15 +12,15 @@ public abstract class AppCommon extends AppBase {
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	private AppResults results;
-	protected final Args args;
+	protected final ArgsMain args;
 	
-	AppCommon(Args args, Props _props) {
+	AppCommon(ArgsMain args, Props _props) {
 		super(args, _props);
 		this.args = args;
 		logger.info("setup with args: "+this.args);
 	}
 	
-	public AppCommon(Args args) {
+	public AppCommon(ArgsMain args) {
 		this(args, null);
 	}
 

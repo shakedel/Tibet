@@ -32,7 +32,7 @@ import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsSparkCommon;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.IndexPairFilter;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.RunApbt;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.SyslogMatchesPartition;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.ApbtMatches;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Consumer;
 import tau.cs.wolf.tibet.percentage_apbt.misc.FsUtils;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
@@ -79,8 +79,8 @@ public class AppSpark extends AppBase {
 		JavaRDD<Integer> indicesRdd = ctx.parallelize(indices);
 		JavaPairRDD<Integer, Integer> indexPairs = indicesRdd.cartesian(indicesRdd);
 		JavaPairRDD<Integer, Integer> filteredIndexPairs = indexPairs.filter(new IndexPairFilter());
-		JavaRDD<Matches> matches = filteredIndexPairs.mapPartitions(new RunApbt(this.bcastArgs, this.bcastProps, this.bcastEntries));
-		VoidFunction<Iterator<Matches>> matchesPartition = new SyslogMatchesPartition(this.bcastClientProps);
+		JavaRDD<ApbtMatches> matches = filteredIndexPairs.mapPartitions(new RunApbt(this.bcastArgs, this.bcastProps, this.bcastEntries));
+		VoidFunction<Iterator<ApbtMatches>> matchesPartition = new SyslogMatchesPartition(this.bcastClientProps);
 		if (this.args.isAsynced()) {
 			matches.foreachPartitionAsync(matchesPartition);
 		} else {

@@ -23,7 +23,7 @@ import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FilterPairUniquePa
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.FindMatches;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.PathContentAdapter;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.functions.SyslogMatchesPartition;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.ApbtMatches;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContent;
 import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.PathContentPair;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
@@ -67,7 +67,7 @@ public class AppSparkCross<R> extends AppBase {
 			JavaPairRDD<PathContent<R>, PathContent<R>> crossedPaths = pathContent.cartesian(pathContent);
 			JavaRDD<PathContentPair<R>> allPairs = crossedPaths.map(new CartesPathContent<R>());
 			JavaRDD<PathContentPair<R>> filteredPairs = allPairs.filter(new FilterPairUniquePath<R>(null));
-			JavaRDD<Matches> matches = filteredPairs.map(new FindMatches<R>(this.bcastArgs, this.bcastProps));
+			JavaRDD<ApbtMatches> matches = filteredPairs.map(new FindMatches<R>(this.bcastArgs, this.bcastProps));
 			matches.foreachPartition(new SyslogMatchesPartition(this.bcastClientProps));
 //			matches.foreachPartitionAsync(new SyslogMatchesPartition(this.bcastClientProps));
 			logger.info("Number of Matchings: "+matches.count());

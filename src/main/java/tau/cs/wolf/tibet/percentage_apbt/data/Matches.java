@@ -1,12 +1,8 @@
-package tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds;
+package tau.cs.wolf.tibet.percentage_apbt.data;
 
-import scala.Serializable;
-import tau.cs.wolf.tibet.percentage_apbt.data.AppResults;
-import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 
-public class Matches implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Matches {
 	
 	private final String p1;
 	private final String p2;

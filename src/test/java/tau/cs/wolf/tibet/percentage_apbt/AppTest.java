@@ -22,7 +22,7 @@ import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppMain;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.AppStage;
 import tau.cs.wolf.tibet.percentage_apbt.main.AppUtils.DataType;
-import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
+import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsMain;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
@@ -42,7 +42,7 @@ public class AppTest extends TestCase {
 	protected final List<MatchResult> expectedAlignResults;
 	
 	protected final Props props;
-	protected final Args args;
+	protected final ArgsMain args;
 	
 	public AppTest(String in1ResourcePath, String in2ResourcePath, String apbtResourcePath, String unionResourcePath, String alignResourcePath, AppStage appStage, DataType dataType, String cfgResourcePath) throws IOException {
 		this.expectedApbtResults = apbtResourcePath==null ? null : parseMatchesFile(Utils.urlToFile(getClass().getResource(apbtResourcePath)));
@@ -56,7 +56,7 @@ public class AppTest extends TestCase {
 			this.props = PropsBuilder.newProps(is);
 		}
 		
-		this.args = new Args(inFile1, inFile2, null, appStage, dataType, true);
+		this.args = new ArgsMain(inFile1, inFile2, null, appStage, dataType, true);
 	}
 
 	private List<MatchResult> parseMatchesFile(File f) throws IOException {

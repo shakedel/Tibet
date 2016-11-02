@@ -9,7 +9,7 @@ import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableEntry;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsCommon;
-import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.Matches;
+import tau.cs.wolf.tibet.percentage_apbt.main.spark.rdds.ApbtMatches;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.SyslogProps.ClientProps;
 
@@ -29,7 +29,7 @@ public class RunAndLog implements VoidFunction<Iterator<Tuple2<Integer, Integer>
 	
 	@Override
 	public void call(Iterator<Tuple2<Integer, Integer>> t) throws Exception {
-		Iterable<Matches> iter = this.runApbt.call(t);
+		Iterable<ApbtMatches> iter = this.runApbt.call(t);
 		this.syslog.call(iter.iterator());
 		
 	}
