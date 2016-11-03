@@ -9,7 +9,7 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 
 public abstract class AppCommon extends AppBase {
 
-	protected final Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger logger = LoggerFactory.getLogger(AppCommon.class);
 	
 	private AppResults results;
 	protected final ArgsMain args;

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.commons.io.FilenameUtils;
 import org.kohsuke.args4j.CmdLineException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.MatchesContainer;
 import tau.cs.wolf.tibet.percentage_apbt.concurrent.WorkerThread;
@@ -23,6 +25,8 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 
 public class AppMain extends AppCommon {
 
+	private static final Logger logger = LoggerFactory.getLogger(AppMain.class);
+	
 	public AppMain(ArgsMain args, Props props) {
 		super(args, props);
 	}

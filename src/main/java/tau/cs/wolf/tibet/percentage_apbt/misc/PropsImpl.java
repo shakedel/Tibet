@@ -22,6 +22,7 @@ public class PropsImpl implements Props {
 	private Duration pollDuration = POLL_DURATION_DEFAULT_VALUE;
 	private boolean computeLevenshteinDistance = COMPUTE_LEVENSHTEIN_DISTANCE_DEFAULT_VALUE;
 	private String syslogClientPropsPath = null;
+	private long docsCacheSize = DOCS_CACHE_SIZE_DEFAULT_VALUE;
 	
 	@Override public int getMinLength() { return this.minLength; }
 	@Override public int getMaxError() { return this.maxError; }
@@ -36,6 +37,7 @@ public class PropsImpl implements Props {
 	@Override public Duration getPollDuration() { return this.pollDuration; }
 	@Override public boolean getComputeLevenshteinDistance() { return this.computeLevenshteinDistance; }
 	@Override public String getSyslogClientPropsPath() { return this.syslogClientPropsPath; }
+	@Override public long getDocsCacheSize() { return this.docsCacheSize; }
 	
 	PropsImpl() {
 		this(null);
@@ -119,6 +121,12 @@ public class PropsImpl implements Props {
 				String val = props.getProperty(SYSLOG_CLIENT_PROPS_PATH_PROP_NAME);
 				if (val != null) {
 					this.syslogClientPropsPath = val;
+				}
+			}
+			{
+				String val = props.getProperty(DOCS_CACHE_SIZE_PROP_NAME);
+				if (val != null) {
+					this.docsCacheSize = Long.parseLong(val);
 				}
 			}
 		}

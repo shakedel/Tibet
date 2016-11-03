@@ -157,6 +157,7 @@ public class PreprocessDirStructureMarshallerImpl implements PreprocessDirStruct
 	}
 	
 	public static Path formatId(int id, String suffix) {
+		
 		String dirname = String.format("%08d--", id/100);
 		String filename = String.format("%010d", id);
 		return Paths.get(dirname, filename+suffix);

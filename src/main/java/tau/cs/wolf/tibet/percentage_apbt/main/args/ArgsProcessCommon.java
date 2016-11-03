@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.Option;
 
+import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
+
 public class ArgsProcessCommon extends ArgsCommon {
 
 	private static final long serialVersionUID = 1L;
@@ -34,9 +36,9 @@ public class ArgsProcessCommon extends ArgsCommon {
 		return this.inDir;
 	}
 
-	private long docsCacheSize;
+	private Long docsCacheSize;
 	@SuppressWarnings("deprecation")
-	@Option(name = "-cacheSize", required = true, metaVar = "LONG", usage = "docs cache size")
+	@Option(name = "-cacheSize", metaVar = "LONG", usage = "docs cache size")
 	public void setDocsCacheSize(long cacheSize) throws CmdLineException {
 		if (cacheSize < 0) {
 			throw new CmdLineException("cache size must be positive!!!");
@@ -44,8 +46,15 @@ public class ArgsProcessCommon extends ArgsCommon {
 		this.docsCacheSize = cacheSize;
 	}
 	
-	public long getDocsCacheSize() {
+	public Long getDocsCacheSize() {
 		return this.docsCacheSize;
 	}
 
+	@Override
+	public void fillWithProps(Props props) throws CmdLineException {
+		super.fillWithProps(props);
+		if (this.getDocsCacheSize() == null) {
+			this.setDocsCacheSize(props.getDocsCacheSize());
+		}
+	}
 }

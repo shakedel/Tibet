@@ -19,6 +19,7 @@ public interface Props extends Serializable {
 	public static final String POLL_DURATION_PROP_NAME = "pollDuration";
 	public static final String COMPUTE_LEVENSHTEIN_DISTANCE_PROP_NAME = "computeLevenshteinDistance";
 	public static final String SYSLOG_CLIENT_PROPS_PATH_PROP_NAME = "syslogClientPropsPath";
+	public static final String DOCS_CACHE_SIZE_PROP_NAME = "docsCahceSize";
 	
 	public static final int MIN_LENGTH_DEFAULT_VALUE = 10;
 	public static final int MAX_ERROR_DEFAULT_VALUE = 5;
@@ -32,6 +33,7 @@ public interface Props extends Serializable {
 	public static final int MAX_MATCH_LENGTH_DEFAULT_VALUE = 500;
 	public static final Duration POLL_DURATION_DEFAULT_VALUE = Duration.standardMinutes(5);
 	public static final boolean COMPUTE_LEVENSHTEIN_DISTANCE_DEFAULT_VALUE = true;
+	public static final long DOCS_CACHE_SIZE_DEFAULT_VALUE = 1000000000L;
 	
 	public int getMinLength();
 	public int getMaxError();
@@ -46,5 +48,6 @@ public interface Props extends Serializable {
 	public Duration getPollDuration();
 	public boolean getComputeLevenshteinDistance();
 	public String getSyslogClientPropsPath();
+	public long getDocsCacheSize();
 	
 }
