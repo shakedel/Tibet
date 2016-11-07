@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.kohsuke.args4j.CmdLineException;
 
@@ -28,8 +29,8 @@ import com.google.common.collect.HashBiMap;
 public class AppPreprocess extends AppBase {
 
 	protected final ArgsPreprocess args;
-	private final List<Integer> inDocIds1 = new ArrayList<Integer>();
-	private final List<Integer> inDocIds2 = new ArrayList<Integer>();
+	private final SortedSet<Integer> inDocIds1 = new TreeSet<Integer>();
+	private final SortedSet<Integer> inDocIds2 = new TreeSet<Integer>();
 	
 	private final IdGenerator<Set<UnorderedIntPair>> grpIdGenerator = new IdGenerator.SequentialIdGenerator<>(0, 1);
 	
@@ -88,27 +89,42 @@ public class AppPreprocess extends AppBase {
 		int halfGrpSize = maxGrpSize/2;
 		int len = (int) Math.floor(Math.sqrt(maxGrpSize));
 		
-		Set<UnorderedIntPair> allPairs = new UnorderedIntPair.UnorderedIntPairSet();
+//		Set<UnorderedIntPair> allPairs = new UnorderedIntPair.UnorderedIntPairSet();
 		Set<UnorderedIntPair> partialGrp = null;
 		
-		for (int startRow=0; startRow<this.inDocIds1.size(); startRow+=len) {
-			for (int startCol=0; startCol<this.inDocIds2.size(); startCol+=len) {
+		boolean[] hasDocIdsRows;
+		boolean[] hasDocIdsCols;
+		
+		{
+			if (this.inDocIds1.last() > this.inDocIds2.last()) {
+				hasDocIdsRows = generateHasDocId(this.inDocIds2);
+				hasDocIdsCols = generateHasDocId(this.inDocIds1);
+			} else {
+				hasDocIdsRows = generateHasDocId(this.inDocIds1);
+				hasDocIdsCols = generateHasDocId(this.inDocIds2);
+			}
+		}
+		
+		
+		for (int startRow=0; startRow<hasDocIdsRows.length; startRow+=len) {
+			for (int startCol=startRow+1; startCol<hasDocIdsCols.length; startCol+=len) {
 				
 				Set<UnorderedIntPair> grp = new UnorderedIntPair.UnorderedIntPairSet();
 				UnorderedIntPair pair = new UnorderedIntPair(Integer.MAX_VALUE, Integer.MAX_VALUE);
-				
-				for (int row=startRow; row<startRow+len && row<this.inDocIds1.size(); row++) {
-					for (int col=startCol; col<startCol+len && col<this.inDocIds2.size(); col++) {
-						int docId1 = this.inDocIds1.get(row);
-						int docId2 = this.inDocIds2.get(col);
-						if (docId1 == docId2) {
+								
+				for (int row=startRow; row<startRow+len && row<hasDocIdsRows.length; row++) {
+					for (int col=Math.max(startCol, row+1); col<startCol+len && col<hasDocIdsCols.length; col++) {
+						
+						boolean hasDocId1 = hasDocIdsRows[row];
+						boolean hasDocId2 = hasDocIdsCols[col];
+						if ((!hasDocId1) || (!hasDocId2) || (col<=row)) {
 							continue;
 						}
-						pair.set(docId1, docId2);
-						boolean isNewPair = allPairs.add(pair);
-						if (isNewPair) {
+						pair.set(row, col);
+//						boolean isNewPair = allPairs.add(pair);
+//						if (isNewPair) {
 							grp.add(pair);
-						}
+//						}
 					}
 				}
 				
@@ -135,6 +151,16 @@ public class AppPreprocess extends AppBase {
 		return grps;
 	}
 
+	private boolean[] generateHasDocId(SortedSet<Integer> inDocIds) {
+		boolean[] res = new boolean[inDocIds.last()+1];
+		{
+			for (Integer docId: this.inDocIds1) {
+				res[docId] = true;
+			}
+		}
+		return res;
+	}
+
 	private int writeGrp(Set<UnorderedIntPair> grp) throws IOException {
 		int grpId = this.grpIdGenerator.nextId(grp);
 		this.marshaller.writeGrp(grpId, grp);
@@ -142,7 +168,7 @@ public class AppPreprocess extends AppBase {
 	}
 
 	private void addDocs(BiMap<String,Integer> docs, SortedSet<Path> inPaths,
-			List<Integer> inDocIds, IdGenerator<Path> idGenerator) throws IOException {
+			SortedSet<Integer> inDocIds, IdGenerator<Path> idGenerator) throws IOException {
 		@SuppressWarnings("unchecked")
 		SlicableParser<?, Path> parser = (SlicableParser<?, Path>) AppUtils.getParser(args.getDataType(), SrcType.PATH);
 		for (Path path: inPaths) {

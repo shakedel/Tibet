@@ -92,26 +92,22 @@ public class PreprocessDirStructureMarshallerImpl implements PreprocessDirStruct
 
 	@Override
 	public void writeDoc(int docId, Slicable<?> content) throws IOException {
-		Path path = this.docsBinDirPath.resolve(formatIdBinFile(docId));
-		write(path, content);
+		write(getDocPath(docId), content);
 	}
 
 	@Override
 	public Slicable<?> readDoc(int docId) throws IOException {
-		Path path = this.docsBinDirPath.resolve(formatIdBinFile(docId));
-		return read(path);
+		return read(getDocPath(docId));
 	}
 
 	@Override
 	public void writeGrp(int grpId, Set<UnorderedIntPair> grp) throws IOException {
-		Path path = this.grpsBinDirPath.resolve(formatIdBinFile(grpId));
-		write(path, grp);
+		write(getGrpPath(grpId), grp);
 	}
 
 	@Override
 	public Set<UnorderedIntPair> readGrp(int grpId) throws IOException {
-		Path path = this.grpsBinDirPath.resolve(formatIdBinFile(grpId));
-		return read(path);
+		return read(getGrpPath(grpId));
 	}
 	
 	
@@ -152,15 +148,19 @@ public class PreprocessDirStructureMarshallerImpl implements PreprocessDirStruct
 		}
 	}
 	
-	public static Path formatIdBinFile(int id) {
-		return formatId(id, ".bin");
+	private Path getDocPath(int docId) {
+		return this.docsBinDirPath.resolve(formatId(docId, ".bin"));
+	}
+	
+	private Path getGrpPath(int grpId) {
+		return this.grpsBinDirPath.resolve(formatId(grpId, ".bin"));
 	}
 	
 	public static Path formatId(int id, String suffix) {
-		
-		String dirname = String.format("%08d--", id/100);
+		String outerDirname = String.format("%06d----", id/10000);
+		String innerDirname = String.format("%08d--", id/100);
 		String filename = String.format("%010d", id);
-		return Paths.get(dirname, filename+suffix);
+		return Paths.get(outerDirname, innerDirname, filename+suffix);
 	}
 	
 }
