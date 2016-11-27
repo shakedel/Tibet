@@ -21,7 +21,6 @@ import tau.cs.wolf.tibet.percentage_apbt.preprocess.PreprocessDirStructureMarsha
 
 public class AppProcessGroup extends AppBase {
 
-	@SuppressWarnings("unused")
 	private final static Logger logger = LoggerFactory.getLogger(AppProcessGroup.class);
 	
 	private final ArgsProcessGroup args;
@@ -58,6 +57,7 @@ public class AppProcessGroup extends AppBase {
 			Matches matches = this.runOnDocs(pair.higher, pair.lower);
 			this.matchesList.add(matches);
 		}
+		logger.info("finished running on grp ID: "+grpId);
 	}
 	
 	private Matches runOnDocs(int doc1Id, int doc2Id) throws IOException {
