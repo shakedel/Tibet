@@ -8,7 +8,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 
 import org.apache.commons.math3.random.RandomDataGenerator;
-import org.apache.log4j.Level;
 import org.kohsuke.args4j.CmdLineException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +15,12 @@ import org.slf4j.LoggerFactory;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsProcess;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsProcessGroup;
 import tau.cs.wolf.tibet.percentage_apbt.misc.BoundedExecutor;
-import tau.cs.wolf.tibet.percentage_apbt.misc.LoggerWriter;
+import tau.cs.wolf.tibet.percentage_apbt.misc.ClosingRunnable;
+import tau.cs.wolf.tibet.percentage_apbt.misc.LoggingExceptionRunnable;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.preprocess.PreprocessDirStructureMarshaller;
 import tau.cs.wolf.tibet.percentage_apbt.preprocess.PreprocessDirStructureMarshallerImpl;
+import tau.cs.wolf.tibet.percentage_apbt.process.GroupProcessAndWriteResults;
 import tau.cs.wolf.tibet.percentage_apbt.process.ProcessDirStructureMarshaller;
 import tau.cs.wolf.tibet.percentage_apbt.process.ProcessDirStructureMarshallerImpl;
 
@@ -88,83 +89,11 @@ public class AppProcess extends AppBase {
 
 	public static void main(String[] args) {
 		try {
-			AppProcess app = new AppProcess(new ArgsProcess(args), null);
-			app.run();
+			new AppProcess(new ArgsProcess(args), null).run();
 		} catch (CmdLineException e) {
 			System.err.println(e.getMessage());
 			System.exit(1);
 		}
-	}
-	
-	public static class GroupProcessAndWriteResults extends AppProcessGroup {
-
-		private static Logger logger = LoggerFactory.getLogger(GroupProcessAndWriteResults.class);
-		private final ProcessDirStructureMarshaller outMarshaller;
-		private final int grpId;
-		
-		public GroupProcessAndWriteResults(ArgsProcessGroup args, ProcessDirStructureMarshaller outMarshaller) {
-			super(args);
-			this.outMarshaller = outMarshaller;
-			this.grpId = args.getGrpId();
-		}
-		
-		@Override
-		public void run() {
-			super.run();
-			try {
-				this.outMarshaller.writeGroupResults(this.grpId, super.getMatchesList());
-				logger.info("finished writing results for grp ID: "+this.grpId);
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		
-	}
-	
-	public static class LoggingExceptionRunnable implements Runnable {
-
-		private final Runnable runnable;
-		private final Logger logger;
-		
-		public LoggingExceptionRunnable(Runnable runnable, Logger logger) {
-			this.runnable = runnable;
-			this.logger = logger;
-		}
-		
-		@Override
-		public void run() {
-			try {
-				this.runnable.run();
-			} catch(Exception e) {
-				logger.error("Reporting caught exception: ");
-				e.printStackTrace(new LoggerWriter(this.logger, Level.ERROR));
-			}
-		}
-		
-	}
-	
-	public static class ClosingRunnable implements Runnable {
-		private final Runnable runnable;
-		private final AutoCloseable closeable;
-		
-		public ClosingRunnable(Runnable runnable, AutoCloseable closeable) {
-			this.runnable = runnable;
-			this.closeable = closeable;
-		}
-		
-		@Override
-		public void run() {
-			try {
-				this.runnable.run();
-			} finally {
-				try {
-					this.closeable.close();
-				} catch (Exception e) {
-					throw new RuntimeException(e);
-				}
-			}
-		}
-		
 	}
 	
 	
