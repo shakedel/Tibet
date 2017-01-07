@@ -8,9 +8,10 @@ import java.util.List;
 
 import com.google.common.io.Files;
 
+import tau.cs.wolf.tibet.percentage_apbt.data.IndexSpan;
+import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 import tau.cs.wolf.tibet.percentage_apbt.data.MatchResult;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
-import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserInt;
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.SlicableParserIntFile;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.Args;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsUtils;
@@ -18,16 +19,14 @@ import tau.cs.wolf.tibet.percentage_apbt.misc.PropsBuilder;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
 import tau.cs.wolf.tibet.percentage_apbt.ranking.IDFScoring;
 import tau.cs.wolf.tibet.percentage_apbt.ranking.IntRankingAlignment;
-import tau.cs.wolf.tibet.percentage_apbt.data.IndexSpan;
-import tau.cs.wolf.tibet.percentage_apbt.data.Interval;
 
 
 public class ScoreCorrectMatches {
 	public static final String textInputFolder = "C:/Users/lenadank/Documents/GitHub/Tibet/test5/";
 	public static final String file1Name = textInputFolder + "/enum_stem/Klong.txt";
 	public static final String file2Name = textInputFolder + "/enum_stem/phya.txt";
-	public static final String correctMatchesFile = textInputFolder + "correct_alignment_spans.csv";
-	public static final String output = textInputFolder + "correct_alignment_spans.scored.csv";
+	public static final String correctMatchesFile = /*textInputFolder +*/ "C:/data/Results/Tibet/int/test5_stem.union.txt"/* "correct_alignment_spans.csv"*/;
+	public static final String output = /*textInputFolder + */"C:/data/Results/Tibet/stem/test5_stem.alignment.txt";//*"correct_alignment_spans.scored.csv"*/;
 
 	public static void main(String[] argsToMain) throws Exception{
 		ScoreCorrectMatches sCM = new ScoreCorrectMatches();
@@ -39,6 +38,8 @@ public class ScoreCorrectMatches {
 		ArgsUtils.overrideArgsWithProps(args,  PropsBuilder.defaultProps());
 
 		List<MatchResult> res = new IntRankingAlignment(null, args,new IDFScoring()).alignMatches(matchResult, (Slicable<int[]>) seq1, (Slicable<int[]>) seq2);
+
+		//List<MatchResult> res = new IntRankingAlignment(null, args,new IDFScoring()).alignMatches(matchResult, (Slicable<int[]>) seq1, (Slicable<int[]>) seq2);
 		Utils.writeMatches(new File(output), res, null);
 		System.out.println("results written to: " + output);
 	}

@@ -1,7 +1,10 @@
 package tau.cs.wolf.tibet.percentage_apbt.data;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+
+import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 
@@ -56,7 +59,11 @@ public class ArrInt implements Slicable<int[]>{
 	    return ret;
 	}
 
-
+	@Override
+	public String toString(){
+		return Arrays.toString(Arrays.copyOfRange(arr, fromIdx, arr.length));
+	}
+	
 	@Override
 	public int[] get() {
 		return this.arr;

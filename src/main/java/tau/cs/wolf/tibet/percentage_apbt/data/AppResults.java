@@ -10,6 +10,7 @@ public class AppResults implements Serializable {
 	
 	private List<MatchResult> apbtMatches;
 	private List<MatchResult> unitedMatches;
+	
 	public void setApbtMatches(List<MatchResult> apbtMatches) {
 		this.apbtMatches = apbtMatches;
 	}

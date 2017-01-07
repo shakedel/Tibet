@@ -1,16 +1,20 @@
 package tau.cs.wolf.tibet.percentage_apbt.ranking.utils.stemming;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import tau.cs.wolf.tibet.percentage_apbt.config.Directories;
+
 public class StemUtils {
-	public static final String cleanTextDir = "C:/data/Kangyur_Tenjur-CLEAN-2016-05-14";
-	public static final String stemsIndexDir = "resources/data/SyllableObject-2016-05-14/";
+	//public static final String cleanTextDir = Directories.CLEAN_TEXT_DIR;
+	public static final String stemsIndexDir = Directories.STEM_DIR;
 	static
 	{
 		loadDada();
@@ -34,6 +38,7 @@ public class StemUtils {
 			syllToStemIntMap.put(-1, -1);
 		}
 		catch(IOException e){
+			e.printStackTrace();
 			
 		}
 	}
@@ -56,6 +61,15 @@ public class StemUtils {
 	
 	public static String getStemForInt(int i){
 		return intToStemMap.get(i);
+	}
+	
+	public static String getStemSequenceForStr(String s, String delimiter){
+		String[] integers = s.split(delimiter);
+		String[] syllables = new String[integers.length];
+		for (int i = 0; i < integers.length; i++){
+			syllables[i] = getSyllForInt(Integer.parseInt(integers[i]));
+		}
+		return Arrays.toString(syllables).replaceAll(",", delimiter);
 	}
 	
 	public static String getSyllForInt(int i){

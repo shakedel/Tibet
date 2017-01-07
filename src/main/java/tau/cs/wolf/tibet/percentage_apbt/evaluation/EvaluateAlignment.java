@@ -6,11 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
  
 public class EvaluateAlignment {
@@ -20,7 +17,7 @@ public class EvaluateAlignment {
 	
 	public static void main(String[] args) throws Exception{
 		EvaluateAlignment eA = new EvaluateAlignment();
-		eA.analyzedResults("C:/Users/lenadank/Documents/GitHub/Tibet/test5/correct_alignment_spans.csv", "C:/data/Results/Tibet/test_tf_idf_ranking_new.sorted.txt");
+		eA.analyzedResults("C:/Users/lenadank/Documents/GitHub/Tibet/test5/correct_alignment_spans.csv", "C:/data/Results/Tibet/stem_only/test_tf_idf_ranking_new.union.sorted.txt");
 	}
 	
 	public void analyzedResults(String correctAlignmentFileName , String resultsFileName ) throws Exception{
@@ -29,24 +26,43 @@ public class EvaluateAlignment {
 		int i = 0;
 		int correct = 0;
 		int incorrect = 0;
+		int average_match_length_1 = 0;
+		int average_match_length_2 = 0;
 		Collections.sort(alignments);
 		Set<Match> coveredMatches = new HashSet<>();
+		List<Integer> incorrectIndices = new ArrayList<>();
 		for (Match m : alignments){
+			average_match_length_1 += m.span1.getEnd()-m.span1.getStart()+1;
+			average_match_length_2 += m.span2.getEnd()-m.span2.getStart()+1;
 			boolean isCorrect = false;
+			i++;
 			if (isCorrectMatch(m, coveredMatches)){
 				correct += 1;
 				isCorrect = true;
 			}
 			else{
 				incorrect +=1;
+				incorrectIndices.add(i);
 			}
-			i++;
-			if (i < 20 ){
-				//System.out.println("p@" + i + " = " + (double)correct/(correct+incorrect));
-				System.out.println((i-1) + " : " + m + " : " + isCorrect);
+			if (i < 50 && (i%5 == 0)){
+				System.out.println("p@" + i + " = " + (double)correct/(correct+incorrect) +" " + correct + " " + (correct+incorrect) );
+				//System.out.println((i-1) + " : " + m + " : " + isCorrect);
 			}
+			//print oncovered matches:
 		}
 		System.out.println("recall = " + (double)coveredMatches.size()/correctAlignment.size());
+		System.out.println("number of detected matched " + alignments.size());
+		System.out.println("average match length = " + ((double)average_match_length_1)/alignments.size() + " ; " + ((double)average_match_length_2)/alignments.size());
+		int cnt = 1;
+		System.out.println("incorrectIndices: " + incorrectIndices.subList(0, 20));
+		System.out.println("unmatched:");
+		for (Match correctMatch : correctAlignment){
+			if (!coveredMatches.contains(correctMatch)){
+				System.out.println("\t"+ cnt++ + " " + correctMatch);
+			}
+		}
+
+
 	}
 	
 	//check for overlap
@@ -55,7 +71,7 @@ public class EvaluateAlignment {
 		for (Match correctMatch : correctAlignment){
 			if (match.intersects(correctMatch)){
 					matched = true;
-					matches.add(match);
+					matches.add(correctMatch);
 			}
 		}
 		return matched;

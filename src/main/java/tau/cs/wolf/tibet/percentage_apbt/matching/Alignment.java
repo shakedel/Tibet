@@ -95,12 +95,15 @@ public class Alignment<R> extends BaseModule {
 
 		int i = maxI, j = maxJ;// indices of path starting point
 
+		//int numOfDiag = 0;
 		// traceback, follow pointers
 		while (pointer[i][j] != null) {
 			switch (pointer[i][j]) {
 			case DIAGONAL:
 				i--;
 				j--;
+				//this means we has a match
+//				
 				break;
 			case UP:
 				i--;

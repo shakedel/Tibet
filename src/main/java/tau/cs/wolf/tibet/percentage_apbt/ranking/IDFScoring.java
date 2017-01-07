@@ -1,16 +1,14 @@
 
 package tau.cs.wolf.tibet.percentage_apbt.ranking;
 
-import javax.swing.text.html.MinimalHTMLWriter;
-
 import tau.cs.wolf.tibet.percentage_apbt.ranking.utils.stemming.StemUtils;
 import tau.cs.wolf.tibet.percentage_apbt.ranking.utils.tfidf.TermFrequencyForCorpus;
 
 public class IDFScoring implements AlignmentContextualScoring {
 	private static final int MIN_DOC_FREQUENCY_TH = 3;
 
-	@Override
-	public double matchScore(int token) {
+	
+	private double getTfIdfScore(int... token){
 		int df = TermFrequencyForCorpus.getDFForStem(token);
 		if (df >= MIN_DOC_FREQUENCY_TH){
 			return (TermFrequencyForCorpus.DOC_NUM_IN_CORPUS - df + 3)/(double)(TermFrequencyForCorpus.DOC_NUM_IN_CORPUS- MIN_DOC_FREQUENCY_TH);
@@ -19,20 +17,27 @@ public class IDFScoring implements AlignmentContextualScoring {
 			// if the word is not frequent enough, we treat it as an insignificant word, that is, a very frequent one.
 			return 0;
 		}
-		//return 1;
+
+	}
+	@Override
+	public double matchScore(int... token) {
+		return (getTfIdfScore(token));
+	//	return 1;
 	}
 
 	@Override
 	public double replaceScore(int token1, int token2) {
 		return getLCSBetweenTwoStems(token1, token2);
+		//return -1;
 	}
 
 	@Override
 	public double gapScore(int token) {
-		if (token == -1){
-			return -3; //
-		}
-		return -matchScore( token);
+//		if (token == -1){
+//			return -1; //
+//		}
+//		return -1;
+		return -getTfIdfScore(token);
 	}
 	
 	//consider using the vector representation and calculate the distance using the weights for each slot
@@ -50,7 +55,7 @@ public class IDFScoring implements AlignmentContextualScoring {
 			return lcs/(double)Math.max(stem1.length(), stem2.length()) * Math.max(matchScore(token1), matchScore(token2));
 		}
 		else{ //most of the letters are different
-			return Math.min(gapScore(token1), gapScore(token2));
+			return (gapScore(token1)+ gapScore(token2));
 		}
 	}
 

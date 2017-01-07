@@ -25,7 +25,6 @@ import tau.cs.wolf.tibet.percentage_apbt.ranking.IDFScoring;
 import tau.cs.wolf.tibet.percentage_apbt.ranking.IntRankingAlignment;
 
 public class AppMain extends AppCommon {
-
 	public AppMain(Args args, Props props) {
 		super(args, props);
 	}
