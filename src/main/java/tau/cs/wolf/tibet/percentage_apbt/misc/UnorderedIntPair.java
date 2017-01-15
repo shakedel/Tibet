@@ -27,7 +27,7 @@ public class UnorderedIntPair implements Comparable<UnorderedIntPair>, Serializa
 	
 	@Override
 	public String toString() {
-		return "UnorderedIntPair [lower=" + lower + ", higher=" + higher + "]";
+		return "["+lower +","+higher+"]";
 	}
 
 	public void set(int num1, int num2) {

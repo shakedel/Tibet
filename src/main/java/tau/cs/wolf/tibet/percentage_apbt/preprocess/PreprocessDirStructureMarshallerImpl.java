@@ -12,7 +12,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.BiConsumer;
 
 import tau.cs.wolf.tibet.percentage_apbt.data.slicable.Slicable;
 import tau.cs.wolf.tibet.percentage_apbt.main.args.ArgsPreprocess;
@@ -70,9 +72,19 @@ public class PreprocessDirStructureMarshallerImpl implements PreprocessDirStruct
 	@Override
 	public void writeDocMap(BiMap<String, Integer> docs) throws IOException {
 		write(this.docsMapBinPath, docs);
-		write(this.docsMapTextPath, docs.toString());
+		final StringBuilder sb = new StringBuilder();
+		docs.forEach(new BiConsumer<String, Integer>() {
+			@Override
+			public void accept(String docName, Integer id) {
+				sb.append(String.format("%08d", id));
+				sb.append(": ");
+				sb.append(docName);
+				sb.append('\n');
+			}
+		});
+		write(this.docsMapTextPath, sb.toString());
 	}
-
+	
 	@Override
 	public BiMap<Path, Integer> readDocsMap() throws IOException {
 		return read(this.docsMapBinPath);
@@ -81,7 +93,14 @@ public class PreprocessDirStructureMarshallerImpl implements PreprocessDirStruct
 	@Override
 	public void writeGrpMap(Map<Integer, Set<UnorderedIntPair>> grps) throws IOException {
 		write(this.grpsMapBinPath, grps);
-		write(this.grpsMapTextPath, grps.toString());
+		final StringBuilder sb = new StringBuilder();
+		for (Entry<Integer, Set<UnorderedIntPair>> grp: grps.entrySet()) {
+			sb.append(String.format("%08d", grp.getKey()));
+			sb.append(": ");
+			sb.append(grp.getValue());
+			sb.append('\n');
+		}
+		write(this.grpsMapTextPath, sb.toString());
 	}
 
 	@Override
