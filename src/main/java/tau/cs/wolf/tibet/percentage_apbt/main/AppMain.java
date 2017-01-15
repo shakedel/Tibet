@@ -22,6 +22,8 @@ import tau.cs.wolf.tibet.percentage_apbt.matching.Alignment;
 import tau.cs.wolf.tibet.percentage_apbt.matching.Union;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Props;
 import tau.cs.wolf.tibet.percentage_apbt.misc.Utils;
+import tau.cs.wolf.tibet.percentage_apbt.ranking.IDFScoring;
+import tau.cs.wolf.tibet.percentage_apbt.ranking.IntRankingAlignment;
 
 public class AppMain extends AppCommon {
 
@@ -117,7 +119,17 @@ public class AppMain extends AppCommon {
 	@SuppressWarnings({"unchecked", "rawtypes"})
 	private AppResults doAlignment(MatchesContainer matchesContainer) {
 		AppResults res = doUnion(matchesContainer);
-		List<MatchResult> alignedMatches = new Alignment(props, args).alignMatches(res.getUnitedMatches(), seq1, seq2);
+		List<MatchResult> alignedMatches;
+		switch (args.getDataType()) {
+		case INT:
+			alignedMatches = new IntRankingAlignment(props, args,new IDFScoring()).alignMatches(res.getUnitedMatches(), (Slicable<int[]>) seq1, (Slicable<int[]>) seq2);
+			break;
+		case CHAR:
+			alignedMatches = new Alignment(props, args).alignMatches(res.getUnitedMatches(), seq1, seq2);
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown value: "+args.getDataType());
+		}
 		Utils.reportComputationTimeByStartTime(logger, startTime, "Finished ALIGNMENT stage with "+alignedMatches.size()+" matches");
 		res.setAlignedMatches(alignedMatches);
 		return res;

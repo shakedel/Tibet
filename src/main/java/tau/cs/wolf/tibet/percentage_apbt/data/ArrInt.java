@@ -73,8 +73,8 @@ public class ArrInt implements Slicable<int[]>, Serializable {
 	}
 
 	@Override
-	public String getStringHead(int n) {
-		return StringUtils.join(this.arr, ' ', this.fromIdx, this.fromIdx+Math.min(this.length, n));
+	public int getRealIndex(int i) {
+		return i + this.fromIdx;
 	}
 
 }

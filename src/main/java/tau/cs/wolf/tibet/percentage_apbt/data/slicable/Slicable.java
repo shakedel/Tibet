@@ -5,6 +5,5 @@ public interface Slicable<R> {
 	public Slicable<R> slice(int start, int end);
 	public boolean compare(int idx, Slicable<R> other, int otherIdx);
 	public R get();
-	public String getStringHead(int n);
-
+	public int getRealIndex(int i);
 }

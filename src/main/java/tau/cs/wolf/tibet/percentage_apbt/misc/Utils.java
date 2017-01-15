@@ -14,6 +14,8 @@ import java.net.URL;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +73,14 @@ public class Utils {
 	}
 	
 	public static void writeMatches(File f, List<MatchResult> matches, Formatter<MatchResult> formatter) {
+		writeMatches(f, matches, formatter, false);
+		writeMatches(new File(f.getPath().replace(".txt", "")+".sorted.txt"), matches, formatter, true);
+	}
+	
+	private static void writeMatches(File f, List<MatchResult> matches, Formatter<MatchResult> formatter, boolean sort) {
+		if (sort){
+			Collections.sort(matches, new MatchResultComparator());
+		}
 		if (formatter == null) {
 			formatter = new MatchResult.DefaultFormatter();
 		}
@@ -81,6 +91,7 @@ public class Utils {
 		} catch (FileNotFoundException e) {
 			throw new IllegalStateException(e);
 		}
+
 	}
 	
 	public static void reportComputationTimeByStartTime(Logger logger, long startTime, String msg) {
@@ -105,6 +116,15 @@ public class Utils {
 		@Override
 		public String toString() {
 			return baos.toString(); 
+		}
+		
+	}
+	
+	public static class MatchResultComparator implements Comparator<MatchResult>{
+
+		@Override
+		public int compare(MatchResult o1, MatchResult o2) {
+			return Double.compare(o2.getScore(), o1.getScore());
 		}
 		
 	}
