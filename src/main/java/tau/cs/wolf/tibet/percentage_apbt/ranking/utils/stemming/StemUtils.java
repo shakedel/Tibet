@@ -1,5 +1,6 @@
 package tau.cs.wolf.tibet.percentage_apbt.ranking.utils.stemming;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -13,7 +14,7 @@ import tau.cs.wolf.tibet.percentage_apbt.config.Directories;
 
 public class StemUtils {
 	//public static final String cleanTextDir = Directories.CLEAN_TEXT_DIR;
-	public static final String stemsIndexDir = Directories.STEM_DIR;
+	public static final File stemsIndexDir = Directories.STEM_DIR;
 	static
 	{
 		loadDada();
@@ -43,14 +44,14 @@ public class StemUtils {
 	}
 	
 	private static void loadWordToIntMap(String fileName, Map<Integer, String> map) throws IOException{
-		List<String> lines = Files.readAllLines(Paths.get(stemsIndexDir,fileName), Charset.defaultCharset());
+		List<String> lines = Files.readAllLines(Paths.get(stemsIndexDir.toURI()).resolve(fileName), Charset.defaultCharset());
 		for (String line: lines){
 			String[] words = line.split(",");
 			map.put(Integer.parseInt(words[1]), words[0]);
 		}
 	}
 	private static void loadIntToIntMap(String fileName, Map<Integer, Integer> map) throws IOException{
-		List<String> lines = Files.readAllLines(Paths.get(stemsIndexDir,fileName), Charset.defaultCharset());
+		List<String> lines = Files.readAllLines(Paths.get(stemsIndexDir.toURI()).resolve(fileName), Charset.defaultCharset());
 		for (String line: lines){
 			String[] words = line.split(",");
 			map.put(Integer.parseInt(words[0]), Integer.parseInt(words[1]));
